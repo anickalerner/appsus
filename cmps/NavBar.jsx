@@ -8,7 +8,7 @@ function _NavBar(props) {
         <nav>
             <NavLink exact activeClassName='active-nav' to="/">Home</NavLink>
             <NavLink to="/books" activeClassName='active-nav'>Books</NavLink>
-            <NavLink to="/mail" activeClassName='active-nav'>Mail</NavLink>
+            <NavLink to="/mail/filter" activeClassName='active-nav'>Mail</NavLink>
             <NavLink to="/keep" activeClassName='active-nav'>Keep</NavLink>
         </nav>
     )
