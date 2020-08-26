@@ -9,6 +9,12 @@ export default class Mail extends React.Component {
     };
 
     componentDidMount() {
+        console.log(this.props.match.params.filter);
+        // componentDidMount = () => {
+        //     const bookId = this.props.match.params.filter;
+        //     bookService.getBookById(bookId)
+        //         .then(book => this.setState({ book }));
+        // }
         this.loadMails();
     }
 
@@ -23,7 +29,7 @@ export default class Mail extends React.Component {
                 <div className="mail-wrapper">
                 <MailMenu/>
                 <MailList mails={this.state.mails} />
-                </div>
+                </div>                
             </section>
         )
     }

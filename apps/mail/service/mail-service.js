@@ -7,6 +7,7 @@ var mails = [
         subject: '✅ ORDER CONFIRMED: D\'Andrea Guitar Pick..',
         body: 'Thanks for your purchase, Anna! Your order is confirmed. We’ll let you know when it’s on the way.In the meantime, we have more things you’ll love at unbeatable prices!'
         , isRead: false, sentAt: 1551133930594
+        , starred: true
     }
     , {
         from: 'Dropbox',
