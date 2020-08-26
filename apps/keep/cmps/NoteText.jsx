@@ -16,13 +16,12 @@ export class NoteText extends React.Component {
     }
 
     onChange = (ev) => {
-        this.setState({ noteAddVal: ev.target.value });
+        this.setState({ info: {txt: ev.target.val} });
     }
 
     render() {
         const { info, id, isEditing } = this.state;
         if (!info) return <h1>Loading...</h1>
-        console.log(this.state);
         return isEditing ?
             <div>
                 <textarea value={info.txt} onChange={this.onChange} cols="30" rows="10"></textarea>
