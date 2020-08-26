@@ -8,15 +8,15 @@ export class NoteList extends React.Component {
         notes: null
     }
 
-    DynamicCmp = (note, remove)=> {
+    DynamicCmp = (note, remove, update)=> {
         const { id } = note;
         switch (note.type) {
             case 'NoteText':
-                return <NoteText key={id} {...note} removeNote={remove} />
+                return <NoteText key={id} {...note} removeNote={remove} updateNote={update} />
             case 'NoteImg':
-                return <NoteImg key={id} {...note} removeNote={remove} />
+                return <NoteImg key={id} {...note} removeNote={remove} updateNote={update} />
             case 'NoteTodos':
-                return <NoteTodos key={id} {...note} removeNote={remove} />
+                return <NoteTodos key={id} {...note} removeNote={remove} updateNote={update} />
             default:
                 return <h1 key={id}>Something went wrong with note {id}</h1>
         }
@@ -38,7 +38,7 @@ export class NoteList extends React.Component {
         if (!notes) return <h1>Loading...</h1>
         console.log(this.props);
         return <div className="note-list">
-            {notes.map(note => this.DynamicCmp(note, this.props.removeNote))}
+            {notes.map(note => this.DynamicCmp(note, this.props.removeNote, this.props.updateNote))}
         </div>
     }
 

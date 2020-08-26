@@ -4,7 +4,8 @@ import { utilService } from '../../../service/util-service.js';
 export const keepService = {
     getNotes,
     addNote,
-    removeNote
+    removeNote,
+    updateNote
 }
 
 var notes;
@@ -18,6 +19,7 @@ function loadNotes() {
 
 function saveNotes() {
     storageService.saveToStorage('-KEEP', notes);
+    return Promise.resolve('saved');
 }
 
 function initNotes() {
@@ -59,8 +61,9 @@ function initNotes() {
 function getNotes() {
     const pinned = [];
     const notPinned = [];
-    notes.forEach(note => note.isPinned ? pinned.push(note) : notPinned.push(note));
+    notes.forEach(note => note.info.isPinned ? pinned.push(note) : notPinned.push(note));
     console.log(pinned);
+    console.log('getting...');
     return Promise.resolve({ pinned, notPinned });
 }
 
@@ -81,8 +84,8 @@ function createTxtNote(noteVal) {
     return {
         id: utilService.makeId(),
         type: 'NoteText',
-        isPinned: true,
         info: {
+            isPinned: true,
             txt: noteVal
         }
     }
@@ -92,8 +95,8 @@ function createImgNote(noteVal) {
     return {
         id: utilService.makeId(),
         type: "NoteImg",
-        isPinned: false,
         info: {
+            isPinned: false,
             url: noteVal,
             title: null
         },
@@ -107,8 +110,8 @@ function createTodoNote(noteVal) {
     return {
         id: utilService.makeId(),
         type: "NoteTodos",
-        isPinned: false,
         info: {
+            isPinned: false,
             label: "How was it:",
             todos: [
                 { txt: noteVal, doneAt: null },
@@ -120,6 +123,15 @@ function createTodoNote(noteVal) {
 
 function removeNote(noteId) {
     notes = notes.filter(note => note.id !== noteId);
-    saveNotes();
-    return Promise.resolve();
+    return saveNotes();
+}
+
+function updateNote(noteId, noteInfo, ) {
+    console.log('id:', noteId);
+    console.log('info:', noteInfo);
+    notes = notes.map(note => {
+        if (note.id === noteId) note.info = noteInfo;
+        return note;
+    })
+    return saveNotes();
 }

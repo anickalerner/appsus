@@ -29,14 +29,16 @@ export default class Keep extends React.Component {
     addNote = (noteVal, noteType, ev) => {
         ev.preventDefault();
         keepService.addNote(noteVal, noteType)
-            .then(() =>{
-                this.getNotes();
-            }
-                );
+            .then(() => this.getNotes());
     }
 
     removeNote = (id)=>{
         keepService.removeNote(id)
+            .then(this.getNotes());
+    }
+
+    updateNote = (id, info) =>{
+        keepService.updateNote(id, info)
             .then(this.getNotes());
     }
 
@@ -48,9 +50,9 @@ export default class Keep extends React.Component {
             <section className="keep-content">
                 <AddNote addNote={this.addNote} />
                 <h1>Pinned</h1>
-                    <NoteList notes={pinned} removeNote={this.removeNote}/>
+                    <NoteList notes={pinned} removeNote={this.removeNote} updateNote={this.updateNote}/>
                 <h1>Others</h1>
-                    <NoteList notes={notPinned} removeNote={this.removeNote}/>
+                    <NoteList notes={notPinned} removeNote={this.removeNote} updateNote={this.updateNote}/>
             </section>
         </div>
     }

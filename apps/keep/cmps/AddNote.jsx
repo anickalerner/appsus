@@ -17,6 +17,7 @@ export class AddNote extends React.Component {
 
     onSubmit = ()=>{
         const { noteAddVal, noteType } = this.state;
+        if(!noteAddVal) return;
         this.props.addNote(noteAddVal, noteType, event);
         this.setState({noteAddVal: ''});
     }
