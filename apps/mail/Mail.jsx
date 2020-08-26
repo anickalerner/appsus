@@ -1,19 +1,25 @@
-//import BookApp from 'BookApp.jsx'
+import { MailList } from './cmps/MailList.jsx';
+import { mailService } from './service/mail-service.js';
 
 export default class Mail extends React.Component {
 
     state = {
-        //isFrontImgVisible: false
+        mails: []
+    };
+
+    componentDidMount() {
+        this.loadMails();
     }
 
-    // componentDidMount() {
-    //     this.setState({ isFrontImgVisible: true })
-    // }
+    loadMails() {
+        mailService.query().then(mails => this.setState({ mails }));
+    }
 
     render() {
         return (
             <section className="mail-container">
                 <h2>Mail</h2>
+                <MailList mails={this.state.mails} />
             </section>
         )
     }
