@@ -1,0 +1,7 @@
+@import '../../apps/mail/assets/css/main.css';
+@import '../../apps/keep/assets/css/main.css';
+@import '../../apps/books/assets/css/main.css';
+
+.home-container{
+    background-color: lightsteelblue;
+}
