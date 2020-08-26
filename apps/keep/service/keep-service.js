@@ -13,8 +13,7 @@ loadNotes();
 
 function loadNotes() {
     notes = storageService.loadFromStorage('-KEEP');
-    console.log(notes);
-    if (!notes || notes === []) initNotes();
+    if (!notes || !notes.length) initNotes();
 }
 
 function saveNotes() {
@@ -62,13 +61,11 @@ function getNotes() {
     const pinned = [];
     const notPinned = [];
     notes.forEach(note => note.info.isPinned ? pinned.push(note) : notPinned.push(note));
-    console.log(pinned);
     console.log('getting...');
     return Promise.resolve({ pinned, notPinned });
 }
 
 function addNote(NoteVal, noteType) {
-    console.log(noteType);
     const typeMap = {
         txt: createTxtNote,
         img: createImgNote,
@@ -127,8 +124,6 @@ function removeNote(noteId) {
 }
 
 function updateNote(noteId, noteInfo, ) {
-    console.log('id:', noteId);
-    console.log('info:', noteInfo);
     notes = notes.map(note => {
         if (note.id === noteId) note.info = noteInfo;
         return note;

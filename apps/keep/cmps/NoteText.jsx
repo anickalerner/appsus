@@ -1,5 +1,6 @@
 import { TrashBinIcon, EditIcon, TextIcon, CheckIcon } from '../../../cmps/Icons.jsx';
 import { Longtxt } from '../../../cmps/Longtxt.jsx';
+import eventBus from '../../service/event-bus-service.js';
 
 export class NoteText extends React.Component {
     state = {
@@ -36,12 +37,12 @@ export class NoteText extends React.Component {
                     : <Longtxt txt={info.txt} />}
                 {isEditing ?
                     <div className="edit-note">
-                        <button onClick={() => this.props.updateNote(id, info)}><CheckIcon /></button>
+                        <button onClick={() => eventBus.emit('update-note', {id, info})}><CheckIcon /></button>
                     </div>
                     :
                     <div className="edit-note">
                         <button onClick={this.onEdit}><EditIcon /></button>
-                        <button onClick={() => this.props.removeNote(id)}><TrashBinIcon /></button>
+                        <button onClick={() => eventBus.emit('remove-note', id)}><TrashBinIcon /></button>
                     </div>
                 }
             </div>

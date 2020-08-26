@@ -1,4 +1,5 @@
 import { keepService } from './service/keep-service.js';
+import eventBus from '../../service/event-bus-service.js';
 import { NoteList } from './cmps/NoteList.jsx';
 import { LeftBar } from './cmps/LeftBar.jsx';
 import { AddNote } from './cmps/AddNote.jsx';
@@ -12,8 +13,28 @@ export default class Keep extends React.Component {
         pinned: null
     }
 
+    unsubscribeRemove;
+    unsubscribeUpdate;
+
     componentDidMount() {
         this.getNotes();
+
+        this.unsubscribeRemove = eventBus.on('remove-note', (id) =>{
+            console.log('emitting...');
+            console.log(id);
+            this.removeNote(id)
+        })
+
+        this.unsubscribeUpdate = eventBus.on('update-note', (id, info) =>{
+            console.log('emitting...');
+            console.log(id, info);
+            this.updateNote(id, info);
+        })
+    }
+
+    componentWillUnmount(){
+        this.unsubscribeRemove();
+        this.unsubscribeUpdate();
     }
 
     getNotes(){
