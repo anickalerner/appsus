@@ -1,3 +1,5 @@
+import { storageService } from '../../../service/storage-service.js'
+
 export const keepService = {
     getNotes
 }
@@ -14,7 +16,7 @@ var notes = [{
         id: 'Note2',
         type: "NoteImg",
         info: {
-            url: "http://some-img/me",
+            url: "https://i.kym-cdn.com/entries/icons/facebook/000/015/559/It_Was_Me__Dio!.jpg",
             title: "Me playing Mi"
         },
         style: {
