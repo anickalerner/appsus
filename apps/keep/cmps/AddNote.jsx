@@ -1,3 +1,5 @@
+import { TextIcon, ImageIcon, TodoListIcon } from '../../../cmps/Icons.jsx';
+
 export class AddNote extends React.Component {
 
     state = {
@@ -13,13 +15,19 @@ export class AddNote extends React.Component {
         this.setState({noteType});
     }
 
-    render() {
+    onSubmit = ()=>{
         const { noteAddVal, noteType } = this.state;
-        return <form className="add-note" onSubmit={() => this.props.addNote(noteAddVal, noteType, event)}>
-                <input value={noteAddVal} onChange={this.onChange} placeholder="Take a note" type="text" />
-                <button type="button" onClick={() => this.onChangeNoteType('txt')}>txt</button>
-                <button type="button" onClick={() => this.onChangeNoteType('img')}>img</button>
-                <button type="button" onClick={() => this.onChangeNoteType('todo')}>todo</button>
+        this.props.addNote(noteAddVal, noteType, event);
+        this.setState({noteAddVal: ''});
+    }
+
+    render() {
+        const { noteAddVal, noteType} = this.state;
+        return <form className="add-note" onSubmit={this.onSubmit}>
+                <input value={noteAddVal} onChange={this.onChange} placeholder={`Take a note (${noteType})`} type="text" />
+                <button type="button" onClick={() => this.onChangeNoteType('txt')}><TextIcon /></button>
+                <button type="button" onClick={() => this.onChangeNoteType('img')}><ImageIcon /></button>
+                <button type="button" onClick={() => this.onChangeNoteType('todo')}><TodoListIcon /></button>
             </form>
     }
 }

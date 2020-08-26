@@ -1,5 +1,6 @@
 const { NavLink, withRouter } = ReactRouterDOM;
 import { NoteIcon, ReminderIcon, ArchiveIcon, TrashBinIcon } from '../../../cmps/Icons.jsx';
+
 function _LeftBar() {
     return <ul className="left-bar">
         <li>

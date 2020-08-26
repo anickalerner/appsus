@@ -3,7 +3,8 @@ import { utilService } from '../../../service/util-service.js';
 
 export const keepService = {
     getNotes,
-    addNote
+    addNote,
+    removeNote
 }
 
 var notes;
@@ -11,6 +12,7 @@ loadNotes();
 
 function loadNotes() {
     notes = storageService.loadFromStorage('-KEEP');
+    console.log(notes);
     if (!notes || notes === []) initNotes();
 }
 
@@ -30,6 +32,7 @@ function initNotes() {
         {
             id: utilService.makeId(),
             type: "NoteImg",
+            isPinned: false,
             info: {
                 url: "https://i.kym-cdn.com/entries/icons/facebook/000/015/559/It_Was_Me__Dio!.jpg",
                 title: "Me playing Mi"
@@ -41,6 +44,7 @@ function initNotes() {
         {
             id: utilService.makeId(),
             type: "NoteTodos",
+            isPinned: false,
             info: {
                 label: "How was it:",
                 todos: [
@@ -53,12 +57,19 @@ function initNotes() {
 }
 
 function getNotes() {
-    return Promise.resolve(notes);
+    const pinned = [];
+    const notPinned = [];
+    notes.forEach(note => note.isPinned ? pinned.push(note) : notPinned.push(note));
+    console.log(pinned);
+    return Promise.resolve({ pinned, notPinned });
 }
 
 function addNote(NoteVal, noteType) {
+    console.log(noteType);
     const typeMap = {
-        txt: createTxtNote
+        txt: createTxtNote,
+        img: createImgNote,
+        todo: createTodoNote
     }
 
     notes.push(typeMap[noteType](NoteVal));
@@ -70,9 +81,45 @@ function createTxtNote(noteVal) {
     return {
         id: utilService.makeId(),
         type: 'NoteText',
-        isPinned: false,
+        isPinned: true,
         info: {
             txt: noteVal
         }
     }
+}
+
+function createImgNote(noteVal) {
+    return {
+        id: utilService.makeId(),
+        type: "NoteImg",
+        isPinned: false,
+        info: {
+            url: noteVal,
+            title: null
+        },
+        style: {
+            backgroundColor: "#00d"
+        }
+    }
+}
+
+function createTodoNote(noteVal) {
+    return {
+        id: utilService.makeId(),
+        type: "NoteTodos",
+        isPinned: false,
+        info: {
+            label: "How was it:",
+            todos: [
+                { txt: noteVal, doneAt: null },
+
+            ]
+        }
+    }
+}
+
+function removeNote(noteId) {
+    notes = notes.filter(note => note.id !== noteId);
+    saveNotes();
+    return Promise.resolve();
 }

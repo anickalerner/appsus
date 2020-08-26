@@ -56,13 +56,19 @@ export function CheckIcon({ size }) {
     return (<i className="fas fa-check" style={getFontSize(size)}></i>)
 }
 export function NoteIcon({size}){
-    return <i class="far fa-sticky-note" style={getFontSize(size)}></i>
+    return <i className="far fa-sticky-note" style={getFontSize(size)}></i>
 }
 export function ReminderIcon({size}){
-    return <i class="far fa-bell" style={getFontSize(size)}></i>
+    return <i className="far fa-bell" style={getFontSize(size)}></i>
 }
 export function ArchiveIcon({size}){
-    return <i class="fas fa-archive" style={getFontSize(size)}></i>
+    return <i className="fas fa-archive" style={getFontSize(size)}></i>
+}
+export function TextIcon({size}){
+    return <i className="fas fa-font" style={getFontSize(size)}></i>
+}
+export function TodoListIcon({size}){
+    return <i className="fas fa-list-ul" style={getFontSize(size)}></i>
 }
 
 
