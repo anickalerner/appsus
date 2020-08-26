@@ -1,3 +1,7 @@
 .mail-container{
     background-color: lightslategray;
 }
+.mail-wrapper{
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
