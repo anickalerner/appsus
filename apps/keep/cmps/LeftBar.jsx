@@ -1,10 +1,24 @@
 const { NavLink, withRouter } = ReactRouterDOM;
-import {InboxIcon} from '../../../cmps/Icons.jsx';
-export function LeftBar (props){
-        return <ul className="left-bar">
-            <li>Notes</li>
-            <li>Reminders</li>
-            <li>Archive</li>
-            <li>Bin</li>
-        </ul>
+import { NoteIcon, ReminderIcon, ArchiveIcon, TrashBinIcon } from '../../../cmps/Icons.jsx';
+function _LeftBar() {
+    return <ul className="left-bar">
+        <li>
+            <NoteIcon size="1em" />
+            <NavLink exact activeClassName='active-nav' to="/keep/notes">Notes</NavLink>
+        </li>
+        <li>
+            <ReminderIcon size="1em" />
+            <NavLink exact activeClassName='active-nav' to="/keep/reminders">Reminders</NavLink>
+        </li>
+        <li>
+            <ArchiveIcon size="1em" />
+            <NavLink exact activeClassName='active-nav' to="/keep/archive">Archive</NavLink>
+        </li>
+        <li>
+            <TrashBinIcon size="1em" />
+            <NavLink exact activeClassName='active-nav' to="/keep/bin">Bin</NavLink>
+        </li>
+    </ul>
 }
+
+export const LeftBar = withRouter(_LeftBar);

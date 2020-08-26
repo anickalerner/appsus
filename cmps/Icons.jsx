@@ -55,5 +55,14 @@ export function CopyIcon({ size }) {
 export function CheckIcon({ size }) {
     return (<i class="fas fa-check" style={getFontSize(size)}></i>)
 }
+export function NoteIcon({size}){
+    return <i class="far fa-sticky-note" style={getFontSize(size)}></i>
+}
+export function ReminderIcon({size}){
+    return <i class="far fa-bell" style={getFontSize(size)}></i>
+}
+export function ArchiveIcon({size}){
+    return <i class="fas fa-archive" style={getFontSize(size)}></i>
+}
 
 
