@@ -56,16 +56,23 @@ function getNotes() {
     return Promise.resolve(notes);
 }
 
-function addNote(NoteVal) {
-    const newNote = {
+function addNote(NoteVal, noteType) {
+    const typeMap = {
+        txt: createTxtNote
+    }
+
+    notes.push(typeMap[noteType](NoteVal));
+    saveNotes();
+    return Promise.resolve('added');
+}
+
+function createTxtNote(noteVal) {
+    return {
         id: utilService.makeId(),
         type: 'NoteText',
         isPinned: false,
         info: {
-            txt: NoteVal
+            txt: noteVal
         }
     }
-    notes.push(newNote);
-    saveNotes();
-    return Promise.resolve('added');
 }

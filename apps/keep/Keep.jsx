@@ -1,7 +1,9 @@
 import { keepService } from './service/keep-service.js';
-import { NoteText } from './cmps/NoteText.jsx'
-import { NoteImg } from './cmps/NoteImg.jsx'
-import { NoteTodos } from './cmps/NoteTodos.jsx'
+import { NoteText } from './cmps/NoteText.jsx';
+import { NoteImg } from './cmps/NoteImg.jsx';
+import { NoteTodos } from './cmps/NoteTodos.jsx';
+import { LeftBar } from './cmps/LeftBar.jsx';
+import { AddNote } from './cmps/AddNote.jsx';
 
 function DynamicCmp(props) {
     const { id } = props;
@@ -20,13 +22,12 @@ function DynamicCmp(props) {
 export default class Keep extends React.Component {
 
     state = {
-        notes: null,
-        noteAddVal: ''
+        notes: null
     }
 
     componentDidMount() {
         keepService.getNotes()
-            .then(res => this.setState({notes: res}))
+            .then(res => this.setState({ notes: res }))
     }
 
     renderNotes() {
@@ -34,27 +35,25 @@ export default class Keep extends React.Component {
         return notes.map(note => DynamicCmp(note))
     }
 
-    addNote = (ev)=>{
+    addNote = (noteVal, noteType, ev) => {
         ev.preventDefault();
-        keepService.addNote(this.state.noteAddVal)
-            .then(this.setState({noteAddVal: ''}))
-
-    }
-
-    onChange = (ev)=>{
-        this.setState({noteAddVal: ev.target.value});
+        keepService.addNote(noteVal, noteType)
+            .then(this.setState({ noteAddVal: '' }))
     }
 
     render() {
-        const { notes, noteAddVal } = this.state;
+        const { notes } = this.state;
         if (!notes) return <h1>Loading...</h1>
-        return <div>
-            <form onSubmit={this.addNote}>
-                <input value={noteAddVal} onChange={this.onChange} placeholder="Take a note" type="text" />
-            </form>
-            <h1>Pinned notes</h1>
-            <h1>Notes</h1>
-            {this.renderNotes()}
+        return <div className="keep-container">
+            <LeftBar />
+            <section className="keep-content">
+                <AddNote addNote={this.addNote} />
+                    <h1>Pinned notes</h1>
+                    <h1>Notes</h1>
+                <div className="note-list">
+                    {this.renderNotes()}
+                </div>
+            </section>
         </div>
     }
 }
