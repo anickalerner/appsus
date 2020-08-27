@@ -41,7 +41,7 @@ export class NoteImg extends React.Component {
                 {info.title && <h2>{info.title}</h2>}
                 <img src={info.url} alt="" />
                 <div className="edit-note">
-                    <EditIcon onClick={this.onEdit} />
+                    <EditIcon size='1.5em'  onClick={this.onEdit} />
                     <TrashBinIcon size='1.5em' onClick={() => eventBus.emit('remove-note', id)} />
                 </div>
             </div>

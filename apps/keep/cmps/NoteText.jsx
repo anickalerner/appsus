@@ -43,7 +43,7 @@ export class NoteText extends React.Component {
                     </div>
                     :
                     <div className="edit-note">
-                        <EditIcon onMouseUp={this.onEdit} />
+                        <EditIcon size='1.5em' onClick={this.onEdit} />
                         <TrashBinIcon size='1.5em' onClick={() => eventBus.emit('remove-note', id)} />
                     </div>
                 }

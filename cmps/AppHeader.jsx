@@ -3,9 +3,9 @@ const { Link } = ReactRouterDOM
 export function AppHeader(){
     return (
         <header>
-            <h1>
-            <Link to="/">AppsusHome</Link>
-            </h1>
+            <div className="logo">
+            <Link to="/">Appsus</Link>
+            </div>
             <AppsMenuIcon/>
         </header>
     )
