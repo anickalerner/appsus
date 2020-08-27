@@ -1,6 +1,5 @@
 import { TrashBinIcon, EditIcon, TextIcon, CheckIcon } from '../../../cmps/Icons.jsx';
-import { Longtxt } from '../../../cmps/Longtxt.jsx';
-import eventBus from '../../service/event-bus-service.js';
+import eventBus from '../../../service/event-bus-service.js';
 
 export class NoteText extends React.Component {
     state = {
@@ -21,7 +20,10 @@ export class NoteText extends React.Component {
     }
 
     onEdit = () => {
-        this.setState({ isEditing: true })
+        setTimeout(() =>{
+        this.setState({ isEditing: true });
+        this.elText.current.focus();
+        }, 0)
     }
 
     onUpdate = ()=>{
@@ -41,7 +43,7 @@ export class NoteText extends React.Component {
                     </div>
                     :
                     <div className="edit-note">
-                        <button onClick={this.onEdit}><EditIcon /></button>
+                        <button onMouseUp={this.onEdit}><EditIcon /></button>
                         <button onClick={() => eventBus.emit('remove-note', id)}><TrashBinIcon /></button>
                     </div>
                 }

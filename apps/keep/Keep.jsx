@@ -1,5 +1,5 @@
 import { keepService } from './service/keep-service.js';
-import eventBus from '../../service/event-bus-service.js';
+import eventBus from '../../service/event-bus-service.jsx';
 import { NoteList } from './cmps/NoteList.jsx';
 import { LeftBar } from './cmps/LeftBar.jsx';
 import { AddNote } from './cmps/AddNote.jsx';
@@ -20,13 +20,13 @@ export default class Keep extends React.Component {
         this.getNotes();
 
         this.unsubscribeRemove = eventBus.on('remove-note', (id) =>{
-            console.log('emitting...');
+            console.log('removing note...');
             console.log(id);
-            this.removeNote(id)
+            this.removeNote(id);
         })
 
-        this.unsubscribeUpdate = eventBus.on('update-note', (id, info) =>{
-            console.log('emitting...');
+        this.unsubscribeUpdate = eventBus.on('update-note', ({id, info}) =>{
+            console.log('updating note...');
             console.log(id, info);
             this.updateNote(id, info);
         })

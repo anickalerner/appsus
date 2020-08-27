@@ -1,8 +1,8 @@
-@import 'note-img.css';
-@import 'note-text.css';
-@import 'note-todo.css';
-@import 'left-bar.css';
-@import 'add-note.css';
+@import './note-img.css';
+@import './note-text.css';
+@import './note-todo.css';
+@import './left-bar.css';
+@import './add-note.css';
 .keep-container {
     background-color: lightsalmon;
     display: flex;

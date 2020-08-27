@@ -32,16 +32,17 @@ export function Todo(props) {
 
     getDate(doneAt);
 
-    return <li className="todo-content"  onClick={() => checkTodo(idx)} >
-        <p className={(doneAt && !isEditing) ? 'checked' : ''} contentEditable={isEditing} >{txt}</p>
+    return <li onClick={() => checkTodo(idx)} >
+        {/* <p className={(doneAt && !isEditing) ? 'checked' : ''} contentEditable={isEditing} >{txt}</p>
         <p>{doneAt ? getDate(doneAt) : ''}</p>
-        <button><TrashBinIcon /></button>
-        {/* {isEditing ?
+        <button><TrashBinIcon /></button> */}
+        {isEditing ?
             <input value={txt} type="text" onChange={() => updateTodo(idx, event)} />
             : <div className="todo-content">
                 <p className={`todo ${doneAt ? 'checked' : ''}`}>{txt}</p>
-                <span>{doneAt ? getDate(doneAt) : ''}</span>
+                <p>{doneAt ? getDate(doneAt) : ''}</p>
+                <div className="edit-note"><button><TrashBinIcon /></button></div>
                 </div>
-        } */}
+        }
         </li>
 }

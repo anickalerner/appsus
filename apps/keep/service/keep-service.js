@@ -27,6 +27,7 @@ function initNotes() {
             type: "NoteText",
             isPinned: true,
             info: {
+                title: 'first comment',
                 txt: "Fullstack Me Baby!"
             }
         },
@@ -47,7 +48,7 @@ function initNotes() {
             type: "NoteTodos",
             isPinned: false,
             info: {
-                label: "How was it:",
+                title: "How was it:",
                 todos: [
                     { txt: "Do that", doneAt: null },
                     { txt: "Do this", doneAt: 187111111 }
@@ -123,10 +124,10 @@ function removeNote(noteId) {
     return saveNotes();
 }
 
-function updateNote(noteId, noteInfo, ) {
-    notes = notes.map(note => {
-        if (note.id === noteId) note.info = noteInfo;
-        return note;
-    })
+function updateNote(noteId, noteInfo) {
+    console.log('id:', noteId);
+    console.log('info:', noteInfo);
+    const noteIdx = notes.findIndex(note => note.id === noteId);
+    notes[noteIdx].info = noteInfo;
     return saveNotes();
 }

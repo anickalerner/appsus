@@ -1,6 +1,6 @@
-import { Todo } from 'Todo.jsx'
+import { Todo } from './Todo.jsx'
 import { TrashBinIcon, EditIcon, CheckIcon, PlusIcon } from '../../../cmps/Icons.jsx';
-import eventBus from '../../service/event-bus-service.js';
+import eventBus from '../../../service/event-bus-service.js';
 
 export class NoteTodos extends React.Component {
     state = {
@@ -26,15 +26,15 @@ export class NoteTodos extends React.Component {
         if(!value)  todos.splice(idx, 1);
         else todos[idx].txt = ev.target.value;
         info.todos = todos;
-        this.setState({ info });
+        this.setState({ info }, console.log(this.state));
     }
 
     checkTodo = (idx)=>{
         const {info, id} = this.state;
-        if(!info.todos[idx].doneAt) {
-            info.todos[idx].doneAt = Date.now();
-            eventBus.emit('update-note', {id, info})
-        }
+        (!info.todos[idx].doneAt) ?
+            info.todos[idx].doneAt = Date.now()
+            : info.todos[idx].doneAt = null;
+        eventBus.emit('update-note', {id, info})
     }
 
     renderTodos() {
@@ -42,9 +42,9 @@ export class NoteTodos extends React.Component {
         return todos.map((todo, idx) => <Todo key={idx} idx={idx} checkTodo={this.checkTodo} updateTodo={this.updateTodo} isEditing={this.state.isEditing} {...todo} />)
     }
 
-    onChangeLabel = (ev) => {
+    onChangeTitle = (ev) => {
         const info = { ...this.state.info };
-        info.label = ev.target.value;
+        info.title = ev.target.value;
         this.setState({ info });
     }
 
@@ -69,9 +69,11 @@ export class NoteTodos extends React.Component {
         const { info, id, isEditing, newTodoVal } = this.state;
         if (!info) return <h1>Loading...</h1>
         return <div className="note">
-            {isEditing ? <input value={info.label} onChange={this.onChangeLabel} type="text" /> : <h1>{this.props.info.label}</h1>}
+            {isEditing ?
+            <input value={info.title} onChange={this.onChangeTitle} type="text" />
+            : <h1>{this.props.info.title}</h1>}
             <ul>{this.renderTodos()}</ul>
-            {<input value={newTodoVal} onChange={this.onChangeAddTodo} type="text"/>}
+            {!isEditing && <input placeholder="Add a new todo" value={newTodoVal} onChange={this.onChangeAddTodo} type="text"/>}
 
             {isEditing ? 
             <div className="edit-note">

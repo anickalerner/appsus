@@ -1,6 +1,6 @@
-import { NoteText } from 'NoteText.jsx';
-import { NoteImg } from 'NoteImg.jsx';
-import { NoteTodos } from 'NoteTodos.jsx';
+import { NoteText } from './NoteText.jsx';
+import { NoteImg } from './NoteImg.jsx';
+import { NoteTodos } from './NoteTodos.jsx';
 
 function DynamicCmp(note, remove, update){
     const { id } = note;
