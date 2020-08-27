@@ -1,5 +1,5 @@
 import { keepService } from './service/keep-service.js';
-import eventBus from '../../service/event-bus-service.jsx';
+import eventBus from '../../service/event-bus-service.js';
 import { NoteList } from './cmps/NoteList.jsx';
 import { LeftBar } from './cmps/LeftBar.jsx';
 import { AddNote } from './cmps/AddNote.jsx';

@@ -1,6 +1,11 @@
 function getFontSize(size){
     return { fontSize: size ? size : '1em' };
 }
+//Common
+export function GridIcon({ size }) {
+    return (<i className="fas fa-th" style={getFontSize(size)}></i>)
+}
+
 //Mail
 export function TrashBinIcon({size}){
     return (<i className="fas fa-trash" style={getFontSize(size)}></i>)
@@ -37,9 +42,6 @@ export function PaletteIcon({ size }) {
 export function ImageIcon({ size }) {
     return (<i className="fas fa-image" style={getFontSize(size)}></i>)
 }
-export function PinIcon({ size }) {
-    return (<i className="fas fa-thumbtack" style={getFontSize(size)}></i>)
-}
 export function YoutubeIcon({ size }) {
     return (<i className="fas fa-youtube" style={getFontSize(size)}></i>)
 }
@@ -60,6 +62,9 @@ export function CheckIcon({ size }) {
 }
 export function NoteIcon({size}){
     return <i className="far fa-sticky-note" style={getFontSize(size)}></i>
+}
+export function PinIcon({ size }) {
+    return (<i className="fas fa-thumbtack" style={getFontSize(size)}></i>)
 }
 export function ReminderIcon({size}){
     return <i className="far fa-bell" style={getFontSize(size)}></i>

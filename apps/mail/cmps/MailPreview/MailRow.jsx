@@ -1,7 +1,5 @@
 import { MailSubject } from './MailSubject.jsx';
 import { MailControls } from './MailControls.jsx';
-//import { MailFrom } from './MailControls.jsx';
-//import { MailControls } from './MailControls.jsx';
 
 export class MailRow extends React.Component {
     state = {

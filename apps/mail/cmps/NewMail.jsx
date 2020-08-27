@@ -20,7 +20,7 @@ export class NewMail extends React.Component {
     render(){
 
     return (
-        <div className="new-mail-container">
+        <div className="new-mail-container aps-box-shadow-big">
             <div className="top-band">New Message
             <button type="button" className="close" aria-label="Close" onClick={this.props.onClose}>
                     <span aria-hidden="true">&times;</span>
