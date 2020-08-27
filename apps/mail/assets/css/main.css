@@ -9,3 +9,7 @@ span.starred i{
 .mail-subject span.text-bold{
     padding-right: 2em;
 }
+.mail-menu-wrapper ul{
+    list-style: none;
+    
+}

@@ -19,4 +19,15 @@ header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding: 0.4em 1em 1em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+header .logo a{
+    font-size: 2em;
+    font-family: 'Product';
+    text-decoration: none;
+    color: #5f6368;
+}
+header .logo a:visited{
+    color: #5f6368;
 }

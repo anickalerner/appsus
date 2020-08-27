@@ -64,7 +64,7 @@ export function CopyIcon({ size, onClick }) {
 export function CheckIcon({ size, onClick }) {
     return icon("fas fa-check", getFontSize(size), onClick);
 }
-export function NoteIcon({size, cb}){
+export function NoteIcon({size, onClick}){
     return icon("far fa-sticky-note", getFontSize(size), onClick);
 }
 export function PinIcon({ size, onClick }) {

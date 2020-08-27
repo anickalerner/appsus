@@ -7,8 +7,16 @@
     font-family: 'Roboto';
     src: url('../font/Roboto/Roboto-Regular.ttf');
 }
+@font-face{
+    font-family: 'Product';
+    src: url('../font/ProductSans/Product\ Sans\ Regular.ttf');
+}
+html{
+    box-sizing: border-box;
+}
 body{
     font-family: 'Roboto', Arial, sans-serif;
+    color: rgb(32, 33, 36);
 }
 
 /* Helpers */
@@ -22,19 +30,18 @@ box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60,6
     border-radius: 20px;
 }
 i.fas, i.far{
-    height: 24px;
-    width: 24px;
+  padding: 8px;
+  float: left;
+  position: relative;
+  border-radius: 50%;
+  text-align: center;
+  color: rgb(95, 99, 104);
 }
+
 i.fas:hover,
 i.far:hover{
-    opacity: .87;
-    background-color: rgba(95,99,104,0.157);
-    background-size: 18px 18px;
-    border-radius: 50%;
-    border: 1px solid transparent;
-    height: 24px;
-    opacity: .54;
-    width: 24px;
+  background:#f1f3f4;
+  color: #5f6368;
 }
 button{
     cursor: pointer;
