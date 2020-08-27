@@ -17,7 +17,9 @@ export default class Keep extends React.Component {
     unsubscribeUpdate;
 
     componentDidMount() {
-        this.getNotes();
+        keepService.loadNotes()
+            .then(this.getNotes());
+        
 
         this.unsubscribeRemove = eventBus.on('remove-note', (id) =>{
             console.log('removing note...');

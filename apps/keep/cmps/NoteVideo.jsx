@@ -31,8 +31,8 @@ export class NoteVideo extends React.Component {
         const { info, isEditing, id } = this.state;
         if (!info) return <h1>Loading...</h1>
         return isEditing ? <div className="note">
-            <input name="title" placeholder="Image's title" value={info.title || ''} onChange={this.onChange} type="text" />
-            <input name="url" value={info.url} placeholder="Image's url" onChange={this.onChange} type="text" />
+            <input name="title" placeholder="Video's title" value={info.title || ''} onChange={this.onChange} type="text" />
+            <input name="url" value={info.url} placeholder="Video's url" onChange={this.onChange} type="text" />
             <div className="edit-note">
                 <button onClick={() => eventBus.emit('update-note', {id, info})}><CheckIcon /></button>
             </div>

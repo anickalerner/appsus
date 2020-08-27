@@ -1,4 +1,4 @@
-import { TextIcon, ImageIcon, TodoListIcon } from '../../../cmps/Icons.jsx';
+import { TextIcon, ImageIcon, YoutubeIcon, TodoListIcon } from '../../../cmps/Icons.jsx';
 
 export class AddNote extends React.Component {
 
@@ -28,6 +28,7 @@ export class AddNote extends React.Component {
                 <input value={noteAddVal} onChange={this.onChange} placeholder={`Take a note (${noteType})`} type="text" />
                 <button type="button" onClick={() => this.onChangeNoteType('txt')}><TextIcon /></button>
                 <button type="button" onClick={() => this.onChangeNoteType('img')}><ImageIcon /></button>
+                <button type="button" onClick={() => this.onChangeNoteType('youtube')}><YoutubeIcon /></button>
                 <button type="button" onClick={() => this.onChangeNoteType('todo')}><TodoListIcon /></button>
             </form>
     }

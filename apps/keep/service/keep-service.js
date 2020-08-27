@@ -2,6 +2,7 @@ import { storageService } from '../../../service/storage-service.js';
 import { utilService } from '../../../service/util-service.js';
 
 export const keepService = {
+    loadNotes,
     getNotes,
     addNote,
     removeNote,
@@ -9,15 +10,15 @@ export const keepService = {
 }
 
 var notes;
-loadNotes();
 
 function loadNotes() {
-    notes = storageService.loadFromStorage('-KEEP');
+    notes = storageService.loadFromStorage('KEEP');
     if (!notes || !notes.length) initNotes();
+    return Promise.resolve();
 }
 
 function saveNotes() {
-    storageService.saveToStorage('-KEEP', notes);
+    storageService.saveToStorage('KEEP', notes);
     return Promise.resolve('saved');
 }
 
