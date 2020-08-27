@@ -35,15 +35,15 @@ export class NoteVideo extends React.Component {
             <input name="title" placeholder="Video's title" value={info.title || ''} onChange={this.onChange} type="text" />
             <input name="url" value={info.url} placeholder="Video's url" onChange={this.onChange} type="text" />
             <div className="edit-note">
-                <button onClick={() => eventBus.emit('update-note', { id, info })}><CheckIcon /></button>
+                <CheckIcon size='1.5em' onClick={() => eventBus.emit('update-note', { id, info })} />
             </div>
         </div>
             : <div className="note rounded aps-box-shadow-small">
                 {info.title && <h2>{info.title}</h2>}
                 <iframe src={info.url} alt="" />
                 <div className="edit-note">
-                    <button onClick={this.onEdit}><EditIcon /></button>
-                    <button onClick={() => eventBus.emit('remove-note', id)}><TrashBinIcon /></button>
+                    <EditIcon onClick={this.onEdit} />
+                    <TrashBinIcon size='1.5em' onClick={() => eventBus.emit('remove-note', id)} />
                 </div>
             </div>
     }

@@ -77,13 +77,13 @@ export class NoteTodos extends React.Component {
 
             {isEditing ? 
             <div className="edit-note">
-                <button onClick={() => eventBus.emit('update-note', {id, info})}><CheckIcon /></button>
+                <CheckIcon size='1.5em' onClick={() => eventBus.emit('update-note', {id, info})} />
             </div>
             :
                 <div className="edit-note">
-                    <button onClick={() => this.onAddTodo(id)}><PlusIcon /></button>
-                    <button onClick={this.onEdit}><EditIcon /></button>
-                    <button onClick={() => eventBus.emit('remove-note', id)}><TrashBinIcon /></button>
+                    <PlusIcon size='1.5em' onClick={() => this.onAddTodo(id)} />
+                    <EditIcon size='1.5em' onClick={this.onEdit} />
+                    <TrashBinIcon size='1.5em' onClick={() => eventBus.emit('remove-note', id)} />
                 </div>
             }
         </div>

@@ -39,12 +39,12 @@ export class NoteText extends React.Component {
             <p ref={this.elText} suppressContentEditableWarning={true} contentEditable={isEditing}>{info.txt}</p>
                 {isEditing ?
                     <div className="edit-note">
-                        <button onClick={this.onUpdate}><CheckIcon /></button>
+                        <CheckIcon size='1.5em' onClick={this.onUpdate} />
                     </div>
                     :
                     <div className="edit-note">
-                        <button onMouseUp={this.onEdit}><EditIcon /></button>
-                        <button onClick={() => eventBus.emit('remove-note', id)}><TrashBinIcon /></button>
+                        <EditIcon onMouseUp={this.onEdit} />
+                        <TrashBinIcon size='1.5em' onClick={() => eventBus.emit('remove-note', id)} />
                     </div>
                 }
             </div>

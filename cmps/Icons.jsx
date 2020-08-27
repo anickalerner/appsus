@@ -1,82 +1,86 @@
 function getFontSize(size){
     return { fontSize: size ? size : '1em' };
 }
+function icon(className, style, callback) {
+    return <i className={className} style={style} onClick={callback}></i>;    
+}
+
 //Common
-export function GridIcon({ size }) {
-    return (<i className="fas fa-th" style={getFontSize(size)}></i>)
+export function GridIcon({ size, onClick }) {
+    return icon("fas fa-th", getFontSize(size), onClick);
 }
 
 //Mail
-export function TrashBinIcon({size}){
-    return (<i className="fas fa-trash" style={getFontSize(size)}></i>)
+export function TrashBinIcon({ size, onClick }){
+    return icon("fas fa-trash", getFontSize(size), onClick);
 }
-export function InboxIcon({ size }) {
-    return (<i className="fas fa-inbox" style={getFontSize(size)}></i>)
+export function InboxIcon({ size, onClick }) {
+    return icon("fas fa-inbox", getFontSize(size), onClick);
 }
-export function StarEmptyIcon({ size }) {
-    return (<i className="far fa-star" style={getFontSize(size)}></i>)
+export function StarEmptyIcon({ size, onClick }) {
+    return icon("far fa-star", getFontSize(size), onClick);
 }
-export function StarFullIcon({ size }) {
-    return (<i className="fas fa-star" style={getFontSize(size)}></i>)
+export function StarFullIcon({ size, onClick }) {
+    return icon("fas fa-star", getFontSize(size), onClick);
 }
-export function SentIcon({ size }) {
-    return (<i className="fas fa-share-square" style={getFontSize(size)}></i>)
+export function SentIcon({ size, onClick }) {
+    return icon("fas fa-share-square", getFontSize(size), onClick);
 }
-export function DraftIcon({ size }) {
-    return (<i className="fas fa-firstdraft" style={getFontSize(size)}></i>)
+export function DraftIcon({ size, onClick }) {
+    return icon("fas fa-firstdraft", getFontSize(size), onClick);
 }
-export function PlusIcon({ size }) {
-    return (<i className="fas fa-plus" style={getFontSize(size)}></i>)
+export function PlusIcon({ size, onClick }) {
+    return icon("fas fa-plus", getFontSize(size), onClick);
 }
-export function EnvelopeOpenIcon({ size }) {
-    return (<i className="fas fa-envelope-open" style={getFontSize(size)}></i>)
+export function EnvelopeOpenIcon({ size, onClick }) {
+    return icon("fas fa-envelope-open", getFontSize(size), onClick);
 }
-export function EnvelopeIcon({ size }) {
-    return (<i className="fas fa-envelope" style={getFontSize(size)}></i>)
+export function EnvelopeIcon({ size, onClick }) {
+    return icon("fas fa-envelope", getFontSize(size), onClick);
 }
 
 //Keep
-export function PaletteIcon({ size }) {
-    return (<i className="fas fa-palette" style={getFontSize(size)}></i>)
+export function PaletteIcon({ size, onClick }) {
+    return icon("fas fa-palette", getFontSize(size), onClick);
 }
-export function ImageIcon({ size }) {
-    return (<i className="fas fa-image" style={getFontSize(size)}></i>)
+export function ImageIcon({ size, onClick }) {
+    return icon("fas fa-image", getFontSize(size), onClick);
 }
-export function YoutubeIcon({ size }) {
-    return (<i className="fab fa-youtube" style={getFontSize(size)}></i>)
+export function YoutubeIcon({ size, onClick }) {
+    return icon("fab fa-youtube", getFontSize(size), onClick);
 }
-export function SoundIcon({ size }) {
-    return (<i className="fas fa-volume-up" style={getFontSize(size)}></i>)
+export function SoundIcon({ size, onClick }) {
+    return icon("fas fa-volume-up", getFontSize(size), onClick);
 }
-export function FontIcon({ size }) {
-    return (<i className="fas fa-font" style={getFontSize(size)}></i>)
+export function FontIcon({ size, onClick }) {
+    return icon("fas fa-font", getFontSize(size), onClick);
 }
-export function EditIcon({ size }) {
-    return (<i className="fas fa-edit" style={getFontSize(size)}></i>)
+export function EditIcon({ size, onClick }) {
+    return icon("fas fa-edit", getFontSize(size), onClick);
 }
-export function CopyIcon({ size }) {
-    return (<i className="fas fa-copy" style={getFontSize(size)}></i>)
+export function CopyIcon({ size, onClick }) {
+    return icon("fas fa-copy", getFontSize(size), onClick);
 }
-export function CheckIcon({ size }) {
-    return (<i className="fas fa-check" style={getFontSize(size)}></i>)
+export function CheckIcon({ size, onClick }) {
+    return icon("fas fa-check", getFontSize(size), onClick);
 }
-export function NoteIcon({size}){
-    return <i className="far fa-sticky-note" style={getFontSize(size)}></i>
+export function NoteIcon({size, onClick}){
+    return icon("far fa-sticky-note", getFontSize(size), onClick);
 }
-export function PinIcon({ size }) {
-    return (<i className="fas fa-thumbtack" style={getFontSize(size)}></i>)
+export function PinIcon({ size, onClick }) {
+    return icon("fas fa-thumbtack", getFontSize(size), onClick);
 }
-export function ReminderIcon({size}){
-    return <i className="far fa-bell" style={getFontSize(size)}></i>
+export function ReminderIcon({ size, onClick }){
+    return icon("far fa-bell", getFontSize(size), onClick);
 }
-export function ArchiveIcon({size}){
-    return <i className="fas fa-archive" style={getFontSize(size)}></i>
+export function ArchiveIcon({ size, onClick }){
+    return icon("fas fa-archive", getFontSize(size), onClick);
 }
-export function TextIcon({size}){
-    return <i className="fas fa-font" style={getFontSize(size)}></i>
+export function TextIcon({ size, onClick }){
+    return icon("fas fa-font", getFontSize(size), onClick);
 }
-export function TodoListIcon({size}){
-    return <i className="fas fa-list-ul" style={getFontSize(size)}></i>
+export function TodoListIcon({ size, onClick }){
+    return icon("fas fa-list-ul", getFontSize(size), onClick);
 }
 
 

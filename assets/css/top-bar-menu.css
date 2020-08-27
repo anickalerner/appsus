@@ -1,0 +1,22 @@
+.apps-menu-icon{
+    position: relative;
+}
+.apps-menu{
+    position: fixed;
+    top: 2em;
+    right: 1em;
+    padding: 2em;
+    background-color: lightslategrey;
+    display: flex;
+    flex-direction: row;
+    
+}
+.apps-menu nav a{
+    display: inline-block;
+    margin-right: 1em;
+}
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

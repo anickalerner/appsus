@@ -1,6 +1,7 @@
 .add-note {
     background-color: #fefefe;
     height: 10%;
+    width: 500px;
     box-sizing: border-box;
     padding: 10px;
     display: flex;
@@ -9,7 +10,7 @@
     margin: 0 auto;
 }
 
-.add-note * {
+.add-note input {
     font-size: 1.2rem;
     background-color: rgba(0, 0, 0, 0);
     border: 0px;

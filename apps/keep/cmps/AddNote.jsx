@@ -26,12 +26,12 @@ export class AddNote extends React.Component {
     render() {
         const { noteAddVal, noteType } = this.state;
         return <form className="add-note rounded aps-box-shadow-big" onSubmit={this.onSubmit}>
-            <button><PlusIcon /></button>
+            <PlusIcon size='1.5em'  onClick={this.onSubmit} />
             <input value={noteAddVal} onChange={this.onChange} placeholder={`Add a note (${noteType})`} type="text" />
-            <button type="button" onClick={() => this.onChangeNoteType('txt')}><TextIcon onClick={() => console.log('working')} /></button>
-            <button type="button" onClick={() => this.onChangeNoteType('img')}><ImageIcon /></button>
-            <button type="button" onClick={() => this.onChangeNoteType('video')}><YoutubeIcon /></button>
-            <button type="button" onClick={() => this.onChangeNoteType('todo')}><TodoListIcon /></button>
+            <TextIcon size='1.5em' onClick={() => this.onChangeNoteType('txt')} />
+            <ImageIcon size='1.5em' onClick={() => this.onChangeNoteType('img')} />
+            <YoutubeIcon size='1.5em' onClick={() => this.onChangeNoteType('video')} />
+            <TodoListIcon size='1.5em' onClick={() => this.onChangeNoteType('todo')} />
         </form>
     }
 }

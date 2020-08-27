@@ -1,3 +1,4 @@
+@import './top-bar-menu.css';
 @import '../../apps/mail/assets/css/main.css';
 @import '../../apps/keep/assets/css/main.css';
 @import '../../apps/books/assets/css/main.css';
@@ -26,13 +27,15 @@ body {
 }
 
 i.fas,
-i.far {
+i.far,
+i.fab {
     height: 24px;
     width: 24px;
 }
 
 i.fas:hover,
-i.far:hover {
+i.far:hover,
+i.fab:hover {
     opacity: .87;
     background-color: rgba(95, 99, 104, 0.157);
     background-size: 18px 18px;
@@ -49,17 +52,6 @@ button {
 
 
 /* Components */
-
-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.apps-menu {
-    width: 200px;
-    background-color: lightslategrey;
-}
 
 .side-bar {
     width: 20%;
