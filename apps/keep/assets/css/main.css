@@ -2,7 +2,9 @@
 @import './note-video.css';
 @import './note-text.css';
 @import './note-todo.css';
-@import './left-bar.css';
+
+/* @import './left-bar.css'; */
+
 @import './add-note.css';
 .keep-container {
     /* background-color: lightsalmon; */
@@ -10,8 +12,15 @@
 }
 
 .keep-content {
-    width: 80%;
+    /* width: 80%; */
     padding: 20px;
+}
+
+.keep-content button {
+    font-size: 1.2rem;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0px;
+    outline: none;
 }
 
 .note-list {
@@ -34,8 +43,8 @@
 
 .edit-note {
     position: absolute;
-    bottom: 5px;
-    right: 5px;
+    bottom: 0px;
+    right: 0px;
 }
 
 .keep-heading {

@@ -1,8 +1,5 @@
 @import './newmail.css';
-.mail-wrapper {
-    display: grid;
-    grid-template-columns: 20% 80%;
-}
+.mail-container {}
 
 span.starred i {
     color: gold;

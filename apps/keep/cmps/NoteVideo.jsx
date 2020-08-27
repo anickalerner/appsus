@@ -31,14 +31,14 @@ export class NoteVideo extends React.Component {
     render() {
         const { info, isEditing, id, videoLink } = this.state;
         if (!info) return <h1>Loading...</h1>
-        return isEditing ? <div className="note round box-shadow">
+        return isEditing ? <div className="note rounded aps-box-shadow-small">
             <input name="title" placeholder="Video's title" value={info.title || ''} onChange={this.onChange} type="text" />
             <input name="url" value={info.url} placeholder="Video's url" onChange={this.onChange} type="text" />
             <div className="edit-note">
                 <button onClick={() => eventBus.emit('update-note', { id, info })}><CheckIcon /></button>
             </div>
         </div>
-            : <div className="note round box-shadow">
+            : <div className="note rounded aps-box-shadow-small">
                 {info.title && <h2>{info.title}</h2>}
                 <iframe src={info.url} alt="" />
                 <div className="edit-note">

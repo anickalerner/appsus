@@ -4,7 +4,7 @@ import Home from './Home.jsx'
 import Books from './apps/books/Books.jsx';
 import Mail from './apps/mail/Mail.jsx';
 import Keep from './apps/keep/Keep.jsx';
-import { NavBar } from './cmps/NavBar.jsx'
+import { AppHeader } from './cmps/AppHeader.jsx'
 
 export class App extends React.Component {
 
@@ -12,9 +12,7 @@ export class App extends React.Component {
         return (
             <Router>
                 <div>
-                    <header>
-                        <NavBar />
-                    </header>
+                    <AppHeader/>
                     <main>
                         <Switch>
                             <Route component={Mail} path="/mail/(filter)?/:filter?" />

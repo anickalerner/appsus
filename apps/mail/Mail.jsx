@@ -53,7 +53,7 @@ export default class Mail extends React.Component {
         return (
             <section className="mail-container">
                 <h2>Mail</h2>
-                <div className="mail-wrapper">
+                <div className="mail-wrapper main-wrapper">
                     <MailMenu onCompose={this.onCompose}/>
                     <MailList mails={this.state.mails} mailStarToggle={this.mailStarToggle}/>
                     {this.state.composing && <NewMail onClose={this.saveDraft} onSend={this.onSendMail}/>}
