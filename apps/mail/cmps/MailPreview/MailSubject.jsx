@@ -1,4 +1,4 @@
-import {LongText} from '../../../cmps/LongText.jsx';
+import {LongText} from '../../../../cmps/LongText.jsx';
 
 export function MailSubject({ subject, body }) {
     return (
