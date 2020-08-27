@@ -67,9 +67,9 @@ export default class Keep extends React.Component {
             <LeftBar />
             <section className="keep-content">
                 <AddNote addNote={this.addNote} />
-                <h1>Pinned</h1>
+                <h1 className="keep-heading">Pinned</h1>
                     <NoteList notes={pinned} />
-                <h1>Others</h1>
+                <h1 className="keep-heading">Others</h1>
                     <NoteList notes={notPinned} />
             </section>
         </div>

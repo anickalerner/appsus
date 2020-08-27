@@ -15,7 +15,8 @@ export class AddNote extends React.Component {
         this.setState({noteType});
     }
 
-    onSubmit = ()=>{
+    onSubmit = (ev)=>{
+        ev.preventDefault();
         const { noteAddVal, noteType } = this.state;
         if(!noteAddVal) return;
         this.props.addNote(noteAddVal, noteType, event);
@@ -24,7 +25,7 @@ export class AddNote extends React.Component {
 
     render() {
         const { noteAddVal, noteType} = this.state;
-        return <form className="add-note" onSubmit={this.onSubmit}>
+        return <form className="add-note round" onSubmit={this.onSubmit}>
                 <input value={noteAddVal} onChange={this.onChange} placeholder={`Add a note (${noteType})`} type="text" />
                 <button type="button" onClick={() => this.onChangeNoteType('txt')}><TextIcon /></button>
                 <button type="button" onClick={() => this.onChangeNoteType('img')}><ImageIcon /></button>
