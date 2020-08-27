@@ -3,19 +3,18 @@ import { GridIcon } from './Icons.jsx';
 
 export class AppsMenuIcon extends React.Component {
     state = {
-        isHovering: false
+        isClicked: false
     };
     
     handleMouseHover = () => {
-        this.setState({isHovering: !this.state.isHovering});
+        this.setState({ isClicked: !this.state.isClicked});
     }
 
     render() {
         return (
-            <div onMouseEnter={this.handleMouseHover}
-                onMouseLeave={this.handleMouseHover}>
-                <GridIcon/>
-                {this.state.isHovering && <NavBar/>}
+            <div className="apps-menu-icon">
+                <GridIcon onClick={this.handleMouseHover}/>
+                {this.state.isClicked && <NavBar/>}
             </div>
         )
     }
