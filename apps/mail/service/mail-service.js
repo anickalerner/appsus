@@ -5,7 +5,8 @@ import { utilService } from '../../../service/util-service.js'
 export const mailService = {
     query,
     getMailIndexById,
-    updateMail
+    updateMail,
+    addMail
 }
 var mails = [
     {
@@ -25,15 +26,16 @@ var mails = [
         from: 'Gett',
         subject: 'Your Thursday night ride with Gett'
         , body: 'Hi Anna, Thanks for using Gett! YOUR RIDE ID 1253858834'
-        , isRead: false, sentAt: 1598437663925
+        , isRead: false
+        , sentAt: 1598437663925
         , isDraft: true
     }
 ];
 const MAIL_PREF = '-MAIL';
 initMails();
 
-function loadMails() {
-    mails = storageService.loadFromStorage(MAIL_PREF);
+function getMails(){
+    return storageService.loadFromStorage(MAIL_PREF);
 }
 
 function saveMails() {
@@ -42,12 +44,16 @@ function saveMails() {
 }
 
 function initMails() {
-    mails = mails.map(mail => {
-        mail.id = utilService.makeId();
-        mail.isStarred = (mail.isStarred) ? mail.isStarred : false;
-        return mail;
-    });
-    saveMails();
+    var storedMails = getMails();
+    if (!storedMails) {
+        mails = mails.map(mail => {
+            mail.id = utilService.makeId();
+            mail.isStarred = (mail.isStarred) ? mail.isStarred : false;
+            return mail;
+        });
+        saveMails();
+    }
+    mails = storedMails;
 }
 
 function query(filter) {
@@ -62,4 +68,19 @@ function updateMail(mailId, mail) {
     mails[mailId] = mail;
     saveMails();
     return Promise.resolve('updated');
+}
+const MY_MAIL = 'anicka.lerner@gmail.com';
+
+function addMail(data) {
+    var newMail = {
+        ...data
+        , from: MY_MAIL
+        , isRead: false
+        , isDraft: false
+        , id: utilService.makeId()
+        , sentAt: Date.now()
+    };
+    mails = [...mails, newMail];
+    saveMails();
+    return Promise.resolve('added');
 }

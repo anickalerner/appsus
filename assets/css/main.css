@@ -5,3 +5,9 @@
 .home-container{
     background-color: lightsteelblue;
 }
+.text-muted{
+    color: #5f6368;
+}
+.text-bold{
+    font-weight: 700;
+}

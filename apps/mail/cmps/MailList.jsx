@@ -1,5 +1,6 @@
 //import { MailRow } from './MailRow.jsx';
 import { StarEmptyIcon, StarFullIcon } from '../../../cmps/Icons.jsx';
+import { MailSubject } from './MailSubject.jsx';
 export class MailRow extends React.Component {
     starClicked = () =>{
         this.props.mailStarToggle(this.props.mail.id);
@@ -11,7 +12,7 @@ export class MailRow extends React.Component {
             <tr>
                 <MailControls mail={mail} starClicked={this.starClicked}/>
                 <MailFrom from={mail.from} />
-                <MailSubject subject={mail.subject} />
+                <MailSubject subject={mail.subject} body={mail.body}/>
                 <MailDate date={mail.sentAt} />
             </tr>
         )
@@ -41,13 +42,7 @@ function MailFrom({ from }) {
         </td>
     )
 }
-function MailSubject({ subject }) {
-    return (
-        <td>
-            {subject}
-        </td>
-    )
-}
+
 function MailDate({ date }) {
     return (
         <td>
@@ -60,7 +55,7 @@ export function MailList({ mails, mailStarToggle }) {
         <table>
             <tbody>
                 {mails.map(mail => {
-                    return <MailRow mail={mail} key={mail.sentAt} mailStarToggle={mailStarToggle}/>
+                    return <MailRow mail={mail} key={mail.id} mailStarToggle={mailStarToggle}/>
                 })}
             </tbody>
         </table>

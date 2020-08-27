@@ -1,7 +1,7 @@
 @import './newmail.css';
 
 .mail-container{
-    background-color: lightslategray;
+    
 }
 .mail-wrapper{
     display: grid;
@@ -10,4 +10,8 @@
 
 span.starred i{
     color: gold;
+}
+
+.mail-subject span.text-bold{
+    padding-right: 2em;
 }

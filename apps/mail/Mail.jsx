@@ -46,7 +46,7 @@ export default class Mail extends React.Component {
     }
 
     onSendMail = (formData) => {
-
+        mailService.addMail(formData).then(()=>this.loadMails());
     }
 
     render() {
