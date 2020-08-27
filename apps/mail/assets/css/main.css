@@ -1,17 +1,13 @@
 @import './newmail.css';
-
-.mail-container{
-    
-}
-.mail-wrapper{
+.mail-wrapper {
     display: grid;
     grid-template-columns: 20% 80%;
 }
 
-span.starred i{
+span.starred i {
     color: gold;
 }
 
-.mail-subject span.text-bold{
+.mail-subject span.text-bold {
     padding-right: 2em;
 }

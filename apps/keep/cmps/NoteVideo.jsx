@@ -10,15 +10,11 @@ export class NoteVideo extends React.Component {
         this.setState({ ...this.props })
     }
 
-    getVideoLink(url){
-        const videoCode = new URLSearchParams(url);
-        console.log(videoCode);
-    }
 
     componentDidUpdate(prevProps) {
         if (prevProps !== this.props) {
             console.log('changing props');
-            this.setState({...this.props, isEditing: false})
+            this.setState({ ...this.props, isEditing: false })
         }
     }
 
@@ -33,17 +29,16 @@ export class NoteVideo extends React.Component {
     }
 
     render() {
-        const { info, isEditing, id } = this.state;
+        const { info, isEditing, id, videoLink } = this.state;
         if (!info) return <h1>Loading...</h1>
-        this.getVideoLink(info.url);
-        return isEditing ? <div className="note">
+        return isEditing ? <div className="note round box-shadow">
             <input name="title" placeholder="Video's title" value={info.title || ''} onChange={this.onChange} type="text" />
             <input name="url" value={info.url} placeholder="Video's url" onChange={this.onChange} type="text" />
             <div className="edit-note">
-                <button onClick={() => eventBus.emit('update-note', {id, info})}><CheckIcon /></button>
+                <button onClick={() => eventBus.emit('update-note', { id, info })}><CheckIcon /></button>
             </div>
         </div>
-            : <div className="note">
+            : <div className="note round box-shadow">
                 {info.title && <h2>{info.title}</h2>}
                 <iframe src={info.url} alt="" />
                 <div className="edit-note">

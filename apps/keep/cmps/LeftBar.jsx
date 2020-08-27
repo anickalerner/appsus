@@ -2,7 +2,7 @@ const { NavLink, withRouter } = ReactRouterDOM;
 import { NoteIcon, ReminderIcon, ArchiveIcon, TrashBinIcon } from '../../../cmps/Icons.jsx';
 
 function _LeftBar() {
-    return <ul className="left-bar">
+    return <ul className="left-bar side-bar">
         <li>
             <NoteIcon size="1em" />
             <NavLink exact activeClassName='active-nav' to="/keep/notes">Notes</NavLink>

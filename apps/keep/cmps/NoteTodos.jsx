@@ -68,7 +68,7 @@ export class NoteTodos extends React.Component {
     render() {
         const { info, id, isEditing, newTodoVal } = this.state;
         if (!info) return <h1>Loading...</h1>
-        return <div className="note">
+        return <div className="note round box-shadow">
             {isEditing ?
             <input value={info.title} onChange={this.onChangeTitle} type="text" />
             : <h1>{this.props.info.title}</h1>}

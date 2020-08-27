@@ -1,5 +1,4 @@
 import { storageService } from '../../../service/storage-service.js';
-import { youtubeService } from './youtube-service.js';
 import { utilService } from '../../../service/util-service.js';
 
 export const keepService = {
@@ -108,9 +107,9 @@ function createImgNote(noteVal) {
 }
 
 function createVideoNote(noteVal) {
-    youtubeService.getSearchResult(noteVal)
-        .then(res => console.log(res))
-
+    var regex = /watch?v=/gi;
+    noteVal = noteVal.replace('watch?v=', 'embed/');
+    noteVal = noteVal.replace('&t', '?start');
     return {
         id: utilService.makeId(),
         type: "NoteVideo",

@@ -35,7 +35,7 @@ export class NoteText extends React.Component {
     render() {
         const { info, id, isEditing } = this.state;
         if (!info) return <h1>Loading...</h1>;
-        return <div className="note">
+        return <div className="note round box-shadow">
             <p ref={this.elText} suppressContentEditableWarning={true} contentEditable={isEditing}>{info.txt}</p>
                 {isEditing ?
                     <div className="edit-note">

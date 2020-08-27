@@ -30,14 +30,14 @@ export class NoteImg extends React.Component {
     render() {
         const { info, isEditing, id } = this.state;
         if (!info) return <h1>Loading...</h1>
-        return isEditing ? <div className="note">
+        return isEditing ? <div className="note  round">
             <input name="title" placeholder="Image's title" value={info.title || ''} onChange={this.onChange} type="text" />
             <input name="url" value={info.url} placeholder="Image's url" onChange={this.onChange} type="text" />
             <div className="edit-note">
                 <button onClick={() => eventBus.emit('update-note', {id, info})}><CheckIcon /></button>
             </div>
         </div>
-            : <div className="note">
+            : <div className="note  round box-shadow">
                 {info.title && <h2>{info.title}</h2>}
                 <img src={info.url} alt="" />
                 <div className="edit-note">

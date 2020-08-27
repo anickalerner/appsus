@@ -1,13 +1,14 @@
 @import '../../apps/mail/assets/css/main.css';
 @import '../../apps/keep/assets/css/main.css';
 @import '../../apps/books/assets/css/main.css';
-
-.home-container{
+.home-container {
     background-color: lightsteelblue;
 }
-.text-muted{
+
+.text-muted {
     color: #5f6368;
 }
-.text-bold{
+
+.text-bold {
     font-weight: 700;
 }

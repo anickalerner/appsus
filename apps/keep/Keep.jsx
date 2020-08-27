@@ -1,5 +1,5 @@
 import { keepService } from './service/keep-service.js';
-import eventBus from '../../service/event-bus-service.jsx';
+import eventBus from '../../service/event-bus-service.js';
 import { NoteList } from './cmps/NoteList.jsx';
 import { LeftBar } from './cmps/LeftBar.jsx';
 import { AddNote } from './cmps/AddNote.jsx';
@@ -44,11 +44,6 @@ export default class Keep extends React.Component {
             .then(res => this.setState(res));
     }
 
-    renderNotes() {
-        const notes = this.state.notes;
-        return notes.map(note => DynamicCmp(note));
-    }
-
     addNote = (noteVal, noteType, ev) => {
         ev.preventDefault();
         keepService.addNote(noteVal, noteType)
@@ -68,14 +63,14 @@ export default class Keep extends React.Component {
     render() {
         const { notPinned, pinned } = this.state;
         if (!notPinned) return <h1>Loading...</h1>
-        return <div className="keep-container">
+        return <div className="keep-container main-wrapper">
             <LeftBar />
             <section className="keep-content">
                 <AddNote addNote={this.addNote} />
                 <h1>Pinned</h1>
-                    <NoteList notes={pinned} removeNote={this.removeNote} updateNote={this.updateNote}/>
+                    <NoteList notes={pinned} />
                 <h1>Others</h1>
-                    <NoteList notes={notPinned} removeNote={this.removeNote} updateNote={this.updateNote}/>
+                    <NoteList notes={notPinned} />
             </section>
         </div>
     }
