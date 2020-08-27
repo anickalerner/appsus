@@ -7,6 +7,8 @@ export class NoteText extends React.Component {
         isEditing: false
     }
 
+    elText = React.createRef()
+
     componentDidMount() {
         this.setState({ ...this.props })
     }
@@ -22,22 +24,20 @@ export class NoteText extends React.Component {
         this.setState({ isEditing: true })
     }
 
-    onChange = (ev) => {
-        const newInfo = this.state.info;
-        newInfo.txt = ev.target.value;
-        this.setState({ info: newInfo });
+    onUpdate = ()=>{
+        const {id, info} = this.state;
+        info.txt = this.elText.current.innerText;
+        eventBus.emit('update-note', {id, info})
     }
 
     render() {
         const { info, id, isEditing } = this.state;
-        if (!info) return <h1>Loading...</h1>
+        if (!info) return <h1>Loading...</h1>;
         return <div className="note">
-                {isEditing ?
-                    <textarea className="note-text-edit" value={info.txt} onChange={this.onChange} cols="30" rows="10"></textarea>
-                    : <Longtxt txt={info.txt} />}
+            <p ref={this.elText} suppressContentEditableWarning={true} contentEditable={isEditing}>{info.txt}</p>
                 {isEditing ?
                     <div className="edit-note">
-                        <button onClick={() => eventBus.emit('update-note', {id, info})}><CheckIcon /></button>
+                        <button onClick={this.onUpdate}><CheckIcon /></button>
                     </div>
                     :
                     <div className="edit-note">

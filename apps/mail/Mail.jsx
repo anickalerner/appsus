@@ -1,6 +1,6 @@
-import { mailService } from './service/mail-service.js';
-import { MailList } from './cmps/MailList.jsx';
-import { MailMenu } from './cmps/MailMenu.jsx';
+import { mailService } from 'service/mail-service.js';
+import { MailList } from 'cmps/MailList.jsx';
+import { MailMenu } from 'cmps/MailMenu.jsx';
 
 export default class Mail extends React.Component {
 
