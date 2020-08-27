@@ -1,5 +1,4 @@
-import { TrashBinIcon, EditIcon, ImageIcon, CheckIcon } from '../../../cmps/Icons.jsx';
-// import eventBus from '../../../service/event-bus-service.js';
+import { TrashBinIcon, EditIcon, CheckIcon } from '../../../cmps/Icons.jsx';
 import eventBus from '../../../service/event-bus-service.js';
 
 export class NoteImg extends React.Component {
