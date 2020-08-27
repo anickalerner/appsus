@@ -8,7 +8,10 @@ export function TrashBinIcon({size}){
 export function InboxIcon({ size }) {
     return (<i className="fas fa-inbox" style={getFontSize(size)}></i>)
 }
-export function StarIcon({ size }) {
+export function StarEmptyIcon({ size }) {
+    return (<i className="far fa-star" style={getFontSize(size)}></i>)
+}
+export function StarFullIcon({ size }) {
     return (<i className="fas fa-star" style={getFontSize(size)}></i>)
 }
 export function SentIcon({ size }) {
