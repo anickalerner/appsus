@@ -14,7 +14,7 @@ export class AppsMenuIcon extends React.Component {
         return (
             <div className="apps-menu-icon">
                 <GridIcon onClick={this.handleMouseHover}/>
-                {this.state.isClicked && <NavBar/>}
+                {this.state.isClicked && <NavBar onClick={this.handleMouseHover}/>}
             </div>
         )
     }

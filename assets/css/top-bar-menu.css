@@ -3,16 +3,29 @@
 }
 .apps-menu{
     position: fixed;
-    top: 2em;
+    top: 3em;
     right: 1em;
     padding: 2em;
-    background-color: lightslategrey;
+    background-color: white;
     display: flex;
     flex-direction: row;
     
 }
 .apps-menu nav a{
     display: inline-block;
+    padding: 3px 5px;
+    border-radius: 5px;
+    min-width: 4.125em;
+    text-align: center;
+    
+}
+.apps-menu nav a:hover{
+    background-color: #e8f0fe;
+}
+.apps-menu nav a:visited{
+    color: #5f6368;
+}
+.apps-menu nav a:not(:last-child){
     margin-right: 1em;
 }
 header{
@@ -30,4 +43,18 @@ header .logo a{
 }
 header .logo a:visited{
     color: #5f6368;
+}
+.apps-menu-icon i.fas,
+.apps-menu-icon i.far{    
+    display: block;
+    float: none;
+}
+.apps-menu-icon i.fas:hover,
+.apps-menu-icon i.far:hover{ 
+    background-color: #e8f0fe;
+}
+.apps-menu-icon .apps-menu-label{
+    display: block;
+    text-align: center;
+    font-size: 0.9em;
 }

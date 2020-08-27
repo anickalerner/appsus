@@ -56,7 +56,7 @@ export function ImageIcon({ size, onClick }) {
     return icon("fas fa-image", getFontSize(size), onClick);
 }
 export function YoutubeIcon({ size, onClick }) {
-    return icon("fab fa-youtube", getFontSize(size), onClick);
+    return icon("fas fa-youtube", getFontSize(size), onClick);
 }
 export function SoundIcon({ size, onClick }) {
     return icon("fas fa-volume-up", getFontSize(size), onClick);
