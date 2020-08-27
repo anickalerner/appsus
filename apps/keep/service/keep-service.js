@@ -1,4 +1,5 @@
 import { storageService } from '../../../service/storage-service.js';
+import { youtubeService } from './youtube-service.js';
 import { utilService } from '../../../service/util-service.js';
 
 export const keepService = {
@@ -71,7 +72,8 @@ function addNote(NoteVal, noteType) {
     const typeMap = {
         txt: createTxtNote,
         img: createImgNote,
-        todo: createTodoNote
+        todo: createTodoNote,
+        video: createVideoNote
     }
 
     notes.push(typeMap[noteType](NoteVal));
@@ -105,6 +107,24 @@ function createImgNote(noteVal) {
     }
 }
 
+function createVideoNote(noteVal) {
+    youtubeService.getSearchResult(noteVal)
+        .then(res => console.log(res))
+
+    return {
+        id: utilService.makeId(),
+        type: "NoteVideo",
+        info: {
+            isPinned: false,
+            url: noteVal,
+            title: null
+        },
+        style: {
+            backgroundColor: "#00d"
+        }
+    }
+}
+
 function createTodoNote(noteVal) {
     return {
         id: utilService.makeId(),
@@ -126,8 +146,6 @@ function removeNote(noteId) {
 }
 
 function updateNote(noteId, noteInfo) {
-    console.log('id:', noteId);
-    console.log('info:', noteInfo);
     const noteIdx = notes.findIndex(note => note.id === noteId);
     notes[noteIdx].info = noteInfo;
     return saveNotes();

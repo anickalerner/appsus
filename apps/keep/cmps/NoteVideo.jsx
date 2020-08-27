@@ -10,6 +10,11 @@ export class NoteVideo extends React.Component {
         this.setState({ ...this.props })
     }
 
+    getVideoLink(url){
+        const videoCode = new URLSearchParams(url);
+        console.log(videoCode);
+    }
+
     componentDidUpdate(prevProps) {
         if (prevProps !== this.props) {
             console.log('changing props');
@@ -30,6 +35,7 @@ export class NoteVideo extends React.Component {
     render() {
         const { info, isEditing, id } = this.state;
         if (!info) return <h1>Loading...</h1>
+        this.getVideoLink(info.url);
         return isEditing ? <div className="note">
             <input name="title" placeholder="Video's title" value={info.title || ''} onChange={this.onChange} type="text" />
             <input name="url" value={info.url} placeholder="Video's url" onChange={this.onChange} type="text" />

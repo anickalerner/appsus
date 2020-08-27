@@ -25,10 +25,10 @@ export class AddNote extends React.Component {
     render() {
         const { noteAddVal, noteType} = this.state;
         return <form className="add-note" onSubmit={this.onSubmit}>
-                <input value={noteAddVal} onChange={this.onChange} placeholder={`Take a note (${noteType})`} type="text" />
+                <input value={noteAddVal} onChange={this.onChange} placeholder={`Add a note (${noteType})`} type="text" />
                 <button type="button" onClick={() => this.onChangeNoteType('txt')}><TextIcon /></button>
                 <button type="button" onClick={() => this.onChangeNoteType('img')}><ImageIcon /></button>
-                <button type="button" onClick={() => this.onChangeNoteType('youtube')}><YoutubeIcon /></button>
+                <button type="button" onClick={() => this.onChangeNoteType('video')}><YoutubeIcon /></button>
                 <button type="button" onClick={() => this.onChangeNoteType('todo')}><TodoListIcon /></button>
             </form>
     }
