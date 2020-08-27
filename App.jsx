@@ -4,7 +4,7 @@ import Home from 'Home.jsx'
 import Books from 'apps/books/Books.jsx';
 import Mail from 'apps/mail/Mail.jsx';
 import Keep from 'apps/keep/Keep.jsx';
-import { NavBar } from 'cmps/Navbar.jsx'
+import { NavBar } from 'cmps/NavBar.jsx';
 
 export class App extends React.Component {
 

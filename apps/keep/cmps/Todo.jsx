@@ -1,3 +1,5 @@
+import {TrashBinIcon} from '../../../cmps/Icons.jsx'
+
 function formatHour(doneAt){
     const hour = doneAt.getHours();
     const minute = doneAt.getMinutes();
@@ -30,9 +32,10 @@ export function Todo(props) {
 
     getDate(doneAt);
 
-    return <li onClick={() => checkTodo(idx)} >
-        <p className={`todo ${(doneAt && !isEditing) ? 'checked' : ''}`} contentEditable={isEditing} >{txt}</p>
-        <span>{doneAt ? getDate(doneAt) : ''}</span>
+    return <li className="todo-content"  onClick={() => checkTodo(idx)} >
+        <p className={(doneAt && !isEditing) ? 'checked' : ''} contentEditable={isEditing} >{txt}</p>
+        <p>{doneAt ? getDate(doneAt) : ''}</p>
+        <button><TrashBinIcon /></button>
         {/* {isEditing ?
             <input value={txt} type="text" onChange={() => updateTodo(idx, event)} />
             : <div className="todo-content">
