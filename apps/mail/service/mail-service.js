@@ -29,15 +29,15 @@ var mails = [
         , isDraft: true
     }
 ];
-
+const MAIL_PREF = '-MAIL';
 initMails();
 
 function loadMails() {
-    mails = storageService.loadFromStorage('-KEEP');
+    mails = storageService.loadFromStorage(MAIL_PREF);
 }
 
 function saveMails() {
-    storageService.saveToStorage('-KEEP', mails);
+    storageService.saveToStorage(MAIL_PREF, mails);
     return Promise.resolve('saved');
 }
 
