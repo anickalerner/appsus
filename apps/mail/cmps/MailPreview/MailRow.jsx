@@ -20,7 +20,7 @@ export class MailRow extends React.Component {
     }
 
     onDeleteMail = () => {
-        this.props.onDeleteMail(this.props.mail);
+        this.props.onDeleteMail(this.props.mail.id);
     }
 
     getHoverComponent = (mail) => {

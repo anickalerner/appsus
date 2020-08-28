@@ -2,6 +2,7 @@
 @import '../../apps/mail/assets/css/main.css';
 @import '../../apps/keep/assets/css/main.css';
 @import '../../apps/books/assets/css/main.css';
+@import './notification.css';
 
 @font-face {
     font-family: 'Roboto';
@@ -56,6 +57,19 @@ button, .btn{
 }
 a{
     text-decoration: none;
+}
+.close {
+    padding: 0.75rem 1rem;
+    margin: -1rem -1rem -1rem auto;
+    background-color: transparent;
+    border: 0;
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
 }
 /* Components */
 .side-bar ul{

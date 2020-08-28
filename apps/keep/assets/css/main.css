@@ -4,7 +4,9 @@
 @import './note-text.css';
 @import './note-todo.css';
 @import './edit-note.css';
-@import './side-bar.css';
+
+/* @import './left-bar.css'; */
+
 @import './add-note.css';
 .keep-container {
     /* background-color: lightsalmon; */
