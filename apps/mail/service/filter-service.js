@@ -3,28 +3,28 @@ export const filterService = {
 }
 
 function filterByStarred(mail) {
-    return mail.isStarred;
+    return mail.isStarred && !mail.isDraft;
 }
 
 function filterByRead(mail) {
-    return mail.isRead;
+    return mail.isRead && !mail.isDraft;
 }
 
 function filterBySent(mail) {
-    return mail.isSent;
+    return mail.isSent && mail.isDraft;
 }
 
-function filterByDrafts(mail){
+function filterByDrafts(mail) {
     return mail.isDraft;
 }
 
-function filterByAll() {
-    return true;
+function filterByAll(mail) {
+    return !mail.isDraft;
 }
 
 function getCallbackByFilter(filter) {
     var cb = {};
-    switch (filter) {
+    switch (filter.value) {
         case 'starred':
             cb = filterByStarred;
             break;
@@ -46,6 +46,13 @@ function getCallbackByFilter(filter) {
     return cb;
 }
 
-function filterMails(mails, filter){
-    return mails.filter(getCallbackByFilter(filter));
+function filterMails(mails, filter) {
+    if (filter.name === 'id') {
+        return [mails.find((mail) => {
+            return mail.id === filter.value;
+        })]
+    }
+    else {
+        return mails.filter(getCallbackByFilter(filter));
+    }
 }

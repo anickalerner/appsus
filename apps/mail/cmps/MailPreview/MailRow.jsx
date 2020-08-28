@@ -1,10 +1,12 @@
 import { MailSubject } from './MailSubject.jsx';
 import { MailControls } from './MailControls.jsx';
 import { MailActionIcons } from './MailActionIcons.jsx';
+const { Redirect } = ReactRouterDOM
 
 export class MailRow extends React.Component {
     state = {
-        isHovering: false
+        isHovering: false,
+        openMail: false
     };
     
     starClicked = () => {
@@ -32,24 +34,34 @@ export class MailRow extends React.Component {
         }
     }
 
+    onMailRowClicked = () =>{
+        //this.props.openMail(this.props.mail);
+        this.setState({openMail: true});
+    }
+
     render() {
         const mail = this.props.mail;
-        return (
+        if (this.state.openMail){
+            return <Redirect push to={'/mail/id/' + this.props.mail.id} />
+        }
+        else return (            
             <tr onMouseEnter={this.handleMouseEnter}
-                onMouseLeave={this.handleMouseLeave} className={this.state.isHovering? 'tr-hover' : 'tr'}>
+                onMouseLeave={this.handleMouseLeave} 
+                onClick={this.onMailRowClicked}
+                className={this.state.isHovering? 'tr-hover' : 'tr'}>
                 <MailControls mail={mail} starClicked={this.starClicked} />
-                <MailFrom from={mail.from} />
-                <MailSubject subject={mail.subject} body={mail.body} />
+                <MailFrom from={mail.from} isRead={mail.isRead} />
+                <MailSubject subject={mail.subject} body={mail.body} isRead={mail.isRead} />
                 {this.getHoverComponent(mail)}
             </tr>
         )
     }
 }
 
-function MailFrom({ from }) {
+function MailFrom({ from, isRead }) {
     return (
         <td>
-            {from}
+            {isRead ? from : <strong>{from}</strong>}
         </td>
     )
 }

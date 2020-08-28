@@ -5,6 +5,7 @@ import { utilService } from '../../../service/util-service.js'
 export const mailService = {
     query,
     getMailIndexById,
+    updateMailProperty,
     updateMail,
     addMail,
     deleteMail
@@ -21,7 +22,7 @@ var mails = [
         from: 'Dropbox',
         subject: 'You deleted 3034 files from Dropbox',
         body: 'Hi Anna You recently deleted 3034 files from your Dropbox account.If you want these files back, you can still restore them until 16/9/2020.After that, they’ll be permanently deleted.'
-        , isRead: true, sentAt: 1598437561148
+        , isRead: false, sentAt: 1598437561148
     }
     , {
         from: 'Gett',
@@ -29,13 +30,12 @@ var mails = [
         , body: 'Hi Anna, Thanks for using Gett! YOUR RIDE ID 1253858834'
         , isRead: false
         , sentAt: 1598437663925
-        , isDraft: true
     }
 ];
 const MAIL_PREF = '-MAIL';
 initMails();
 
-function getMails(){
+function getMails() {
     return storageService.loadFromStorage(MAIL_PREF);
 }
 
@@ -47,14 +47,14 @@ function saveMails() {
 function initMails() {
     var storedMails = getMails();
     if (!storedMails) {
-        mails = mails.map(mail => {
+        storedMails = mails.map(mail => {
             mail.id = utilService.makeId();
             mail.isStarred = (mail.isStarred) ? mail.isStarred : false;
             return mail;
         });
-        saveMails();
     }
     mails = storedMails;
+    saveMails();
 }
 
 function query(filter) {
@@ -65,6 +65,13 @@ function getMailIndexById(mailId) {
     return Promise.resolve(mails.findIndex(mail => mail.id === mailId));
 }
 
+function updateMailProperty(id, propObj) {
+    getMailIndexById(id).then(mailInd => {
+        var mailToUpdate = mails[mailInd];
+        mailToUpdate = { ...mailToUpdate, propObj }
+        updateMail(mailInd, mailToUpdate);
+    });
+}
 function updateMail(mailId, mail) {
     mails[mailId] = mail;
     saveMails();
@@ -77,18 +84,26 @@ function addMail(data) {
         ...data
         , from: MY_MAIL
         , isRead: false
-        , isDraft: false
-        , id: utilService.makeId()
         , sentAt: Date.now()
     };
+    if (!newMail.id || newMail.id === '') {
+        newMail.id = utilService.makeId();
+    }
     mails = [...mails, newMail];
     saveMails();
-    return Promise.resolve('added mail');
+    return Promise.resolve(newMail);
 }
 
-function deleteMail(id){
+function deleteMail(id) {
     mails.splice(getMailIndexById(id), 1);
     console.log(mails);
     saveMails();
     return Promise.resolve('deleted mail');
 }
+
+// var drafts = [];
+// function saveToDrafts(data){
+//     var draft = data;
+//     drafts = [...drafts, draft];
+//     return Promise.resolve('saved to drafts');
+// }
