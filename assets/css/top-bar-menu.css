@@ -44,16 +44,17 @@ header .logo a{
 header .logo a:visited{
     color: #5f6368;
 }
-.apps-menu-icon i.fas,
-.apps-menu-icon i.far{    
+.apps-menu i.fas,
+.apps-menu i.far{    
     display: block;
     float: none;
+    color: rgb(95, 99, 104);
 }
-.apps-menu-icon i.fas:hover,
-.apps-menu-icon i.far:hover{ 
+.apps-menu i.fas:hover,
+.apps-menu i.far:hover{ 
     background-color: #e8f0fe;
 }
-.apps-menu-icon .apps-menu-label{
+.apps-menu .apps-menu-label{
     display: block;
     text-align: center;
     font-size: 0.9em;

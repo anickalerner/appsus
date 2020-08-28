@@ -1,0 +1,10 @@
+.tab {
+    margin-top: 20px;
+    border-radius: 0px 20px 20px 0px;
+    background-color: lightgrey;
+}
+
+.tab:hover,
+.highlighted {
+    background-color: lightsalmon;
+}

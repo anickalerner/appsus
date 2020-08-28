@@ -12,8 +12,3 @@ export function NoteIcons(props){
     </div>
 }
 
-
-{/* <div className="note-icon">
-<TextIcon />
-{info.label === 'Archive' && <ArchiveIcon />}
-</div> */}

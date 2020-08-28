@@ -27,4 +27,3 @@ export function InNoteEdit(props) {
         </div>
 }
 
-{/* <InNoteEdit onColorChange={this.onColorChange} onChangeLabel={this.onChangeLabel} onUpdate={this.onUpdate} /> */ }

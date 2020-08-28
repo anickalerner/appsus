@@ -11,6 +11,7 @@ export default class Mail extends React.Component {
 
     componentDidMount() {
         this.loadMails();
+        document.getElementsByTagName('body')[0].classList.add('mail-app-body');
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -41,7 +42,7 @@ export default class Mail extends React.Component {
         this.setState({composing: true});
     }
 
-    saveDraft = () => {
+    saveDraft = (formData) => {
         this.setState({ composing: false });
     }
 
@@ -49,13 +50,16 @@ export default class Mail extends React.Component {
         mailService.addMail(formData).then(()=>this.loadMails());
     }
 
+    onDeleteMail = (mail) => {
+        //mailService.deleteMail(mail).then();
+    }
+
     render() {
         return (
             <section className="mail-container">
-                <h2>Mail</h2>
                 <div className="mail-wrapper main-wrapper">
                     <MailMenu onCompose={this.onCompose}/>
-                    <MailList mails={this.state.mails} mailStarToggle={this.mailStarToggle}/>
+                    <MailList mails={this.state.mails} mailStarToggle={this.mailStarToggle} onDeleteMail={this.onDeleteMail}/>
                     {this.state.composing && <NewMail onClose={this.saveDraft} onSend={this.onSendMail}/>}
                 </div>                
             </section>

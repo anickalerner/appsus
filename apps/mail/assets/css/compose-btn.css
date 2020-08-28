@@ -1,0 +1,49 @@
+.compose-btn-container{
+    display: flex;
+    height: 48px;
+    margin: 16px 0;
+    padding: 0 0 0 8px;
+}
+.compose-btn{
+    transition: box-shadow .08s linear,min-width .15s cubic-bezier(0.4,0.0,0.2,1);
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149);
+    font-family: 'Product', 'Roboto', 'RobotoDraft' ,Helvetica,Arial,sans-serif;
+    font-size: .875rem;
+    letter-spacing: .25px;
+    align-items: center;
+    background-color: #fff;
+    background-image: none;
+    border-radius: 24px;
+    color: #3c4043;
+    font-weight: 500;
+    height: 48px;
+    min-width: 56px;
+    overflow: hidden;
+    padding: 0 24px 0 0;
+    text-transform: none;
+    line-height: 32px;
+    text-align: center;
+    white-space: nowrap;
+}
+.compose-btn:before{
+    background-image: url(https://www.gstatic.com/images/icons/material/colored_icons/1x/create_32dp.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 32px;
+    content: ' ';
+    display: inline-block;
+    height: 48px;
+    min-width: 56px;
+}
+.compose-btn:after{
+    content: 'Compose';
+    position: relative;
+    bottom: 18px;
+}
+.compose-btn:active{
+    background-color: #f1f3f4;
+}
+.compose-btn:focus {
+    box-shadow: 0 1px 3px 0 rgba(60,64,67,0.302), 0 4px 8px 3px rgba(60,64,67,0.149);
+    background-color: #fafafb;
+}

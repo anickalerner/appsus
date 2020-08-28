@@ -11,6 +11,10 @@
     padding: 0px;
 }
 
+.todo-list li input {
+    max-width: 100%;
+}
+
 .todo {
     cursor: pointer;
 }

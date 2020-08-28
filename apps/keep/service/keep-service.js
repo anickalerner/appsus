@@ -51,7 +51,7 @@ function initNotes() {
             type: "NoteTodos",
             isPinned: false,
             info: {
-                label: 'Archive',
+                label: 'None',
                 title: "How was it:",
                 todos: [
                     { txt: "Do that", doneAt: null },
@@ -63,11 +63,14 @@ function initNotes() {
     ];
 }
 
-function getNotes() {
+function getNotes(label = 'None') {
     const pinned = [];
     const notPinned = [];
-    notes.forEach(note => note.isPinned ? pinned.push(note) : notPinned.push(note));
-    console.log('getting...');
+    notes.forEach(note => {
+        if (note.info.label.toLowerCase() !== label && label !== 'None') return;
+        note.isPinned ? pinned.push(note) : notPinned.push(note);
+    });
+    console.log('getting notes...');
     return Promise.resolve({ pinned, notPinned });
 }
 
@@ -91,7 +94,7 @@ function createTxtNote(noteVal) {
         type: 'NoteText',
         isPinned: false,
         info: {
-            label: '',
+            label: 'None',
             txt: noteVal,
             backgroundColor: '#fefefe'
         }
@@ -104,7 +107,7 @@ function createImgNote(noteVal) {
         type: "NoteImg",
         isPinned: false,
         info: {
-            label: '',
+            label: 'None',
             url: noteVal,
             title: null,
             backgroundColor: "#7bb2b2"
