@@ -2,16 +2,22 @@ import { mailService } from './service/mail-service.js';
 import { MailList } from './cmps/MailList.jsx';
 import { MailMenu } from './cmps/MailMenu.jsx';
 import { NewMail } from './cmps/NewMail.jsx';
+import eventBus from '../../service/event-bus-service.js';
 
 export default class Mail extends React.Component {
 
     state = {
         mails: []
     };
-
+    
     componentDidMount() {
         this.loadMails();
-        document.getElementsByTagName('body')[0].classList.add('mail-app-body');
+    //    document.getElementsByTagName('body')[0].classList.add('mail-app-body');
+        // this.unsubscribeDelete = eventBus.on('delete-mail', (id) => {
+        //     console.log('Deleting mail id', id);
+        //     this.removeNote(id);
+        // })
+
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -50,8 +56,11 @@ export default class Mail extends React.Component {
         mailService.addMail(formData).then(()=>this.loadMails());
     }
 
-    onDeleteMail = (mail) => {
-        //mailService.deleteMail(mail).then();
+    onDeleteMail = (id) => {
+        mailService.deleteMail(id).then(() => {
+            this.loadMails();
+            eventBus.emit('notify', { msg:'A mail was deleted', type:'delete-mail' });
+        });
     }
 
     render() {

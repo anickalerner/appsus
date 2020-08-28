@@ -6,7 +6,8 @@ export const mailService = {
     query,
     getMailIndexById,
     updateMail,
-    addMail
+    addMail,
+    deleteMail
 }
 var mails = [
     {
@@ -67,7 +68,7 @@ function getMailIndexById(mailId) {
 function updateMail(mailId, mail) {
     mails[mailId] = mail;
     saveMails();
-    return Promise.resolve('updated');
+    return Promise.resolve('updated mail');
 }
 const MY_MAIL = 'anicka.lerner@gmail.com';
 
@@ -82,5 +83,12 @@ function addMail(data) {
     };
     mails = [...mails, newMail];
     saveMails();
-    return Promise.resolve('added');
+    return Promise.resolve('added mail');
+}
+
+function deleteMail(id){
+    mails.splice(getMailIndexById(id), 1);
+    console.log(mails);
+    saveMails();
+    return Promise.resolve('deleted mail');
 }

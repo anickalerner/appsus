@@ -5,6 +5,7 @@ import Books from './apps/books/Books.jsx';
 import Mail from './apps/mail/Mail.jsx';
 import Keep from './apps/keep/Keep.jsx';
 import { AppHeader } from './cmps/AppHeader.jsx'
+import { Notification } from './cmps/Notification.jsx'
 
 export class App extends React.Component {
 
@@ -12,7 +13,7 @@ export class App extends React.Component {
         return (
             <Router>
                 <div>
-                    <AppHeader/>
+                    <AppHeader />
                     <main>
                         <Switch>
                             <Route component={Mail} path="/mail/(filter)?/:filter?" />
@@ -22,7 +23,7 @@ export class App extends React.Component {
 
                         </Switch>
                     </main>
-
+                    <Notification />
                 </div>
             </Router>
         )
