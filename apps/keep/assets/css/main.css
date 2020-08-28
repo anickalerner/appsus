@@ -2,6 +2,7 @@
 @import './note-video.css';
 @import './note-text.css';
 @import './note-todo.css';
+@import './edit-note.css';
 
 /* @import './left-bar.css'; */
 
@@ -12,7 +13,6 @@
 }
 
 .keep-content {
-    /* width: 80%; */
     padding: 20px;
 }
 
@@ -37,14 +37,24 @@
     /* width: 80%; */
     border: 1px solid #e0e0e0;
     padding: 25px;
+    padding-bottom: 45px;
     margin: 0% 5% 5%;
     break-inside: avoid-column;
+    font-size: 1.2rem;
 }
 
-.edit-note {
+.note input {
+    font-size: 1.2rem;
+    border-radius: 10px;
+    padding: 5px;
+    outline: none;
+}
+
+.note-icon {
     position: absolute;
-    bottom: 0px;
-    right: 0px;
+    bottom: 5px;
+    left: 5px;
+    pointer-events: none;
 }
 
 .keep-heading {

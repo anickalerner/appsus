@@ -1,4 +1,4 @@
-/* .note iframe {
-    width: 455px;
-    height: 260px;
-} */
+.note iframe {
+    max-width: 100%;
+    max-height: 100%;
+}

@@ -6,7 +6,8 @@ export const keepService = {
     getNotes,
     addNote,
     removeNote,
-    updateNote
+    updateNote,
+    pinNote
 }
 
 var notes;
@@ -28,8 +29,10 @@ function initNotes() {
             type: "NoteText",
             isPinned: true,
             info: {
+                label: 'Reminder',
                 title: 'first comment',
-                txt: "Fullstack Me Baby!"
+                txt: "Fullstack Me Baby!",
+                backgroundColor: "#fefefe"
             }
         },
         {
@@ -37,11 +40,10 @@ function initNotes() {
             type: "NoteImg",
             isPinned: false,
             info: {
+                label: 'Archive',
                 url: "https://i.kym-cdn.com/entries/icons/facebook/000/015/559/It_Was_Me__Dio!.jpg",
-                title: "Me playing Mi"
-            },
-            style: {
-                backgroundColor: "#00d"
+                title: "Me playing Mi",
+                backgroundColor: "#fefefe"
             }
         },
         {
@@ -49,11 +51,13 @@ function initNotes() {
             type: "NoteTodos",
             isPinned: false,
             info: {
+                label: 'Archive',
                 title: "How was it:",
                 todos: [
                     { txt: "Do that", doneAt: null },
                     { txt: "Do this", doneAt: 187111111 }
-                ]
+                ],
+                backgroundColor: "#fefefe"
             }
         }
     ];
@@ -62,7 +66,7 @@ function initNotes() {
 function getNotes() {
     const pinned = [];
     const notPinned = [];
-    notes.forEach(note => note.info.isPinned ? pinned.push(note) : notPinned.push(note));
+    notes.forEach(note => note.isPinned ? pinned.push(note) : notPinned.push(note));
     console.log('getting...');
     return Promise.resolve({ pinned, notPinned });
 }
@@ -84,8 +88,9 @@ function createTxtNote(noteVal) {
     return {
         id: utilService.makeId(),
         type: 'NoteText',
+        isPinned: true,
         info: {
-            isPinned: true,
+            label: '',
             txt: noteVal
         }
     }
@@ -95,31 +100,28 @@ function createImgNote(noteVal) {
     return {
         id: utilService.makeId(),
         type: "NoteImg",
+        isPinned: false,
         info: {
-            isPinned: false,
+            label: '',
             url: noteVal,
-            title: null
-        },
-        style: {
-            backgroundColor: "#00d"
+            title: null,
+            backgroundColor: "#fefefe"
         }
     }
 }
 
 function createVideoNote(noteVal) {
-    var regex = /watch?v=/gi;
     noteVal = noteVal.replace('watch?v=', 'embed/');
     noteVal = noteVal.replace('&t', '?start');
     return {
         id: utilService.makeId(),
+        isPinned: false,
         type: "NoteVideo",
         info: {
-            isPinned: false,
+            label: '',
             url: noteVal,
-            title: null
-        },
-        style: {
-            backgroundColor: "#00d"
+            title: null,
+            backgroundColor: "#fefefe"
         }
     }
 }
@@ -127,14 +129,16 @@ function createVideoNote(noteVal) {
 function createTodoNote(noteVal) {
     return {
         id: utilService.makeId(),
+        isPinned: false,
         type: "NoteTodos",
         info: {
-            isPinned: false,
-            label: "How was it:",
+            label: '',
+            title: "How was it:",
             todos: [
                 { txt: noteVal, doneAt: null },
 
-            ]
+            ],
+            backgroundColor: "#fefefe"
         }
     }
 }
@@ -147,5 +151,11 @@ function removeNote(noteId) {
 function updateNote(noteId, noteInfo) {
     const noteIdx = notes.findIndex(note => note.id === noteId);
     notes[noteIdx].info = noteInfo;
+    return saveNotes();
+}
+
+function pinNote(noteId) {
+    const noteIdx = notes.findIndex(note => note.id === noteId);
+    notes[noteIdx].isPinned = !notes[noteIdx].isPinned;
     return saveNotes();
 }

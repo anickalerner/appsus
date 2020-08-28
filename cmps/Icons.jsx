@@ -91,5 +91,8 @@ export function TextIcon({ size, onClick }){
 export function TodoListIcon({ size, onClick }){
     return icon("fas fa-list-ul", getFontSize(size), onClick);
 }
+export function LabelIcon({ size, onClick }){
+    return icon("fas fa-tag", getFontSize(size), onClick);
+}
 
 

@@ -15,6 +15,7 @@ export default class Keep extends React.Component {
 
     unsubscribeRemove;
     unsubscribeUpdate;
+    unsubscribePin;
 
     componentDidMount() {
         keepService.loadNotes()
@@ -32,6 +33,11 @@ export default class Keep extends React.Component {
             console.log(id, info);
             this.updateNote(id, info);
         })
+        this.unsubscribePin = eventBus.on('pin-note', (id) =>{
+            console.log('pinning/ unpinning note...');
+            console.log(id);
+            this.pinNote(id)
+        })
     }
 
     componentWillUnmount(){
@@ -39,7 +45,7 @@ export default class Keep extends React.Component {
         this.unsubscribeUpdate();
     }
 
-    getNotes(){
+    getNotes =()=>{
         keepService.getNotes()
             .then(res => this.setState(res));
     }
@@ -48,6 +54,11 @@ export default class Keep extends React.Component {
         ev.preventDefault();
         keepService.addNote(noteVal, noteType)
             .then(() => this.getNotes());
+    }
+
+    pinNote = (id)=>{
+        keepService.pinNote(id)
+            .then(this.getNotes);
     }
 
     removeNote = (id)=>{
