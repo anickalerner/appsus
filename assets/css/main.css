@@ -2,91 +2,93 @@
 @import '../../apps/mail/assets/css/main.css';
 @import '../../apps/keep/assets/css/main.css';
 @import '../../apps/books/assets/css/main.css';
+
 @font-face {
     font-family: 'Roboto';
     src: url('../font/Roboto/Roboto-Regular.ttf');
 }
-
-@font-face {
+@font-face{
     font-family: 'Product';
     src: url('../font/ProductSans/Product\ Sans\ Regular.ttf');
 }
-
-html {
+@font-face{
+    font-family: 'ProductBold';
+    src: url('../font/ProductSans/Product\ Sans\ Bold.ttf');
+}
+html{
     box-sizing: border-box;
 }
-
-body {
+body{
     font-family: 'Roboto', Arial, sans-serif;
     color: rgb(32, 33, 36);
 }
 
-
 /* Helpers */
-
-.aps-box-shadow-small {
-    box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15);
+.aps-box-shadow-small{
+box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
 }
-
-.aps-box-shadow-big {
-    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+.aps-box-shadow-big{
+    box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2);
 }
-
-.rounded,
-.rounded-big {
+.rounded, .rounded-big{
     border-radius: 20px;
 }
-
-.rounded-small {
+.rounded-small{
     border-radius: 10px;
 }
-
-i.fas,
-i.far,
-i.fab {
-    padding: 8px;
-    float: left;
-    position: relative;
-    border-radius: 50%;
-    text-align: center;
-    color: rgb(95, 99, 104);
+i.fas, i.far, i.fab{
+  padding: 8px;
+  float: left;
+  position: relative;
+  border-radius: 50%;
+  text-align: center;
+  color: rgb(95, 99, 104);
 }
 
 i.fas:hover,
 i.far:hover,
-i.fab:hover {
-    background: #f1f3f4;
-    color: #5f6368;
+i.fab:hover{
+  background:#f1f3f4;
+  color: #5f6368;
 }
-
-button {
+button, .btn{
     cursor: pointer;
 }
-
-a {
+a{
     text-decoration: none;
 }
-
-
 /* Components */
-
-.side-bar {
-    width: 20%;
+.side-bar ul{
+    list-style: none;
+    margin: 0; 
+    padding: 0;
+    display: flex;
+    flex-direction: column;
 }
-
-.main-wrapper {
+.side-bar h2{
+    padding-left: 0.5em;
+}
+.side-bar ul li{
     display: grid;
     grid-template-columns: 20% 80%;
+    line-height: 2em;
 }
+.side-bar ul i{
+    padding: 0;
+    align-self: center;
+}
+.main-wrapper{
+    display: grid;
+    grid-template-columns: 20% 80%;
 
-.home-container {
+}
+.home-container{
     background-color: lightsteelblue;
 }
-
-.text-muted {
+.text-muted{
     color: #5f6368;
 }
-
-.text-bold {
+.text-bold{
     font-weight: 700;
 }
+

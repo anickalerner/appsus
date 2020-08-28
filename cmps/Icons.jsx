@@ -36,7 +36,7 @@ export function SentIcon({ size, onClick }) {
     return icon("fas fa-share-square", getFontSize(size), onClick);
 }
 export function DraftIcon({ size, onClick }) {
-    return icon("fas fa-firstdraft", getFontSize(size), onClick);
+    return icon("fab fa-firstdraft", getFontSize(size), onClick);
 }
 export function PlusIcon({ size, onClick }) {
     return icon("fas fa-plus", getFontSize(size), onClick);
@@ -46,6 +46,9 @@ export function EnvelopeOpenIcon({ size, onClick }) {
 }
 export function EnvelopeIcon({ size, onClick }) {
     return icon("fas fa-envelope", getFontSize(size), onClick);
+}
+export function PaperPlaneIcon({ size, onClick }) {
+    return icon("fas fa-paper-plane", getFontSize(size), onClick);
 }
 
 //Keep

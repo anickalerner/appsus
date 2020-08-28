@@ -1,5 +1,6 @@
 import { MailSubject } from './MailSubject.jsx';
 import { MailControls } from './MailControls.jsx';
+import { MailActionIcons } from './MailActionIcons.jsx';
 
 export class MailRow extends React.Component {
     state = {
@@ -10,13 +11,21 @@ export class MailRow extends React.Component {
         this.props.mailStarToggle(this.props.mail.id);
     }
 
-    handleMouseHover = () => {
-        this.setState({isHovering: !this.state.isHovering});
+    handleMouseEnter = () => {
+        this.setState({isHovering: true});
+    }
+
+    handleMouseLeave = () => {
+        this.setState({ isHovering: false });
+    }
+
+    onDeleteMail = () => {
+        this.props.onDeleteMail(this.props.mail);
     }
 
     getHoverComponent = (mail) => {
         if (this.state.isHovering){
-            return <td>is hovering</td>
+            return <MailActionIcons mail={mail} onDelete={this.onDeleteMail} />
         }
         else{
            return <MailDate date={mail.sentAt} />
@@ -26,8 +35,8 @@ export class MailRow extends React.Component {
     render() {
         const mail = this.props.mail;
         return (
-            <tr onMouseEnter={this.handleMouseHover}
-                onMouseLeave={this.handleMouseHover}>
+            <tr onMouseEnter={this.handleMouseEnter}
+                onMouseLeave={this.handleMouseLeave} className={this.state.isHovering? 'tr-hover' : 'tr'}>
                 <MailControls mail={mail} starClicked={this.starClicked} />
                 <MailFrom from={mail.from} />
                 <MailSubject subject={mail.subject} body={mail.body} />
