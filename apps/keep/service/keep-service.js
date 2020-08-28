@@ -76,7 +76,8 @@ function addNote(NoteVal, noteType) {
         txt: createTxtNote,
         img: createImgNote,
         todo: createTodoNote,
-        video: createVideoNote
+        video: createVideoNote,
+        audio: createAudioNote
     }
 
     notes.push(typeMap[noteType](NoteVal));
@@ -88,10 +89,11 @@ function createTxtNote(noteVal) {
     return {
         id: utilService.makeId(),
         type: 'NoteText',
-        isPinned: true,
+        isPinned: false,
         info: {
             label: '',
-            txt: noteVal
+            txt: noteVal,
+            backgroundColor: '#fefefe'
         }
     }
 }
@@ -105,7 +107,21 @@ function createImgNote(noteVal) {
             label: '',
             url: noteVal,
             title: null,
-            backgroundColor: "#fefefe"
+            backgroundColor: "#7bb2b2"
+        }
+    }
+}
+
+function createAudioNote(noteVal) {
+    return {
+        id: utilService.makeId(),
+        type: "NoteAudio",
+        isPinned: false,
+        info: {
+            label: '',
+            url: noteVal,
+            title: null,
+            backgroundColor: "#77bb7b"
         }
     }
 }
@@ -121,7 +137,7 @@ function createVideoNote(noteVal) {
             label: '',
             url: noteVal,
             title: null,
-            backgroundColor: "#fefefe"
+            backgroundColor: "#b2b27b"
         }
     }
 }
@@ -138,7 +154,7 @@ function createTodoNote(noteVal) {
                 { txt: noteVal, doneAt: null },
 
             ],
-            backgroundColor: "#fefefe"
+            backgroundColor: "#b27bb2"
         }
     }
 }

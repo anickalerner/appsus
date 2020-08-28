@@ -94,5 +94,8 @@ export function TodoListIcon({ size, onClick }){
 export function LabelIcon({ size, onClick }){
     return icon("fas fa-tag", getFontSize(size), onClick);
 }
+export function AudioIcon({ size, onClick }){
+    return icon("fas fa-volume-up", getFontSize(size), onClick);
+}
 
 

@@ -1,4 +1,5 @@
 @import './note-img.css';
+@import './note-audio.css';
 @import './note-video.css';
 @import './note-text.css';
 @import './note-todo.css';
@@ -58,4 +59,16 @@
 
 .keep-heading {
     color: #5f6368;
+}
+
+@media(max-width: 1000px) {
+    .note-list {
+        column-count: 2;
+    }
+}
+
+@media(max-width: 700px) {
+    .note-list {
+        column-count: 1;
+    }
 }

@@ -1,6 +1,7 @@
 import { NoteText } from './NoteText.jsx';
 import { NoteImg } from './NoteImg.jsx';
 import { NoteVideo } from './NoteVideo.jsx';
+import { NoteAudio} from './NoteAudio.jsx';
 import { NoteTodos } from './NoteTodos.jsx';
 
 function DynamicCmp(note){
@@ -14,6 +15,8 @@ function DynamicCmp(note){
             return <NoteTodos key={id} {...note}  />
         case 'NoteVideo':
             return <NoteVideo key={id} {...note}  />
+        case 'NoteAudio':
+            return <NoteAudio key={id} {...note}  />
         default:
             return <h1 key={id}>Something went wrong with note {id}</h1>
     }

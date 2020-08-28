@@ -23,19 +23,13 @@ export default class Keep extends React.Component {
         
 
         this.unsubscribeRemove = eventBus.on('remove-note', (id) =>{
-            console.log('removing note...');
-            console.log(id);
             this.removeNote(id);
         })
 
         this.unsubscribeUpdate = eventBus.on('update-note', ({id, info}) =>{
-            console.log('updating note...');
-            console.log(id, info);
             this.updateNote(id, info);
         })
         this.unsubscribePin = eventBus.on('pin-note', (id) =>{
-            console.log('pinning/ unpinning note...');
-            console.log(id);
             this.pinNote(id)
         })
     }
