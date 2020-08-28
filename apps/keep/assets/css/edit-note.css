@@ -3,6 +3,8 @@
     position: absolute;
     bottom: 0px;
     right: 0px;
+    height: 44px;
+    width: fit-content;
 }
 
 .color-picker-wrapper {
@@ -27,12 +29,11 @@
     padding: 0px;
     background-color: #fefefe;
     padding: 10px;
-    opacity: 0;
+    z-index: 1;
     border: 1px solid black;
 }
 
 .label-wrapper:hover .label-list {
-    opacity: 1;
     visibility: visible;
 }
 

@@ -1,6 +1,8 @@
 import { Todo } from './Todo.jsx'
-import { TrashBinIcon, PaletteIcon, EditIcon, CheckIcon, PlusIcon, TodoListIcon, PinIcon } from '../../../cmps/Icons.jsx';
+import { TrashBinIcon, EditIcon, PlusIcon, TodoListIcon, PinIcon } from '../../../cmps/Icons.jsx';
 import eventBus from '../../../service/event-bus-service.js';
+import { NoteIcons } from './NoteIcons.jsx';
+import { InNoteEdit } from './InNoteEdit.jsx';
 
 export class NoteTodos extends React.Component {
     state = {
@@ -16,7 +18,6 @@ export class NoteTodos extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps !== this.props) {
-            console.log('changing props');
             this.setState({ ...this.props, isEditing: false })
         }
     }
@@ -44,21 +45,16 @@ export class NoteTodos extends React.Component {
         return todos.map((todo, idx) => <Todo key={idx} idx={idx} checkTodo={this.checkTodo} updateTodo={this.updateTodo} isEditing={this.state.isEditing} {...todo} />)
     }
 
-    onChangeTitle = (ev) => {
+    onChange = (ev) => {
         const info = { ...this.state.info };
-        info.title = ev.target.value;
+        info[ev.target.name] = ev.target.value;
         this.setState({ info });
     }
 
-    onColorPick = () => {
-        this.elColorPicker.current.focus();
-        this.elColorPicker.current.click();
-    }
-
-    onColorChange = (ev) => {
+    onChangeLabel = (ev) => {
         const info = { ...this.state.info };
-        info.backgroundColor = ev.target.value;
-        this.setState({ info })
+        info.label = ev.target.innerText;
+        this.setState({ info });
     }
 
     onEdit = () => {
@@ -78,24 +74,22 @@ export class NoteTodos extends React.Component {
         this.setState({ newTodoVal: ev.target.value })
     }
 
+    onUpdate = () => {
+        const {id, info} = this.state;
+        eventBus.emit('update-note', { id, info })
+    }
+
     render() {
-        const { info, id, isEditing, newTodoVal,} = this.state;
+        const { info, id, isEditing, newTodoVal, type} = this.state;
         if (!info) return <h1>Loading...</h1>
         return <div style={{backgroundColor: info.backgroundColor}} className="note rounded">
             {isEditing ?
-                <input value={info.title} onChange={this.onChangeTitle} type="text" />
+                <input name="title" value={info.title} onChange={this.onChange} type="text" />
                 : <h1>{this.props.info.title}</h1>}
-            <ul>{this.renderTodos()}</ul>
+            <ul className="todo-list">{this.renderTodos()}</ul>
             {!isEditing && <input placeholder="Add a new todo" value={newTodoVal} onChange={this.onChangeAddTodo} type="text" />}
-
             {isEditing ?
-                <div className="edit-note">
-                    <CheckIcon size='1.5em' onClick={() => eventBus.emit('update-note', { id, info })} />
-                    <div className="color-picker-wrapper">
-                        <input onChange={this.onColorChange} ref={this.elColorPicker} type="color" />
-                        <PaletteIcon size='1.5em' onClick={this.onColorPick} />
-                    </div>
-                </div>
+                <InNoteEdit onColorChange={this.onChange} onChangeLabel={this.onChangeLabel} onUpdate={this.onUpdate} />
                 :
                 <div className="edit-note">
                     <PlusIcon size='1.5em' onClick={() => this.onAddTodo(id)} />
@@ -104,7 +98,7 @@ export class NoteTodos extends React.Component {
                     <PinIcon size='1.5em' onClick={() => eventBus.emit('pin-note', id)} />
                 </div>
             }
-            <div className="note-icon"><TodoListIcon /></div>
+            <NoteIcons type={type} label={info.label} />
         </div>
     }
 }

@@ -7,6 +7,10 @@
     justify-content: space-between;
 }
 
+.todo-list {
+    padding: 0px;
+}
+
 .todo {
     cursor: pointer;
 }

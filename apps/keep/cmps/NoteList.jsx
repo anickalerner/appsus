@@ -32,7 +32,6 @@ export class NoteList extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.notes !== this.props.notes) {
-            console.log('changing props');
             this.setState({ notes: this.props.notes })
         }
     }

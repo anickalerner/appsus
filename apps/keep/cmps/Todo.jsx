@@ -4,10 +4,10 @@ export function Todo(props) {
     const { txt, doneAt, isEditing, updateTodo, checkTodo, idx } = props;
 
 
-    return <li onClick={() => checkTodo(idx)} >
+    return <li>
         {isEditing ?
             <input value={txt} type="text" onChange={() => updateTodo(idx, event)} />
-            : <div className="todo-content">
+            : <div onClick={() => checkTodo(idx)} className="todo-content">
                 <p className={`todo ${doneAt ? 'checked' : ''}`}>{txt}</p>
                 <h5>{doneAt ? dateService.getDate(doneAt) : ''}</h5>
                 </div>

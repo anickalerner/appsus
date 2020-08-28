@@ -1,5 +1,7 @@
-import { PaletteIcon, TrashBinIcon, EditIcon, CheckIcon, ImageIcon, PinIcon } from '../../../cmps/Icons.jsx';
+import { TrashBinIcon, EditIcon, PinIcon } from '../../../cmps/Icons.jsx';
 import eventBus from '../../../service/event-bus-service.js';
+import { NoteIcons } from './NoteIcons.jsx';
+import { InNoteEdit } from './InNoteEdit.jsx';
 
 export class NoteImg extends React.Component {
     state = {
@@ -12,11 +14,6 @@ export class NoteImg extends React.Component {
         this.setState({ ...this.props })
     }
 
-    onColorPick = () => {
-        this.elColorPicker.current.focus();
-        this.elColorPicker.current.click();
-    }
-
     onColorChange = (ev) => {
         const info = { ...this.state.info };
         info.backgroundColor = ev.target.value;
@@ -25,13 +22,18 @@ export class NoteImg extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps !== this.props) {
-            console.log('changing props');
             this.setState({ ...this.props, isEditing: false })
         }
     }
 
     onEdit = () => {
         this.setState({ isEditing: true })
+    }
+    
+    onChangeLabel = (ev) => {
+        const info = { ...this.state.info };
+        info.label = ev.target.innerText;
+        this.setState({ info });
     }
 
     onChange = (ev) => {
@@ -40,21 +42,20 @@ export class NoteImg extends React.Component {
         this.setState({ info: newInfo });
     }
 
+    onUpdate = () => {
+        const {id, info} = this.state;
+        eventBus.emit('update-note', { id, info })
+    }
+
     render() {
-        const { info, isEditing, id } = this.state;
+        const { info, isEditing, id, type } = this.state;
         if (!info) return <h1>Loading...</h1>
         return isEditing ?
             <div style={{ backgroundColor: info.backgroundColor }} className="note rounded">
                 <input name="title" placeholder="Image's title" value={info.title || ''} onChange={this.onChange} type="text" />
                 <input name="url" value={info.url} placeholder="Image's url" onChange={this.onChange} type="text" />
-                <div className="edit-note">
-                    <CheckIcon size='1.5em' onClick={() => eventBus.emit('update-note', { id, info })} />
-                    <div className="color-picker-wrapper">
-                        <input onChange={this.onColorChange} ref={this.elColorPicker} type="color" />
-                        <PaletteIcon size='1.5em' onClick={this.onColorPick} />
-                    </div>
-                </div>
-                <div className="note-icon"><ImageIcon /></div>
+                <InNoteEdit onColorChange={this.onColorChange} onChangeLabel={this.onChangeLabel} onUpdate={this.onUpdate} />
+                <NoteIcons type={type} label={info.label} />
             </div>
             : <div style={{ backgroundColor: info.backgroundColor }} className="note rounded ">
                 {info.title && <h2>{info.title}</h2>}
@@ -64,7 +65,7 @@ export class NoteImg extends React.Component {
                     <TrashBinIcon size='1.5em' onClick={() => eventBus.emit('remove-note', id)} />
                     <PinIcon size='1.5em' onClick={() => eventBus.emit('pin-note', id)} />
                 </div>
-                <div className="note-icon"><ImageIcon /></div>
+                <NoteIcons type={type} label={info.label} />
             </div>
     }
 }
