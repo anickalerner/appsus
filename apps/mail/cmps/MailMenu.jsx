@@ -9,21 +9,12 @@ function _MailMenu(props) {
             <div className="compose-btn-container">
                 <div onClick={props.onCompose} className="compose-btn btn"></div>
             </div>
-            <ul>
-                <li>
-                    <InboxIcon size="1em" />
-                    <NavLink exact activeClassName='active-nav' to="/mail/filter/inbox">Inbox</NavLink>
-                </li>
-                <li>
-                    <StarFullIcon size="1em"/>
-                    <NavLink exact activeClassName='active-nav' to="/mail/filter/starred">Starred</NavLink></li>
-                <li>
-                    <PaperPlaneIcon/>
-                    <NavLink exact activeClassName='active-nav' to="/mail/filter/sent">Sent</NavLink></li>
-                <li>
-                    <DraftIcon/>
-                    <NavLink exact activeClassName='active-nav' to="/mail/filter/drafts">Drafts</NavLink></li>
-            </ul>
+            <div className="side-bar-menu">
+                <NavLink exact activeClassName='active-nav' to="/mail/filter/inbox"><InboxIcon size="1em" /><span>Inbox</span></NavLink>
+                <NavLink exact activeClassName='active-nav' to="/mail/filter/starred"><StarFullIcon size="1em" /><span>Starred</span></NavLink>
+                <NavLink exact activeClassName='active-nav' to="/mail/filter/sent"><PaperPlaneIcon /><span>Sent</span></NavLink>
+                <NavLink exact activeClassName='active-nav' to="/mail/filter/drafts"><DraftIcon /><span>Drafts</span></NavLink>
+            </div>
         </div>
     )
 }

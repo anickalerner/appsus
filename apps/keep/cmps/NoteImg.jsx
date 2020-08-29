@@ -53,13 +53,13 @@ export class NoteImg extends React.Component {
         return isEditing ?
             <div style={{ backgroundColor: info.backgroundColor }} className="note rounded">
                 <input name="title" placeholder="Image's title" value={info.title || ''} onChange={this.onChange} type="text" />
-                <input name="url" value={info.url} placeholder="Image's url" onChange={this.onChange} type="text" />
+                <input name="content" value={info.content} placeholder="Image's url" onChange={this.onChange} type="text" />
                 <InNoteEdit onColorChange={this.onColorChange} onChangeLabel={this.onChangeLabel} onUpdate={this.onUpdate} />
                 <NoteIcons type={type} label={info.label} />
             </div>
             : <div style={{ backgroundColor: info.backgroundColor }} className="note rounded ">
                 {info.title && <h2>{info.title}</h2>}
-                <img src={info.url} alt="" />
+                <img src={info.content} alt="" />
                 <div className="edit-note">
                     <EditIcon size={iconSize} onClick={this.onEdit} />
                     <TrashBinIcon size={iconSize} onClick={() => eventBus.emit('remove-note', id)} />

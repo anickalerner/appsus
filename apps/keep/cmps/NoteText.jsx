@@ -1,4 +1,4 @@
-import { TrashBinIcon, EditIcon, PinIcon, } from '../../../cmps/Icons.jsx';
+import { TrashBinIcon, EditIcon, PinIcon, MailIcon } from '../../../cmps/Icons.jsx';
 import eventBus from '../../../service/event-bus-service.js';
 import { NoteIcons } from './NoteIcons.jsx';
 import { InNoteEdit } from './InNoteEdit.jsx';
@@ -27,6 +27,12 @@ export class NoteText extends React.Component {
         }, 0)
     }
 
+    onSendToMail = ()=>{
+        const {title, content} = this.state.info;
+        const mail = {subject: title, body: content};
+        console.log(mail);
+    }
+
     onColorChange = (ev) => {
         const info = { ...this.state.info };
         info.backgroundColor = ev.target.value;
@@ -41,18 +47,21 @@ export class NoteText extends React.Component {
 
     onUpdate = () => {
         const { id, info } = this.state;
-        info.txt = this.elText.current.innerText;
+        info.content = this.elText.current.innerText;
         eventBus.emit('update-note', { id, info })
     }
 
     render() {
         const { info, id, isEditing, type, iconSize } = this.state;
         if (!info) return <h1>Loading...</h1>;
-        return <div style={{ backgroundColor: info.backgroundColor }} className="note rounded">
-            <p ref={this.elText} suppressContentEditableWarning={true} contentEditable={isEditing}>{info.txt}</p>
+        return <div style={{ backgroundColor: info.backgroundColor }} className="note rounded">{isEditing ?
+            <input name="title" value={info.title} onChange={this.onChange} type="text" />
+            : <h1>{this.props.info.title}</h1>}
+            <p ref={this.elText} suppressContentEditableWarning={true} contentEditable={isEditing}>{info.content}</p>
             {isEditing ?
                 <InNoteEdit onColorChange={this.onColorChange} onChangeLabel={this.onChangeLabel} onUpdate={this.onUpdate} />
                 : <div className="edit-note">
+                    <MailIcon size={iconSize} onClick={this.onSendToMail} />
                     <EditIcon size={iconSize} onClick={this.onEdit} />
                     <TrashBinIcon size={iconSize} onClick={() => eventBus.emit('remove-note', id)} />
                     <PinIcon size={iconSize} onClick={() => eventBus.emit('pin-note', id)} />

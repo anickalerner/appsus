@@ -1,5 +1,5 @@
 import { Todo } from './Todo.jsx'
-import { TrashBinIcon, EditIcon, PlusIcon, TodoListIcon, PinIcon } from '../../../cmps/Icons.jsx';
+import { TrashBinIcon, EditIcon, PlusIcon, MailIcon, PinIcon } from '../../../cmps/Icons.jsx';
 import eventBus from '../../../service/event-bus-service.js';
 import { NoteIcons } from './NoteIcons.jsx';
 import { InNoteEdit } from './InNoteEdit.jsx';
@@ -26,11 +26,11 @@ export class NoteTodos extends React.Component {
         const value = ev.target.value;
         const info = { ...this.state.info };
         const todos = [...info.todos];
-        if (!value){
-            eventBus.emit('notify', {msg: 'todo deleted', type:'todo-deleted'});
-             todos.splice(idx, 1);
+        if (!value) {
+            eventBus.emit('notify', { msg: 'todo deleted', type: 'todo-deleted' });
+            todos.splice(idx, 1);
         }
-        else todos[idx].txt = ev.target.value;
+        else todos[idx].content = ev.target.value;
         info.todos = todos;
         this.setState({ info });
     }
@@ -64,14 +64,22 @@ export class NoteTodos extends React.Component {
         this.setState({ isEditing: true });
     }
 
+    onSendToMail = () => {
+        const { title, todos } = this.state.info;
+        let body = '';
+        todos.forEach((todo, idx) => body+=`${idx + 1}. ${todo.content}\n`);
+        const mail = {subject: title, body};
+        console.log(mail);
+    }
+
     onAddTodo = (id) => {
         const { newTodoVal } = this.state;
         if (!newTodoVal) {
-            eventBus.emit('notify', {msg: 'Write something to add first.', type:'note-add-denied'});
-             return;
+            eventBus.emit('notify', { msg: 'Write something to add first.', type: 'note-add-denied' });
+            return;
         }
         const info = { ...this.state.info };
-        info.todos.push({ txt: newTodoVal, doneAt: null });
+        info.todos.push({ content: newTodoVal, doneAt: null });
         eventBus.emit('update-note', { id, info });
         this.setState({ newTodoVal: '' });
     }
@@ -81,14 +89,14 @@ export class NoteTodos extends React.Component {
     }
 
     onUpdate = () => {
-        const {id, info} = this.state;
+        const { id, info } = this.state;
         eventBus.emit('update-note', { id, info })
     }
 
     render() {
-        const { info, id, isEditing, newTodoVal, type, iconSize} = this.state;
+        const { info, id, isEditing, newTodoVal, type, iconSize } = this.state;
         if (!info) return <h1>Loading...</h1>
-        return <div style={{backgroundColor: info.backgroundColor}} className="note rounded">
+        return <div style={{ backgroundColor: info.backgroundColor }} className="note rounded">
             {isEditing ?
                 <input name="title" value={info.title} onChange={this.onChange} type="text" />
                 : <h1>{this.props.info.title}</h1>}
@@ -98,6 +106,7 @@ export class NoteTodos extends React.Component {
                 <InNoteEdit onColorChange={this.onChange} onChangeLabel={this.onChangeLabel} onUpdate={this.onUpdate} />
                 :
                 <div className="edit-note">
+                    <MailIcon size={iconSize} onClick={this.onSendToMail} />
                     <PlusIcon size={iconSize} onClick={() => this.onAddTodo(id)} />
                     <EditIcon size={iconSize} onClick={this.onEdit} />
                     <TrashBinIcon size={iconSize} onClick={() => eventBus.emit('remove-note', id)} />

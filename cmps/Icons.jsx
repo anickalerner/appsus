@@ -18,6 +18,9 @@ export function LightBulbIcon({ size, onClick }) {
 export function MailIcon({ size, onClick }) {
     return icon("far fa-envelope", getFontSize(size), onClick);
 }
+export function SearchIcon({ size, onClick }) {
+    return icon("fas fa-search", getFontSize(size), onClick);
+}
 
 //Mail
 export function TrashBinIcon({ size, onClick }){

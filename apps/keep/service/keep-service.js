@@ -31,7 +31,7 @@ function initNotes() {
             info: {
                 label: 'Reminder',
                 title: 'first comment',
-                txt: "Fullstack Me Baby!",
+                content: "Fullstack Me Baby!",
                 backgroundColor: "#fefefe"
             }
         },
@@ -41,7 +41,7 @@ function initNotes() {
             isPinned: false,
             info: {
                 label: 'Archive',
-                url: "https://i.kym-cdn.com/entries/icons/facebook/000/015/559/It_Was_Me__Dio!.jpg",
+                content: "https://i.kym-cdn.com/entries/icons/facebook/000/015/559/It_Was_Me__Dio!.jpg",
                 title: "Me playing Mi",
                 backgroundColor: "#fefefe"
             }
@@ -54,8 +54,8 @@ function initNotes() {
                 label: 'None',
                 title: "How was it:",
                 todos: [
-                    { txt: "Do that", doneAt: null },
-                    { txt: "Do this", doneAt: 187111111 }
+                    { content: "Do that", doneAt: null },
+                    { content: "Do this", doneAt: 187111111 }
                 ],
                 backgroundColor: "#fefefe"
             }
@@ -63,11 +63,14 @@ function initNotes() {
     ];
 }
 
-function getNotes(label = 'None') {
+function getNotes({ label = 'None', search }) {
     const pinned = [];
     const notPinned = [];
     notes.forEach(note => {
         if (note.info.label.toLowerCase() !== label && label !== 'None') return;
+        if (note.type === 'NoteTodos') {
+            if (note.info.todos.every(note => !note.content.includes(search))) return;
+        } else if (!note.info.content.includes(search) && !note.info.title.includes(search)) return;
         note.isPinned ? pinned.push(note) : notPinned.push(note);
     });
     console.log('getting notes...');
@@ -76,7 +79,7 @@ function getNotes(label = 'None') {
 
 function addNote(NoteVal, noteType) {
     const typeMap = {
-        txt: createTxtNote,
+        txt: createTextNote,
         img: createImgNote,
         todo: createTodoNote,
         video: createVideoNote,
@@ -88,14 +91,15 @@ function addNote(NoteVal, noteType) {
     return Promise.resolve('added');
 }
 
-function createTxtNote(noteVal) {
+function createTextNote(noteVal) {
     return {
         id: utilService.makeId(),
         type: 'NoteText',
         isPinned: false,
         info: {
             label: 'None',
-            txt: noteVal,
+            content: noteVal,
+            title: 'Note:',
             backgroundColor: '#fefefe'
         }
     }
@@ -108,8 +112,8 @@ function createImgNote(noteVal) {
         isPinned: false,
         info: {
             label: 'None',
-            url: noteVal,
-            title: null,
+            content: noteVal,
+            title: 'Image',
             backgroundColor: "#7bb2b2"
         }
     }
@@ -122,8 +126,8 @@ function createAudioNote(noteVal) {
         isPinned: false,
         info: {
             label: '',
-            url: noteVal,
-            title: null,
+            content: noteVal,
+            title: 'Audio',
             backgroundColor: "#77bb7b"
         }
     }
@@ -138,8 +142,8 @@ function createVideoNote(noteVal) {
         type: "NoteVideo",
         info: {
             label: '',
-            url: noteVal,
-            title: null,
+            content: noteVal,
+            title: 'Video',
             backgroundColor: "#b2b27b"
         }
     }
@@ -152,9 +156,9 @@ function createTodoNote(noteVal) {
         type: "NoteTodos",
         info: {
             label: '',
-            title: "How was it:",
+            title: "Todos:",
             todos: [
-                { txt: noteVal, doneAt: null },
+                { content: noteVal, doneAt: null },
 
             ],
             backgroundColor: "#b27bb2"

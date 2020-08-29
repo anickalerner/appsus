@@ -1,8 +1,9 @@
 import { keepService } from './service/keep-service.js';
 import eventBus from '../../service/event-bus-service.js';
 import { NoteList } from './cmps/NoteList.jsx';
-import { KeepSideBar } from './cmps/KeepSideBar.jsx';
+import { KeepMenu } from './cmps/KeepMenu.jsx';
 import { AddNote } from './cmps/AddNote.jsx';
+import { NoteSearch } from './cmps/NoteSearch.jsx';
 
 
 
@@ -10,7 +11,8 @@ export default class Keep extends React.Component {
 
     state = {
         NotPinned: null,
-        pinned: null
+        pinned: null,
+        searchValue: ''
     }
 
     unsubscribeRemove;
@@ -33,6 +35,10 @@ export default class Keep extends React.Component {
         })
     }
 
+    onSearch = (ev)=>{
+        this.setState({searchValue: ev.target.value}, this.getNotes);
+    }
+
     componentDidUpdate(prevProps){
         if(prevProps !== this.props){
             this.getNotes();
@@ -45,7 +51,7 @@ export default class Keep extends React.Component {
     }
 
     getNotes = () => {
-        keepService.getNotes(this.props.match.params.filter)
+        keepService.getNotes({label: this.props.match.params.label, search: this.state.searchValue})
             .then(res => this.setState(res));
     }
 
@@ -71,12 +77,13 @@ export default class Keep extends React.Component {
     }
 
     render() {
-        const { notPinned, pinned } = this.state;
+        const { notPinned, pinned, searchValue } = this.state;
         if (!notPinned) return <h1>Loading...</h1>
         return <div className="keep-container main-wrapper">
-                <KeepSideBar tab={this.props.match.params.filter} />
+                <KeepMenu tab={this.props.match.params.filter} />
             <section className="keep-content">
                 <AddNote addNote={this.addNote} />
+                <NoteSearch onSearch={this.onSearch} searchValue={searchValue} />
                 <h1 className="keep-heading">Pinned</h1>
                 <NoteList notes={pinned} />
                 <h1 className="keep-heading">Others</h1>

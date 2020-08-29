@@ -9,6 +9,10 @@ import { Notification } from './cmps/Notification.jsx'
 
 export class App extends React.Component {
 
+    state={
+        app: 'home'
+    }
+
     render() {
         return (
             <Router>
@@ -16,11 +20,12 @@ export class App extends React.Component {
                     <AppHeader />
                     <main>
                         <Switch>
-                            <Route component={Mail} path="/mail/(filter)?/:filter?" />
+                            {/* <Route component={Mail} path="/mail/id/:id?" />
+                            <Route component={Mail} path="/mail/(filter)?/:filter?" /> */}
+                            <Route component={Mail} path="/mail/:filterName?/:filter?" />
                             <Route component={Books} path="/books" />
-                            <Route component={Keep} path="/keep/:filter?" />
+                            <Route component={Keep} path="/keep/:label?" />
                             <Route component={Home} path="/" />
-
                         </Switch>
                     </main>
                     <Notification />

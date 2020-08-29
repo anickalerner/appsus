@@ -1,0 +1,15 @@
+.note-search {
+    display: flex;
+    padding: 10px;
+    font-size: 1.2em;
+    width: fit-content;
+    margin: 20px auto 0px;
+}
+
+.note-search input {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.note-search i {
+    pointer-events: none;
+}

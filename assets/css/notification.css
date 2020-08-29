@@ -2,19 +2,10 @@
     position: absolute;
     left: 10px;
     bottom: 40px;
-    background-color: #202124;
-    color: white;    
-}
-.notification-box .inner{
-    padding: 1em;
 }
 .notification-box div{
     display: inline-block;
     padding-right: 1em;
-}
-.notification-box .close{
-    color: white;
-    opacity: 0.8;
 }
 .notification-box.success {
     background-color: green;

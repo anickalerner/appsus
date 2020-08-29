@@ -32,7 +32,7 @@ export class Notification extends React.Component {
     render() {
         const { isShown, msg, type } = this.state;
         return (
-            <div className={`notification-box rounded-small ${type}`}>
+            <div className={`notification-box dark-msg rounded-small ${type}`}>
                 {this.getComponent(msg)}
             </div>
         )

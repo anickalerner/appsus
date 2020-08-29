@@ -52,17 +52,17 @@ export class NoteAudio extends React.Component {
     render() {
         const { info, isEditing, id, type, iconSize } = this.state;
         if (!info) return <h1>Loading...</h1>
-        return isEditing ? <div style={{ backgroundColor: info.backgroundColor }} className="note rounded">
+        return isEditing ? <div style={{ backgroundColor: info.backgroundColor }} className="note note-audio rounded">
             <input name="title" placeholder="Audio clip's title" value={info.title || ''} onChange={this.onChange} type="text" />
-            <input name="url" value={info.url} placeholder="Audio's url" onChange={this.onChange} type="text" />
+            <input name="content" value={info.content} placeholder="Audio's url" onChange={this.onChange} type="text" />
             <InNoteEdit onColorChange={this.onColorChange} onChangeLabel={this.onChangeLabel} onUpdate={this.onUpdate} />
             <NoteIcons type={type} label={info.label} />
         </div>
             : <div style={{ backgroundColor: info.backgroundColor }} className="note rounded">
                 {info.title && <h2>{info.title}</h2>}
                 <audio controls>
-                    <source src={info.url} type="audio/mpeg"></source>
-                    <source src={info.url} type="audio/ogg"></source>
+                    <source src={info.content} type="audio/mpeg"></source>
+                    <source src={info.content} type="audio/ogg"></source>
                 </audio>
                 <div className="edit-note">
                     <EditIcon size={iconSize} onClick={this.onEdit} />

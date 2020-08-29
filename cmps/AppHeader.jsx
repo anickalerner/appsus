@@ -1,6 +1,8 @@
 import { AppsMenuIcon } from './AppsMenuIcon.jsx';
-const { Link } = ReactRouterDOM
-export function AppHeader(){
+import {NoteSearch} from '../apps/keep/cmps/NoteSearch.jsx'
+const { Link, withRouter } = ReactRouterDOM
+function _AppHeader(props){
+    console.log(props.match.params);
     return (
         <header>
             <div className="logo">
@@ -10,3 +12,5 @@ export function AppHeader(){
         </header>
     )
 }
+
+export const AppHeader = withRouter(_AppHeader);

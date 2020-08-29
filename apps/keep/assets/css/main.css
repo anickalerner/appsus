@@ -6,6 +6,7 @@
 @import './edit-note.css';
 @import './side-bar.css';
 @import './add-note.css';
+@import './note-search.css';
 .keep-container {
     /* background-color: lightsalmon; */
     display: flex;
@@ -13,7 +14,10 @@
 
 .keep-content {
     padding: 20px;
-    overflow-y: scroll;
+}
+
+.keep-content input {
+    background-color: #fefefe;
 }
 
 .keep-content button {
@@ -33,6 +37,7 @@
 .note {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     position: relative;
     border: 1px solid #e0e0e0;
     padding: 25px;
