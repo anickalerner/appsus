@@ -1,5 +1,6 @@
 const { NavLink, withRouter } = ReactRouterDOM
 import { InboxIcon, StarFullIcon, PaperPlaneIcon, DraftIcon } from '../../../cmps/Icons.jsx';
+import { UnreadCount } from './UnreadCount.jsx';
 
 function _MailMenu(props) {
     return (
@@ -10,10 +11,22 @@ function _MailMenu(props) {
                 <div onClick={props.onCompose} className="compose-btn btn"></div>
             </div>
             <div className="side-bar-menu">
-                <NavLink exact activeClassName='active-nav' to="/mail/filter/inbox"><InboxIcon size="1em" /><span>Inbox</span></NavLink>
-                <NavLink exact activeClassName='active-nav' to="/mail/filter/starred"><StarFullIcon size="1em" /><span>Starred</span></NavLink>
-                <NavLink exact activeClassName='active-nav' to="/mail/filter/sent"><PaperPlaneIcon /><span>Sent</span></NavLink>
-                <NavLink exact activeClassName='active-nav' to="/mail/filter/drafts"><DraftIcon /><span>Drafts</span></NavLink>
+                <NavLink exact activeClassName='active-nav' to="/mail/filter/inbox">
+                    <InboxIcon size="1em" />
+                    <span className="side-bar-menu-item">
+                        <span>Inbox</span>
+                        <UnreadCount count={props.count} />
+                    </span>
+
+                </NavLink>
+                <NavLink exact activeClassName='active-nav' to="/mail/filter/starred">
+                    <StarFullIcon size="1em" />
+                    <span className="side-bar-menu-item">
+                        <span>Starred</span>
+                    </span>
+                </NavLink>
+                <NavLink exact activeClassName='active-nav' to="/mail/filter/sent"><PaperPlaneIcon /><span className="side-bar-menu-item"><span>Sent</span></span></NavLink>
+                <NavLink exact activeClassName='active-nav' to="/mail/filter/drafts"><DraftIcon /><span className="side-bar-menu-item"><span>Drafts</span></span></NavLink>
             </div>
         </div>
     )

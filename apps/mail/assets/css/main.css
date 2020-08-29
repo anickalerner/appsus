@@ -20,6 +20,9 @@ span.starred i {
     border-top: 1px solid rgb(128, 128, 128);
     padding: 0.625em 0;
 }
+.mail-table tr.read{
+    background-color: #fff;
+}
 .mail-table td{
     border-color: rgba(242,245,245,0.8);
     line-height: 20px;
@@ -29,4 +32,8 @@ span.starred i {
 }
 .mail-table tr.tr-hover{
     box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+}
+.side-bar-menu-item{
+    display: grid;
+    grid-template-columns: 80% 20%;
 }

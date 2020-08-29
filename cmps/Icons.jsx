@@ -1,107 +1,106 @@
 function getFontSize(size){
     return { fontSize: size ? size : '1em' };
 }
-function icon(className, style, callback) {
-    return <i className={className} style={style} onClick={callback}></i>;    
+function icon(className, props) {
+    return <i className={className} style={getFontSize(props.size)} onClick={props.onClick}>
+        {props.title && <div className="icon-title dark-msg rounded-small">{props.title}</div>}
+    </i>;
 }
 
 //Common
-export function GridIcon({ size, onClick }) {
-    return icon("fas fa-th", getFontSize(size), onClick);
+export function GridIcon(props) {
+    return icon("fas fa-th", props);
 }
-export function BookIcon({ size, onClick }) {
-    return icon("fas fa-book", getFontSize(size), onClick);
+export function BookIcon(props) {
+    return icon("fas fa-book", props);
 }
-export function LightBulbIcon({ size, onClick }) {
-    return icon("far fa-lightbulb", getFontSize(size), onClick);
+export function LightBulbIcon(props) {
+    return icon("far fa-lightbulb", props);
 }
-export function MailIcon({ size, onClick }) {
-    return icon("far fa-envelope", getFontSize(size), onClick);
+export function MailIcon(props) {
+    return icon("far fa-envelope", props);
 }
-export function SearchIcon({ size, onClick }) {
-    return icon("fas fa-search", getFontSize(size), onClick);
+export function SearchIcon(props) {
+    return icon("fas fa-search", props);
 }
 
 //Mail
-export function TrashBinIcon({ size, onClick }){
-    return icon("fas fa-trash", getFontSize(size), onClick);
+export function TrashBinIcon(props){
+    return icon("fas fa-trash", props);
 }
-export function InboxIcon({ size, onClick }) {
-    return icon("fas fa-inbox", getFontSize(size), onClick);
+export function InboxIcon(props) {
+    return icon("fas fa-inbox", props);
 }
-export function StarEmptyIcon({ size, onClick }) {
-    return icon("far fa-star", getFontSize(size), onClick);
+export function StarEmptyIcon(props) {
+    return icon("far fa-star", props);
 }
-export function StarFullIcon({ size, onClick }) {
-    return icon("fas fa-star", getFontSize(size), onClick);
+export function StarFullIcon(props) {
+    return icon("fas fa-star", props);
 }
-export function SentIcon({ size, onClick }) {
-    return icon("fas fa-share-square", getFontSize(size), onClick);
+export function SentIcon(props) {
+    return icon("fas fa-share-square", props);
 }
-export function DraftIcon({ size, onClick }) {
-    return icon("fab fa-firstdraft", getFontSize(size), onClick);
+export function DraftIcon(props) {
+    return icon("fab fa-firstdraft", props);
 }
-export function PlusIcon({ size, onClick }) {
-    return icon("fas fa-plus", getFontSize(size), onClick);
+export function PlusIcon(props) {
+    return icon("fas fa-plus", props);
 }
-export function EnvelopeOpenIcon({ size, onClick }) {
-    return icon("fas fa-envelope-open", getFontSize(size), onClick);
+export function MailOpenIcon(props) {
+    return icon("fas fa-envelope-open", props);
 }
-export function EnvelopeIcon({ size, onClick }) {
-    return icon("fas fa-envelope", getFontSize(size), onClick);
-}
-export function PaperPlaneIcon({ size, onClick }) {
-    return icon("fas fa-paper-plane", getFontSize(size), onClick);
+export function PaperPlaneIcon(props) {
+    return icon("fas fa-paper-plane", props);
 }
 
 //Keep
-export function PaletteIcon({ size, onClick }) {
-    return icon("fas fa-palette", getFontSize(size), onClick);
+export function PaletteIcon(props) {
+    return icon("fas fa-palette", props);
 }
-export function ImageIcon({ size, onClick }) {
-    return icon("fas fa-image", getFontSize(size), onClick);
+export function ImageIcon(props) {
+    return icon("fas fa-image", props);
 }
-export function YoutubeIcon({ size, onClick }) {
-    return icon("fab fa-youtube", getFontSize(size), onClick);
+export function YoutubeIcon(props) {
+    return icon("fab fa-youtube", props);
 }
-export function SoundIcon({ size, onClick }) {
-    return icon("fas fa-volume-up", getFontSize(size), onClick);
+export function SoundIcon(props) {
+    return icon("fas fa-volume-up", props);
 }
-export function FontIcon({ size, onClick }) {
-    return icon("fas fa-font", getFontSize(size), onClick);
+export function FontIcon(props) {
+    return icon("fas fa-font", props);
 }
-export function EditIcon({ size, onClick }) {
-    return icon("fas fa-edit", getFontSize(size), onClick);
+export function EditIcon(props) {
+    return icon("fas fa-edit", props);
 }
-export function CopyIcon({ size, onClick }) {
-    return icon("fas fa-copy", getFontSize(size), onClick);
+export function CopyIcon(props) {
+    return icon("fas fa-copy", props);
 }
-export function CheckIcon({ size, onClick }) {
-    return icon("fas fa-check", getFontSize(size), onClick);
+export function CheckIcon(props) {
+    return icon("fas fa-check", props);
 }
 export function NoteIcon({size, onClick}){
-    return icon("far fa-sticky-note", getFontSize(size), onClick);
+    return icon("far fa-sticky-note", props);
 }
-export function PinIcon({ size, onClick }) {
-    return icon("fas fa-thumbtack", getFontSize(size), onClick);
+export function PinIcon(props) {
+    return icon("fas fa-thumbtack", props);
 }
-export function ReminderIcon({ size, onClick }){
-    return icon("far fa-bell", getFontSize(size), onClick);
+export function ReminderIcon(props){
+    return icon("far fa-bell", props);
 }
-export function ArchiveIcon({ size, onClick }){
-    return icon("fas fa-archive", getFontSize(size), onClick);
+export function ArchiveIcon(props){
+    return icon("fas fa-archive", props);
 }
-export function TextIcon({ size, onClick }){
-    return icon("fas fa-font", getFontSize(size), onClick);
+export function TextIcon(props){
+    return icon("fas fa-font", props);
 }
-export function TodoListIcon({ size, onClick }){
-    return icon("fas fa-list-ul", getFontSize(size), onClick);
+export function TodoListIcon(props){
+    return icon("fas fa-list-ul", props);
 }
-export function LabelIcon({ size, onClick }){
-    return icon("fas fa-tag", getFontSize(size), onClick);
+export function LabelIcon(props){
+    return icon("fas fa-tag", props);
 }
-export function AudioIcon({ size, onClick }){
-    return icon("fas fa-volume-up", getFontSize(size), onClick);
+export function AudioIcon(props){
+    return icon("fas fa-volume-up", props);
 }
 
 
