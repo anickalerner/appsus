@@ -21,7 +21,7 @@ export default class Keep extends React.Component {
     unsubscribePin;
 
     componentDidMount() {
-        eventBus.emit('change-app', true);
+        eventBus.emit('change-app', 'keep');
         const subject = new URLSearchParams(this.props.location.search).get('subject');
         const body = new URLSearchParams(this.props.location.search).get('body');
         if(subject && body) keepService.mailToNote(body, subject);
