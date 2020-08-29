@@ -69,9 +69,7 @@ class _NoteTodos extends React.Component {
         const { title, todos } = this.state.info;
         let body = '';
         todos.forEach((todo, idx) => body+=`${idx + 1}. ${todo.content}\n`);
-        this.props.history.push(`/keep?subject=${title}&body=${body}`);
-        const mail = {subject: title, body};
-        console.log(mail);
+        this.props.history.push(`/mail?subject=${title}&body=${body}`);
     }
 
     onAddTodo = (id) => {

@@ -34,9 +34,7 @@ class _NoteAudio extends React.Component {
 
     onSendToMail = ()=>{
         const {title, content} = this.state.info;
-        const mail = {subject: title, content: 'url' + content};
-        this.props.history.push(`/keep?subject=${title}&body=${content}`);
-        console.log(mail);
+        this.props.history.push(`/keep?subject=${title}&body=url:${content}`);
     }
 
     onChangeLabel = (ev) => {

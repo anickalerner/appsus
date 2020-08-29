@@ -34,8 +34,6 @@ class _NoteImg extends React.Component {
     onSendToMail = ()=>{
         const {title, content} = this.state.info;
         this.props.history.push(`/keep?subject=${title}&body=url:${content}`);
-        const mail = {subject: title, content: 'url:' + content};
-        console.log(mail);
     }
 
     onChangeLabel = (ev) => {
