@@ -8,7 +8,8 @@ export const mailService = {
     updateMailProperty,
     updateMail,
     addMail,
-    deleteMail
+    deleteMail,
+    getUnreadMailsCount
 }
 var mails = [
     {
@@ -57,8 +58,8 @@ function initMails() {
     saveMails();
 }
 
-function query(filter) {
-    return Promise.resolve(filterService.filterMails(mails, filter));
+function query(filter, filteredByRead) {
+    return Promise.resolve(filterService.filterMails(mails, filter, filteredByRead));
 }
 
 function getMailIndexById(mailId) {
@@ -66,24 +67,26 @@ function getMailIndexById(mailId) {
 }
 
 function updateMailProperty(id, propObj) {
-    getMailIndexById(id).then(mailInd => {
+    return getMailIndexById(id).then(mailInd => {
         var mailToUpdate = mails[mailInd];
-        mailToUpdate = { ...mailToUpdate, propObj }
+        Object.assign(mailToUpdate, propObj);
         updateMail(mailInd, mailToUpdate);
     });
+
 }
+
 function updateMail(mailId, mail) {
     mails[mailId] = mail;
     saveMails();
     return Promise.resolve('updated mail');
 }
+
 const MY_MAIL = 'anicka.lerner@gmail.com';
 
 function addMail(data) {
     var newMail = {
         ...data
         , from: MY_MAIL
-        , isRead: false
         , sentAt: Date.now()
     };
     if (!newMail.id || newMail.id === '') {
@@ -92,18 +95,17 @@ function addMail(data) {
     mails = [...mails, newMail];
     saveMails();
     return Promise.resolve(newMail);
+
 }
 
 function deleteMail(id) {
-    mails.splice(getMailIndexById(id), 1);
-    console.log(mails);
-    saveMails();
-    return Promise.resolve('deleted mail');
+    return getMailIndexById(id).then((ind) => {
+        mails.splice(ind, 1);
+        console.log(mails);
+        saveMails();
+    });
 }
 
-// var drafts = [];
-// function saveToDrafts(data){
-//     var draft = data;
-//     drafts = [...drafts, draft];
-//     return Promise.resolve('saved to drafts');
-// }
+function getUnreadMailsCount() {
+    return mails.filter(mail => !mail.isRead).length;
+}

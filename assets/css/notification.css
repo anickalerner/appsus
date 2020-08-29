@@ -14,3 +14,21 @@
 .notification-box.fail {
     background-color: red;
 }
+i .icon-title{    
+  position: absolute;
+  padding: 0.4rem 0.6rem;
+  opacity: 0;
+  /* transform: translate(-50%, -50%); */
+  z-index: 1;
+  top: 2.2em;
+  left: -80%;
+  white-space: nowrap;
+  font-family: 'Roboto';
+}
+i:hover .icon-title{
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.3s ease;
+    font-weight: normal;
+    /* transform: translate(-50%, -100%); */
+}

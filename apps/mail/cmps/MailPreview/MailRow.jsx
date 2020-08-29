@@ -8,13 +8,13 @@ export class MailRow extends React.Component {
         isHovering: false,
         openMail: false
     };
-    
+
     starClicked = () => {
         this.props.mailStarToggle(this.props.mail.id);
     }
 
     handleMouseEnter = () => {
-        this.setState({isHovering: true});
+        this.setState({ isHovering: true });
     }
 
     handleMouseLeave = () => {
@@ -26,29 +26,42 @@ export class MailRow extends React.Component {
     }
 
     getHoverComponent = (mail) => {
-        if (this.state.isHovering){
-            return <MailActionIcons mail={mail} onDelete={this.onDeleteMail} />
+        if (this.state.isHovering) {
+            return <MailActionIcons mail={mail} onDelete={this.onDeleteMail} onMarkRead={this.props.markRead} />
         }
-        else{
-           return <MailDate date={mail.sentAt} />
+        else {
+            return <MailDate date={mail.sentAt} />
         }
     }
 
-    onMailRowClicked = () =>{
-        //this.props.openMail(this.props.mail);
-        this.setState({openMail: true});
+    onMailRowClicked = () => {
+        if (this.props.mail.isDraft) {
+            this.props.openDraft();
+        }
+        else {
+            this.setState({ openMail: true }, () => {
+                this.props.openMail(this.props.mail);
+            });
+        }
+    }
+
+    get trClassName() {
+        var clName = this.state.isHovering ? 'tr-hover' : 'tr';
+        clName += ' ';
+        clName += this.props.mail.isRead ? 'read' : '';
+        return clName;
     }
 
     render() {
         const mail = this.props.mail;
-        if (this.state.openMail){
+        if (this.state.openMail) {
             return <Redirect push to={'/mail/id/' + this.props.mail.id} />
         }
-        else return (            
+        else return (
             <tr onMouseEnter={this.handleMouseEnter}
-                onMouseLeave={this.handleMouseLeave} 
+                onMouseLeave={this.handleMouseLeave}
                 onClick={this.onMailRowClicked}
-                className={this.state.isHovering? 'tr-hover' : 'tr'}>
+                className={this.trClassName}>
                 <MailControls mail={mail} starClicked={this.starClicked} />
                 <MailFrom from={mail.from} isRead={mail.isRead} />
                 <MailSubject subject={mail.subject} body={mail.body} isRead={mail.isRead} />

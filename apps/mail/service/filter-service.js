@@ -10,8 +10,12 @@ function filterByRead(mail) {
     return mail.isRead && !mail.isDraft;
 }
 
+function filterByUnread(mail) {
+    return !mail.isRead && !mail.isDraft;
+}
+
 function filterBySent(mail) {
-    return mail.isSent && mail.isDraft;
+    return mail.isSent && !mail.isDraft;
 }
 
 function filterByDrafts(mail) {
@@ -34,6 +38,9 @@ function getCallbackByFilter(filter) {
         case 'read':
             cb = filterByRead;
             break;
+        case 'unread':
+            cb = filterByUnread;
+            break;
         case 'drafts':
             cb = filterByDrafts;
             break;
@@ -46,13 +53,18 @@ function getCallbackByFilter(filter) {
     return cb;
 }
 
-function filterMails(mails, filter) {
+function filterMails(mails, filter, filteredByRead) {
+//    var byRead = filteredByRead === 'read'
     if (filter.name === 'id') {
         return [mails.find((mail) => {
             return mail.id === filter.value;
         })]
     }
     else {
-        return mails.filter(getCallbackByFilter(filter));
+        var filtered = mails.filter(getCallbackByFilter(filter));
+        console.log(filtered);
+        var filtered2 = filtered.filter(getCallbackByFilter(filteredByRead));
+        console.log(filtered2);
+        return filtered2;
     }
 }

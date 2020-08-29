@@ -5,6 +5,7 @@
     width: 510px;
     height: 470px;
     z-index: 5;
+    background-color: #fff;
 }
 .new-mail-container .top-band{
     border-top-right-radius: 10px;

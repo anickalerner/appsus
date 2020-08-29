@@ -11,7 +11,13 @@ export function MailControls({ mail, starClicked }) {
 function StarIconControl({ mail, starClicked }) {
 
     const isStarred = mail.isStarred;
-    return (<span className={isStarred ? 'starred' : ''} onClick={starClicked}>
+
+    function onStarClicked(ev){
+        ev.stopPropagation();
+        starClicked();
+
+    }
+    return (<span className={isStarred ? 'starred' : ''} onClick={onStarClicked}>
         {isStarred ? <StarFullIcon /> : <StarEmptyIcon />}
     </span>)
 }
