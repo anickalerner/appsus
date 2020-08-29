@@ -1,16 +1,23 @@
-.book-details-page {
+.book-details-container {
     display: flex;
+    justify-content: space-around;
+}
+
+.book-details-container input,
+.book-details-container textarea {
+    background-color: #fefefe;
+    border-radius: 15px;
+    border: 1px solid #909090;
 }
 
 .book-details {
     position: relative;
     display: inline-block;
-    width: 40%;
+    width: 50%;
     height: 100%;
     text-align: center;
     background-color: lightgrey;
     border: 1px solid #909090;
-    margin: auto;
 }
 
 .book-details img {
@@ -22,4 +29,14 @@
     position: absolute;
     top: 10px;
     right: 10px;
+}
+
+@media(max-width: 900px) {
+    .book-details-container {
+        flex-direction: column;
+    }
+    .book-details {
+        width: 90%;
+        margin: 10px auto;
+    }
 }

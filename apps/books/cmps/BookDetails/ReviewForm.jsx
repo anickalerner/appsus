@@ -1,5 +1,5 @@
 import { Rating } from './Rating.jsx'
-import { bookService } from '../../services/book-service.js';
+import { bookService } from '../../service/book-service.js';
 import { ReviewPreview } from './ReviewPreview.jsx'
 
 export class ReviewForm extends React.Component {
@@ -61,11 +61,11 @@ export class ReviewForm extends React.Component {
     render() {
         if (!this.state.book) return <h1>Loading...</h1>
         const { maxRate, currRate } = this.state;
-        return <div className="review-container">
+        return <div className="review-container rounded aps-box-shadow-big">
             <section className="review-form">
                 <input ref={this.elInput} onInput={this.onInput} placeholder="Enter your full name" name="fullName" type="text" />
                 <Rating outOf={maxRate} currRate={currRate} onChangeRate={this.onChangeRate} />
-                <textarea onInput={this.onInput} name="description" id="" cols="30" rows="10"></textarea>
+                <textarea placeholder="Description." onInput={this.onInput} name="description" id="" cols="30" rows="10"></textarea>
                 <button onClick={this.onReviewSubmit}>Submit</button>
             </section>
             <ul className="reviews-list">

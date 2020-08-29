@@ -1,14 +1,15 @@
-import { TrashBinIcon, EditIcon, PinIcon } from '../../../cmps/Icons.jsx';
+import { TrashBinIcon, EditIcon, PinIcon, MailIcon } from '../../../cmps/Icons.jsx';
 import eventBus from '../../../service/event-bus-service.js';
 import { NoteIcons } from './NoteIcons.jsx';
 import { InNoteEdit } from './InNoteEdit.jsx';
+const {withRouter} = ReactRouterDOM;
 
-export class NoteAudio extends React.Component {
+class _NoteAudio extends React.Component {
 
     state = {
         isEditing: false
     }
-    
+
     elColorPicker = React.createRef();
 
     componentDidMount() {
@@ -30,7 +31,14 @@ export class NoteAudio extends React.Component {
     onEdit = () => {
         this.setState({ isEditing: true })
     }
-    
+
+    onSendToMail = ()=>{
+        const {title, content} = this.state.info;
+        const mail = {subject: title, content: 'url' + content};
+        this.props.history.push(`/keep?subject=${title}&body=${content}`);
+        console.log(mail);
+    }
+
     onChangeLabel = (ev) => {
         const info = { ...this.state.info };
         info.label = ev.target.innerText;
@@ -44,7 +52,7 @@ export class NoteAudio extends React.Component {
     }
 
     onUpdate = () => {
-        const {id, info} = this.state;
+        const { id, info } = this.state;
         eventBus.emit('update-note', { id, info })
     }
 
@@ -65,10 +73,14 @@ export class NoteAudio extends React.Component {
                     <source src={info.content} type="audio/ogg"></source>
                 </audio>
                 <div className="edit-note">
+                    <MailIcon size={iconSize} onClick={this.onSendToMail} />
                     <EditIcon size={iconSize} onClick={this.onEdit} />
                     <TrashBinIcon size={iconSize} onClick={() => eventBus.emit('remove-note', id)} />
                     <PinIcon size={iconSize} onClick={() => eventBus.emit('pin-note', id)} />
                 </div>
+                <NoteIcons type={type} label={info.label} />
             </div>
     }
 }
+
+export const NoteAudio = withRouter(_NoteAudio);

@@ -1,5 +1,4 @@
-const CHECKED = '../assets/img/checked.png';
-const UNCHECKED = '../assets/img/unchecked.png';
+import {StarEmptyIcon, StarFullIcon} from '../../../../cmps/Icons.jsx'
 
 export class Rating extends React.Component{
     state = {
@@ -14,14 +13,17 @@ export class Rating extends React.Component{
 
 
     renderStars(outOf, currRate){
-        let imgs = [];
+        let stars = [];
         for(let i = 0; i < outOf; i++){
-            imgs.push(<div key={i + 1} onClick={() =>{
-                this.setState({currRate: i + 1})
-                this.props.onChangeRate(i + 1)}
-            }><img  src={(i < currRate) ? CHECKED : UNCHECKED}/></div>); 
+            const rate = i + 1
+            stars.push(<div key={rate} onClick={() =>{
+                this.setState({currRate: rate});
+                this.props.onChangeRate(rate);
+            }
+            
+        } >{i < currRate ? <StarFullIcon /> : <StarEmptyIcon />}</div>)
         }
-        return <div className='rate-select'>{imgs}</div>;
+        return <div className='rate-select'>{stars}</div>;
     }
 
     render(){

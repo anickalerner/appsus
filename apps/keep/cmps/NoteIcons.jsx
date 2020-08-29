@@ -1,4 +1,4 @@
-import {TextIcon,ImageIcon, TodoListIcon, YoutubeIcon,ReminderIcon, ArchiveIcon } from '../../../cmps/Icons.jsx';
+import {TextIcon,ImageIcon, TodoListIcon, YoutubeIcon,ReminderIcon, ArchiveIcon, AudioIcon } from '../../../cmps/Icons.jsx';
 
 export function NoteIcons(props){
     const {type, label} = props
@@ -7,6 +7,7 @@ export function NoteIcons(props){
         {type === 'NoteImg' && <ImageIcon />}
         {type === 'NoteTodos' && <TodoListIcon />}
         {type === 'NoteVideo' && <YoutubeIcon />}
+        {type === 'NoteAudio' && <AudioIcon />}
         {label === 'Archive' && <ArchiveIcon />}
         {label === 'Reminder' && <ReminderIcon />}
     </div>

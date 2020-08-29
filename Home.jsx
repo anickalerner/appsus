@@ -1,9 +1,14 @@
 //import BookApp from 'BookApp.jsx'
+import eventBus from './service/event-bus-service.js'
 
 export default class Home extends React.Component {
 
     state = {
         //isFrontImgVisible: false
+    }
+
+    componentDidMount(){
+        eventBus.emit('change-app', false);
     }
 
     // componentDidMount() {

@@ -3,8 +3,9 @@ import { TrashBinIcon, EditIcon, PlusIcon, MailIcon, PinIcon } from '../../../cm
 import eventBus from '../../../service/event-bus-service.js';
 import { NoteIcons } from './NoteIcons.jsx';
 import { InNoteEdit } from './InNoteEdit.jsx';
+const {withRouter} = ReactRouterDOM;
 
-export class NoteTodos extends React.Component {
+class _NoteTodos extends React.Component {
     state = {
         isEditing: false,
         newTodoVal: ''
@@ -68,6 +69,7 @@ export class NoteTodos extends React.Component {
         const { title, todos } = this.state.info;
         let body = '';
         todos.forEach((todo, idx) => body+=`${idx + 1}. ${todo.content}\n`);
+        this.props.history.push(`/keep?subject=${title}&body=${body}`);
         const mail = {subject: title, body};
         console.log(mail);
     }
@@ -117,3 +119,4 @@ export class NoteTodos extends React.Component {
         </div>
     }
 }
+export const NoteTodos = withRouter(_NoteTodos);

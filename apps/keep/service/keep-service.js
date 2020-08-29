@@ -2,13 +2,15 @@ import { storageService } from '../../../service/storage-service.js';
 import { utilService } from '../../../service/util-service.js';
 
 export const keepService = {
-    loadNotes,
     getNotes,
     addNote,
     removeNote,
     updateNote,
-    pinNote
+    pinNote,
+    mailToNote
 }
+
+loadNotes();
 
 var notes;
 
@@ -30,8 +32,8 @@ function initNotes() {
             isPinned: true,
             info: {
                 label: 'Reminder',
-                title: 'first comment',
-                content: "Fullstack Me Baby!",
+                title: 'Don\'t forget!',
+                content: "You need to feed the cat!",
                 backgroundColor: "#fefefe"
             }
         },
@@ -41,9 +43,9 @@ function initNotes() {
             isPinned: false,
             info: {
                 label: 'Archive',
-                content: "https://i.kym-cdn.com/entries/icons/facebook/000/015/559/It_Was_Me__Dio!.jpg",
-                title: "Me playing Mi",
-                backgroundColor: "#fefefe"
+                content: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjI0MX0&w=1000&q=80",
+                title: "I should visit this place someday",
+                backgroundColor: "#7bb2b2"
             }
         },
         {
@@ -54,12 +56,24 @@ function initNotes() {
                 label: 'None',
                 title: "How was it:",
                 todos: [
-                    { content: "Do that", doneAt: null },
-                    { content: "Do this", doneAt: 187111111 }
+                    { content: "Do the laundry", doneAt: null },
+                    { content: "Pet the cat.\n A lot.", doneAt: null },
+                    { content: "Buy groceries", doneAt: 187111111 }
                 ],
-                backgroundColor: "#fefefe"
+                backgroundColor: "#b27bb2"
+            }
+        }, {
+            id: utilService.makeId(),
+            isPinned: false,
+            type: "NoteVideo",
+            info: {
+                label: '',
+                content: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+                title: 'You just got rick rolled',
+                backgroundColor: "#b2b27b"
             }
         }
+
     ];
 }
 
@@ -181,4 +195,21 @@ function pinNote(noteId) {
     const noteIdx = notes.findIndex(note => note.id === noteId);
     notes[noteIdx].isPinned = !notes[noteIdx].isPinned;
     return saveNotes();
+}
+
+function mailToNote(content, title) {
+    console.log('converting to note...');
+    notes.push({
+        id: utilService.makeId(),
+        type: 'NoteText',
+        isPinned: false,
+        info: {
+            label: 'None',
+            content,
+            title,
+            backgroundColor: '#fefefe'
+        }
+    })
+    saveNotes();
+    return Promise.resolve('added mail as note');
 }

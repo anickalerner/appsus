@@ -29,7 +29,7 @@ function _BookPreview(props) {
     }
 
     return (
-        <li onClick={onShowDetails} className='book-preview'>
+        <li onClick={onShowDetails} className='book-preview aps-box-shadow-small'>
             <div className="title"><h2>{title}</h2></div>
             <img src={thumbnail}  />
             <h3 className={getPriceColor(amount)}>{amount + getCurrencyIcon(currencyCode)}</h3>

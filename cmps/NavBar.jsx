@@ -1,5 +1,5 @@
 const { NavLink, withRouter } = ReactRouterDOM
-import { BookIcon, LightBulbIcon, MailIcon } from '../cmps/Icons.jsx';
+import { BookIcon, LightBulbIcon, MailIcon } from './Icons.jsx';
 function _NavBar(props) {
     return (
         <div className="apps-menu aps-box-shadow-big rounded-small">

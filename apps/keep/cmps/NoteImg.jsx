@@ -1,9 +1,10 @@
-import { TrashBinIcon, EditIcon, PinIcon } from '../../../cmps/Icons.jsx';
+import { TrashBinIcon, EditIcon, PinIcon, MailIcon } from '../../../cmps/Icons.jsx';
 import eventBus from '../../../service/event-bus-service.js';
 import { NoteIcons } from './NoteIcons.jsx';
 import { InNoteEdit } from './InNoteEdit.jsx';
+const {withRouter} = ReactRouterDOM;
 
-export class NoteImg extends React.Component {
+class _NoteImg extends React.Component {
     state = {
         isEditing: false
     }
@@ -30,6 +31,13 @@ export class NoteImg extends React.Component {
         this.setState({ isEditing: true })
     }
     
+    onSendToMail = ()=>{
+        const {title, content} = this.state.info;
+        this.props.history.push(`/keep?subject=${title}&body=url:${content}`);
+        const mail = {subject: title, content: 'url:' + content};
+        console.log(mail);
+    }
+
     onChangeLabel = (ev) => {
         const info = { ...this.state.info };
         info.label = ev.target.innerText;
@@ -50,22 +58,28 @@ export class NoteImg extends React.Component {
     render() {
         const { info, isEditing, id, type, iconSize } = this.state;
         if (!info) return <h1>Loading...</h1>
-        return isEditing ?
-            <div style={{ backgroundColor: info.backgroundColor }} className="note rounded">
+        return <div style={{ backgroundColor: info.backgroundColor }} className="note rounded">
+            {isEditing ?
+            <React.Fragment>
                 <input name="title" placeholder="Image's title" value={info.title || ''} onChange={this.onChange} type="text" />
                 <input name="content" value={info.content} placeholder="Image's url" onChange={this.onChange} type="text" />
                 <InNoteEdit onColorChange={this.onColorChange} onChangeLabel={this.onChangeLabel} onUpdate={this.onUpdate} />
                 <NoteIcons type={type} label={info.label} />
-            </div>
-            : <div style={{ backgroundColor: info.backgroundColor }} className="note rounded ">
+            </React.Fragment>
+            : <React.Fragment>
                 {info.title && <h2>{info.title}</h2>}
                 <img src={info.content} alt="" />
                 <div className="edit-note">
-                    <EditIcon size={iconSize} onClick={this.onEdit} />
-                    <TrashBinIcon size={iconSize} onClick={() => eventBus.emit('remove-note', id)} />
-                    <PinIcon size={iconSize} onClick={() => eventBus.emit('pin-note', id)} />
+                <MailIcon size={iconSize} onClick={this.onSendToMail} />
+                <EditIcon size={iconSize} onClick={this.onEdit} />
+                <TrashBinIcon size={iconSize} onClick={() => eventBus.emit('remove-note', id)} />
+                <PinIcon size={iconSize} onClick={() => eventBus.emit('pin-note', id)} />
                 </div>
-                <NoteIcons type={type} label={info.label} />
-            </div>
+            </React.Fragment>
+             }
+             <NoteIcons type={type} label={info.label} />
+        </div>
     }
 }
+
+export const NoteImg = withRouter(_NoteImg);

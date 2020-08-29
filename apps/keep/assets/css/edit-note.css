@@ -32,6 +32,19 @@
     border: 1px solid black;
 }
 
+.label-list li {
+    border-radius: 10px 10px 10px 10px;
+}
+
+.label-list li:hover {
+    cursor: pointer;
+    background-color: #F4F5F6;
+}
+
+.label-list li:active {
+    background-color: #777777;
+}
+
 .label-wrapper:hover .label-list {
     visibility: visible;
 }

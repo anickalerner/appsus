@@ -17,12 +17,14 @@ export default class Keep extends React.Component {
 
     unsubscribeRemove;
     unsubscribeUpdate;
+    unsubscribeSearch;
     unsubscribePin;
 
     componentDidMount() {
-        keepService.loadNotes()
-            .then(this.getNotes());
-
+        eventBus.emit('change-app', true);
+        const subject = new URLSearchParams(this.props.location.search).get('subject');
+        const body = new URLSearchParams(this.props.location.search).get('body');
+        if(subject && body) keepService.mailToNote(body, subject);
         this.unsubscribeRemove = eventBus.on('remove-note', (id) => {
             this.removeNote(id);
         })
@@ -30,13 +32,13 @@ export default class Keep extends React.Component {
         this.unsubscribeUpdate = eventBus.on('update-note', ({ id, info }) => {
             this.updateNote(id, info);
         })
+        this.unsubscribeSearch = eventBus.on('search-note', (searchValue)=>{
+            this.setState({searchValue}, this.getNotes)
+        })
         this.unsubscribePin = eventBus.on('pin-note', (id) => {
             this.pinNote(id)
         })
-    }
-
-    onSearch = (ev)=>{
-        this.setState({searchValue: ev.target.value}, this.getNotes);
+        this.getNotes();
     }
 
     componentDidUpdate(prevProps){
@@ -48,6 +50,8 @@ export default class Keep extends React.Component {
     componentWillUnmount() {
         this.unsubscribeRemove();
         this.unsubscribeUpdate();
+        this.unsubscribeSearch();
+        this.unsubscribePin();
     }
 
     getNotes = () => {
@@ -83,7 +87,6 @@ export default class Keep extends React.Component {
                 <KeepMenu tab={this.props.match.params.filter} />
             <section className="keep-content">
                 <AddNote addNote={this.addNote} />
-                <NoteSearch onSearch={this.onSearch} searchValue={searchValue} />
                 <h1 className="keep-heading">Pinned</h1>
                 <NoteList notes={pinned} />
                 <h1 className="keep-heading">Others</h1>

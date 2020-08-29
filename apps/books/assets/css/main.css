@@ -1,5 +1,6 @@
 @import './book-details.css';
 @import './book-preview.css';
+@import './review-form.css';
 .books-container {
     background-color: lightcyan;
 }
@@ -9,6 +10,7 @@
     border-radius: 10px;
     padding: 5px;
     outline: none;
+    background-color: #fefefe;
 }
 
 .books-list {
@@ -16,7 +18,7 @@
     list-style: none;
     grid-template: repeat(auto-fit, 500px) / repeat(auto-fit, 300px);
     grid-gap: 20px;
-    margin: 0px auto;
+    justify-content: space-around;
 }
 
 .red {
@@ -31,4 +33,9 @@
     width: fit-content;
     margin: 0 auto;
     text-align: center;
+}
+
+.rate-select {
+    display: flex;
+    justify-content: space-around;
 }

@@ -1,9 +1,9 @@
-import {SearchIcon} from '../../../cmps/Icons.jsx'
+import {SearchIcon} from '../../../cmps/Icons.jsx';
+import eventBus from '../../../service/event-bus-service.js';
 
 export function NoteSearch(props){
-    const {onSearch, searchValue} = props
     return <div className="note-search rounded aps-box-shadow-big">
         <SearchIcon />
-        <input onChange={onSearch} value={searchValue} placeholder="search for a note" type="text"/>
+        <input onChange={(event)=> eventBus.emit('search-note', event.target.value)} placeholder="search for a note" type="text"/>
     </div>
 }

@@ -2,11 +2,12 @@
     display: flex;
     padding: 10px;
     font-size: 1.2em;
-    width: fit-content;
+    width: 50%;
     margin: 20px auto 0px;
 }
 
 .note-search input {
+    width: 100%;
     background-color: rgba(0, 0, 0, 0);
 }
 

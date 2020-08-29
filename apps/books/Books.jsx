@@ -20,8 +20,9 @@
 // }
 
 import { bookService } from './service/book-service.js'
-import { BooksFilter } from './cmps/BooksFilter.jsx'
-import { BooksList } from './cmps/BooksList.jsx'
+import { BooksFilter } from './cmps/BooksFilter.jsx';
+import { BooksList } from './cmps/BooksList.jsx';
+import eventBus from '../../service/event-bus-service.js';
 
 export class Books extends React.Component {
 
@@ -32,6 +33,7 @@ export class Books extends React.Component {
     }
 
     componentDidMount() {
+        eventBus.emit('change-app', false);
         this.loadBooks()
     }
 
@@ -58,11 +60,11 @@ export class Books extends React.Component {
 
 
     render() {
-        const {books, filterBy, selectedBook} = this.state;
+        const {books, filterBy} = this.state;
         if(!books) return <div>Loading...</div>
         return (
             <div className="books-container">
-                <BooksFilter filterBy={this.state.filterBy} onSetFilter={this.onSetFilter} />
+                <BooksFilter filterBy={filterBy} onSetFilter={this.onSetFilter} />
                 <BooksList books={books} onSelectBook={this.onSelectBook} />
             </div>
         )

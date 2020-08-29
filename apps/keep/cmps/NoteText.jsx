@@ -1,9 +1,10 @@
-import { TrashBinIcon, EditIcon, PinIcon, MailIcon } from '../../../cmps/Icons.jsx';
 import eventBus from '../../../service/event-bus-service.js';
 import { NoteIcons } from './NoteIcons.jsx';
 import { InNoteEdit } from './InNoteEdit.jsx';
+import { NoteButtons } from './NoteButtons.jsx';
+const {withRouter} = ReactRouterDOM;
 
-export class NoteText extends React.Component {
+class _NoteText extends React.Component {
     state = {
         isEditing: false
     }
@@ -29,8 +30,7 @@ export class NoteText extends React.Component {
 
     onSendToMail = ()=>{
         const {title, content} = this.state.info;
-        const mail = {subject: title, body: content};
-        console.log(mail);
+        this.props.history.push(`/keep?subject=${title}&body=${content}`);
     }
 
     onColorChange = (ev) => {
@@ -59,16 +59,13 @@ export class NoteText extends React.Component {
             : <h1>{this.props.info.title}</h1>}
             <p ref={this.elText} suppressContentEditableWarning={true} contentEditable={isEditing}>{info.content}</p>
             {isEditing ?
-                <InNoteEdit onColorChange={this.onColorChange} onChangeLabel={this.onChangeLabel} onUpdate={this.onUpdate} />
-                : <div className="edit-note">
-                    <MailIcon size={iconSize} onClick={this.onSendToMail} />
-                    <EditIcon size={iconSize} onClick={this.onEdit} />
-                    <TrashBinIcon size={iconSize} onClick={() => eventBus.emit('remove-note', id)} />
-                    <PinIcon size={iconSize} onClick={() => eventBus.emit('pin-note', id)} />
-                </div>
+                <InNoteEdit iconSize={iconSize} onColorChange={this.onColorChange} onChangeLabel={this.onChangeLabel} onUpdate={this.onUpdate} />
+                : <NoteButtons id={id} iconSize={iconSize} onSendToMail={this.onSendToMail} onEdit={this.onEdit} />
             }
             <NoteIcons type={type} label={info.label} />
         </div>
     }
 
 }
+
+export const NoteText = withRouter(_NoteText);
