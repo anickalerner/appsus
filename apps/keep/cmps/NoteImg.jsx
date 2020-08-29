@@ -48,7 +48,7 @@ export class NoteImg extends React.Component {
     }
 
     render() {
-        const { info, isEditing, id, type } = this.state;
+        const { info, isEditing, id, type, iconSize } = this.state;
         if (!info) return <h1>Loading...</h1>
         return isEditing ?
             <div style={{ backgroundColor: info.backgroundColor }} className="note rounded">
@@ -61,9 +61,9 @@ export class NoteImg extends React.Component {
                 {info.title && <h2>{info.title}</h2>}
                 <img src={info.url} alt="" />
                 <div className="edit-note">
-                    <EditIcon size='1.5em' onClick={this.onEdit} />
-                    <TrashBinIcon size='1.5em' onClick={() => eventBus.emit('remove-note', id)} />
-                    <PinIcon size='1.5em' onClick={() => eventBus.emit('pin-note', id)} />
+                    <EditIcon size={iconSize} onClick={this.onEdit} />
+                    <TrashBinIcon size={iconSize} onClick={() => eventBus.emit('remove-note', id)} />
+                    <PinIcon size={iconSize} onClick={() => eventBus.emit('pin-note', id)} />
                 </div>
                 <NoteIcons type={type} label={info.label} />
             </div>

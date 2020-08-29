@@ -1,4 +1,5 @@
 import { TextIcon, ImageIcon, YoutubeIcon, PlusIcon, TodoListIcon, AudioIcon } from '../../../cmps/Icons.jsx';
+import eventBus from '../../../service/event-bus-service.js'
 
 export class AddNote extends React.Component {
 
@@ -22,7 +23,10 @@ export class AddNote extends React.Component {
     onSubmit = (ev) => {
         ev.preventDefault();
         const { noteAddVal, noteType } = this.state;
-        if (!noteAddVal) return;
+        if (!noteAddVal){
+            eventBus.emit('notify', {msg: 'Write something to add first.', type:'note-add-denied'});
+             return;
+        }
         this.props.addNote(noteAddVal, noteType, event);
         this.setState({ noteAddVal: '' });
     }

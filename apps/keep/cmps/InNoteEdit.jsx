@@ -9,15 +9,16 @@ export function InNoteEdit(props) {
     }
 
     const { onChangeLabel, onColorChange, onUpdate } = props;
+    const iconSize = '1.1em'
 
     return <div className="edit-note">
-        <CheckIcon size='1.5em' onClick={onUpdate} />
+        <CheckIcon size={iconSize} onClick={onUpdate} />
         <div className="color-picker-wrapper">
             <input name="backgroundColor" onChange={onColorChange} ref={elColorPicker} type="color" />
-            <PaletteIcon size='1.5em' onClick={onColorPick} />
+            <PaletteIcon size={iconSize} onClick={onColorPick} />
             </div>
             <div className="label-wrapper">
-                <LabelIcon size='1.5em' />
+                <LabelIcon size={iconSize} />
                 <ul className="label-list rounded">
                     <li onClick={onChangeLabel}>Reminder</li>
                     <li onClick={onChangeLabel}>Archive</li>

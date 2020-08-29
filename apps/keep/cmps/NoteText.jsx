@@ -46,16 +46,16 @@ export class NoteText extends React.Component {
     }
 
     render() {
-        const { info, id, isEditing, type } = this.state;
+        const { info, id, isEditing, type, iconSize } = this.state;
         if (!info) return <h1>Loading...</h1>;
         return <div style={{ backgroundColor: info.backgroundColor }} className="note rounded">
             <p ref={this.elText} suppressContentEditableWarning={true} contentEditable={isEditing}>{info.txt}</p>
             {isEditing ?
                 <InNoteEdit onColorChange={this.onColorChange} onChangeLabel={this.onChangeLabel} onUpdate={this.onUpdate} />
                 : <div className="edit-note">
-                    <EditIcon size='1.5em' onClick={this.onEdit} />
-                    <TrashBinIcon size='1.5em' onClick={() => eventBus.emit('remove-note', id)} />
-                    <PinIcon size='1.5em' onClick={() => eventBus.emit('pin-note', id)} />
+                    <EditIcon size={iconSize} onClick={this.onEdit} />
+                    <TrashBinIcon size={iconSize} onClick={() => eventBus.emit('remove-note', id)} />
+                    <PinIcon size={iconSize} onClick={() => eventBus.emit('pin-note', id)} />
                 </div>
             }
             <NoteIcons type={type} label={info.label} />

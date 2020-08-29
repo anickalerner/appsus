@@ -2,8 +2,7 @@
     display: flex;
     position: absolute;
     bottom: 0px;
-    right: 0px;
-    height: 44px;
+    right: 10px;
     width: fit-content;
 }
 
@@ -15,8 +14,8 @@
 
 .label-wrapper {
     position: relative;
-    height: 44px;
-    width: 44px;
+    /* height: 44px;
+    width: 44px; */
 }
 
 .label-list {

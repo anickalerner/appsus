@@ -26,7 +26,10 @@ export class NoteTodos extends React.Component {
         const value = ev.target.value;
         const info = { ...this.state.info };
         const todos = [...info.todos];
-        if (!value) todos.splice(idx, 1);
+        if (!value){
+            eventBus.emit('notify', {msg: 'todo deleted', type:'todo-deleted'});
+             todos.splice(idx, 1);
+        }
         else todos[idx].txt = ev.target.value;
         info.todos = todos;
         this.setState({ info });
@@ -63,7 +66,10 @@ export class NoteTodos extends React.Component {
 
     onAddTodo = (id) => {
         const { newTodoVal } = this.state;
-        if (!newTodoVal) return;
+        if (!newTodoVal) {
+            eventBus.emit('notify', {msg: 'Write something to add first.', type:'note-add-denied'});
+             return;
+        }
         const info = { ...this.state.info };
         info.todos.push({ txt: newTodoVal, doneAt: null });
         eventBus.emit('update-note', { id, info });
@@ -80,7 +86,7 @@ export class NoteTodos extends React.Component {
     }
 
     render() {
-        const { info, id, isEditing, newTodoVal, type} = this.state;
+        const { info, id, isEditing, newTodoVal, type, iconSize} = this.state;
         if (!info) return <h1>Loading...</h1>
         return <div style={{backgroundColor: info.backgroundColor}} className="note rounded">
             {isEditing ?
@@ -92,10 +98,10 @@ export class NoteTodos extends React.Component {
                 <InNoteEdit onColorChange={this.onChange} onChangeLabel={this.onChangeLabel} onUpdate={this.onUpdate} />
                 :
                 <div className="edit-note">
-                    <PlusIcon size='1.5em' onClick={() => this.onAddTodo(id)} />
-                    <EditIcon size='1.5em' onClick={this.onEdit} />
-                    <TrashBinIcon size='1.5em' onClick={() => eventBus.emit('remove-note', id)} />
-                    <PinIcon size='1.5em' onClick={() => eventBus.emit('pin-note', id)} />
+                    <PlusIcon size={iconSize} onClick={() => this.onAddTodo(id)} />
+                    <EditIcon size={iconSize} onClick={this.onEdit} />
+                    <TrashBinIcon size={iconSize} onClick={() => eventBus.emit('remove-note', id)} />
+                    <PinIcon size={iconSize} onClick={() => eventBus.emit('pin-note', id)} />
                 </div>
             }
             <NoteIcons type={type} label={info.label} />

@@ -8,15 +8,15 @@ function DynamicCmp(note){
     const { id } = note;
     switch (note.type) {
         case 'NoteText':
-            return <NoteText key={id} {...note}  />
+            return <NoteText key={id} {...note} iconSize='1.1em'  />
         case 'NoteImg':
-            return <NoteImg key={id} {...note}  />
+            return <NoteImg key={id} {...note} iconSize='1.1em'  />
         case 'NoteTodos':
-            return <NoteTodos key={id} {...note}  />
+            return <NoteTodos key={id} {...note} iconSize='1.1em'  />
         case 'NoteVideo':
-            return <NoteVideo key={id} {...note}  />
+            return <NoteVideo key={id} {...note} iconSize='1.1em'  />
         case 'NoteAudio':
-            return <NoteAudio key={id} {...note}  />
+            return <NoteAudio key={id} {...note} iconSize='1.1em'  />
         default:
             return <h1 key={id}>Something went wrong with note {id}</h1>
     }

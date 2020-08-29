@@ -50,26 +50,7 @@ export class NoteAudio extends React.Component {
 
 
     render() {
-        // const { info, isEditing, id, type } = this.state;
-        // if (!info) return <h1>Loading...</h1>
-        // return isEditing ?
-        //     <div style={{ backgroundColor: info.backgroundColor }} className="note rounded">
-        //         <input name="title" placeholder="Image's title" value={info.title || ''} onChange={this.onChange} type="text" />
-        //         <input name="url" value={info.url} placeholder="Image's url" onChange={this.onChange} type="text" />
-        //         <InNoteEdit onColorChange={this.onColorChange} onChangeLabel={this.onChangeLabel} onUpdate={this.onUpdate} />
-        //         <NoteIcons type={type} label={info.label} />
-        //     </div>
-        //     : <div style={{ backgroundColor: info.backgroundColor }} className="note rounded ">
-        //         {info.title && <h2>{info.title}</h2>}
-        //         <img src={info.url} alt="" />
-        //         <div className="edit-note">
-        //             <EditIcon size='1.5em' onClick={this.onEdit} />
-        //             <TrashBinIcon size='1.5em' onClick={() => eventBus.emit('remove-note', id)} />
-        //             <PinIcon size='1.5em' onClick={() => eventBus.emit('pin-note', id)} />
-        //         </div>
-        //         <NoteIcons type={type} label={info.label} />
-        //     </div>
-        const { info, isEditing, id, type } = this.state;
+        const { info, isEditing, id, type, iconSize } = this.state;
         if (!info) return <h1>Loading...</h1>
         return isEditing ? <div style={{ backgroundColor: info.backgroundColor }} className="note rounded">
             <input name="title" placeholder="Audio clip's title" value={info.title || ''} onChange={this.onChange} type="text" />
@@ -84,9 +65,9 @@ export class NoteAudio extends React.Component {
                     <source src={info.url} type="audio/ogg"></source>
                 </audio>
                 <div className="edit-note">
-                    <EditIcon size='1.5em' onClick={this.onEdit} />
-                    <TrashBinIcon size='1.5em' onClick={() => eventBus.emit('remove-note', id)} />
-                    <PinIcon size='1.5em' onClick={() => eventBus.emit('pin-note', id)} />
+                    <EditIcon size={iconSize} onClick={this.onEdit} />
+                    <TrashBinIcon size={iconSize} onClick={() => eventBus.emit('remove-note', id)} />
+                    <PinIcon size={iconSize} onClick={() => eventBus.emit('pin-note', id)} />
                 </div>
             </div>
     }
