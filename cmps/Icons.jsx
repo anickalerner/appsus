@@ -2,7 +2,6 @@ function getFontSize(size){
     return { fontSize: size ? size : '1em' };
 }
 function icon(className, props) {
-    console.log(props);
     return <i className={className} style={getFontSize(props.size)} onClick={props.onClick}>
         {props.title && <div className="icon-title dark-msg rounded-small">{props.title}</div>}
     </i>;

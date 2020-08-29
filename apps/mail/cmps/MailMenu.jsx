@@ -12,7 +12,7 @@ function _MailMenu(props) {
             </div>
             <div className="side-bar-menu">
                 <NavLink exact activeClassName='active-nav' to="/mail/filter/inbox">
-                    <InboxIcon size="1em" />
+                    <InboxIcon />
                     <span className="side-bar-menu-item">
                         <span>Inbox</span>
                         <UnreadCount count={props.count} />

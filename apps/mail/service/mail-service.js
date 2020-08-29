@@ -9,7 +9,8 @@ export const mailService = {
     updateMail,
     addMail,
     deleteMail,
-    getUnreadMailsCount
+    getUnreadMailsCount,
+    noteToMail
 }
 var mails = [
     {
@@ -108,4 +109,17 @@ function deleteMail(id) {
 
 function getUnreadMailsCount() {
     return mails.filter(mail => !mail.isRead).length;
+}
+
+function noteToMail(body, subject) {
+    var newMail = {
+        id: utilService.makeId(),
+        from: 'Keep',
+        subject: subject,
+        body: body,
+        isDraft: true
+    };
+    mails.push(newMail);
+    saveMails();
+    return Promise.resolve(newMail);
 }

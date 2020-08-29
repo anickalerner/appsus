@@ -1,4 +1,4 @@
-/* .note-search {
+.aps-search {
     display: flex;
     padding: 10px;
     font-size: 1.2em;
@@ -6,11 +6,11 @@
     margin: 20px auto 0px;
 }
 
-.note-search input {
+.aps-search input {
     width: 100%;
     background-color: rgba(0, 0, 0, 0);
 }
 
-.note-search i {
+.aps-search i {
     pointer-events: none;
-} */
+}

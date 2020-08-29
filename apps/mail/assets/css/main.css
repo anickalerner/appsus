@@ -12,6 +12,8 @@ span.starred i {
     border-collapse: collapse;
     margin-top: 2em;
     font-size: .875rem;
+    width: 95%;
+    margin-left: 1%;
 }
 .mail-table tr{
     background-color:rgba(242,245,245,0.8);

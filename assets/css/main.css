@@ -5,6 +5,8 @@
 @import '../../apps/books/assets/css/main.css';
 @import './notification.css';
 @import './form.css';
+@import './search-field.css';
+
 @font-face {
     font-family: 'Roboto';
     src: url('../font/Roboto/Roboto-Regular.ttf');

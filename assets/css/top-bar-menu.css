@@ -9,7 +9,7 @@
     background-color: white;
     display: flex;
     flex-direction: row;
-    
+    z-index: 5;
 }
 .apps-menu nav a{
     display: inline-block;

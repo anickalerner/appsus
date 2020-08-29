@@ -3,7 +3,7 @@
     right: 0.5em;
     bottom: 0.5em;
     width: 510px;
-    height: 470px;
+    min-height: 470px;
     z-index: 5;
     background-color: #fff;
 }

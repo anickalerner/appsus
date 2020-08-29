@@ -12,7 +12,6 @@ input, textarea {
 }
 .form-group input, .form-group textarea{
     width: 100%;
-    font-size: small;
     font-family: 'Roboto', Arial, sans-serif;
 }
 .form-group textarea{
@@ -42,4 +41,9 @@ input, textarea {
     border: 1px solid #ced4da;
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+    margin-right: .5em;
 }

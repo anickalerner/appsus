@@ -54,9 +54,10 @@ export class NewMail extends React.Component {
     }
 
     close = () => {
-        if (!this.state.savedFirstDraft){  // nothing was put in the mail
-            this.props.onClose();
+        if (this.state.savedFirstDraft){
+            this.saveDraft();
         }
+        this.props.onClose();
     }
 
     get mailId() {

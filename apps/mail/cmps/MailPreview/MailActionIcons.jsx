@@ -1,7 +1,9 @@
-import { TrashBinIcon, MailIcon, MailOpenIcon } from '../../../../cmps/Icons.jsx';
+import { TrashBinIcon, MailIcon, MailOpenIcon, NoteIcon } from '../../../../cmps/Icons.jsx';
+const { withRouter } = ReactRouterDOM;
 
+function _MailActionIcons(props) {
 
-export function MailActionIcons({ mail, onDelete, onMarkRead }) {
+    const { mail, onDelete, onMarkRead } = props;
 
     function ReadIcon(){
         return (mail.isRead) ? <MailIcon onClick={toggleIsReadIcon} title="Mark as unread" /> : <MailOpenIcon onClick={toggleIsReadIcon} title="Mark as read"/>;
@@ -15,12 +17,20 @@ export function MailActionIcons({ mail, onDelete, onMarkRead }) {
         ev.stopPropagation();
         onDelete();
     }
+
+    function sendToKeep(ev){
+        ev.stopPropagation();
+        props.history.push(`/keep?subject=${mail.subject}&body=${mail.body}`);
+    }
+
     return (
         <td>
             <TrashBinIcon onClick={_onDelete} title="Delete"/>
             {ReadIcon()}
+            <NoteIcon onClick={sendToKeep} title="Send to Keep" />
         </td>
     )
 }
+export const MailActionIcons = withRouter(_MailActionIcons);
 
 

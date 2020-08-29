@@ -81,6 +81,7 @@ function getNotes({ label = 'None', search }) {
     const pinned = [];
     const notPinned = [];
     notes.forEach(note => {
+        console.log(note.info);
         if (note.info.label.toLowerCase() !== label && label !== 'None') return;
         if (note.type === 'NoteTodos') {
             if (note.info.todos.every(note => !note.content.includes(search))) return;

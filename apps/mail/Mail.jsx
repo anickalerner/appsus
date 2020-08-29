@@ -16,7 +16,14 @@ export default class Mail extends React.Component {
     };
 
     componentDidMount() {
+        eventBus.emit('change-app', 'mail');
         this.loadMails();
+        const subject = new URLSearchParams(this.props.location.search).get('subject');
+        const body = new URLSearchParams(this.props.location.search).get('body');
+        if (subject && body) mailService.noteToMail(body, subject).then((mail)=>{
+            this.setState({composing: true, mailInDraft: mail});
+        });
+
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -67,12 +74,13 @@ export default class Mail extends React.Component {
     }
 
     closeComposing = () => {
-        this.setState({ composing: false });
+        this.setState({ composing: false, mailInDraft: null });
     }
 
     sendMail = (formData) => {
         formData.isDraft = false;
         formData.isSent = true;
+        formData.sentAt = Date.now();
         if (!formData.id) {
             mailService.addMail(formData).then((mail) => {
                 this.loadMails();

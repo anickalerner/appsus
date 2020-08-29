@@ -61,10 +61,8 @@ function filterMails(mails, filter, filteredByRead) {
         })]
     }
     else {
-        var filtered = mails.filter(getCallbackByFilter(filter));
-        console.log(filtered);
-        var filtered2 = filtered.filter(getCallbackByFilter(filteredByRead));
-        console.log(filtered2);
-        return filtered2;
+        mails = mails.filter(getCallbackByFilter(filter));
+        mails = mails.filter(getCallbackByFilter(filteredByRead));
+        return mails;
     }
 }
