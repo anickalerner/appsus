@@ -23,6 +23,9 @@ export function MailIcon(props) {
 export function SearchIcon(props) {
     return icon("fas fa-search", props);
 }
+export function TimesIcon(props) {
+    return icon("fas fa-times", props);
+}
 
 //Mail
 export function TrashBinIcon(props){
@@ -51,6 +54,9 @@ export function MailOpenIcon(props) {
 }
 export function PaperPlaneIcon(props) {
     return icon("fas fa-paper-plane", props);
+}
+export function ReplyIcon(props) {
+    return icon("fas fa-reply", props);
 }
 
 //Keep

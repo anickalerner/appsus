@@ -1,9 +1,16 @@
 .apps-menu-icon{
     position: relative;
 }
+.apps-menu-icon i{
+    background-color: white;
+}
+.apps-menu-icon i:hover{
+    background-color: #c5ccd3;
+}
+
 .apps-menu{
     position: fixed;
-    top: 3em;
+    top: 3.75em;
     right: 1em;
     padding: 2em;
     background-color: white;
@@ -19,8 +26,9 @@
     text-align: center;
     
 }
-.apps-menu nav a:hover{
-    background-color: #e8f0fe;
+.apps-menu nav a:hover,
+.apps-menu nav a:hover i{
+    background-color: #E6E7EF; /* #EEEAD2; /* #EBF0E5; /*#F1E4E4; /* #F5EDE0; /* E9F2E3;*/
 }
 .apps-menu nav a:visited{
     color: #5f6368;
@@ -32,27 +40,27 @@ header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0.4em 1em 1em;
+    padding: 1em;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    background-color: lightslategrey;
+    align-items: center;
 }
 header .logo a{
     font-size: 2em;
     font-family: 'Product';
     text-decoration: none;
-    color: #5f6368;
+    /* color: #5f6368; */
+    color: white;
 }
 header .logo a:visited{
-    color: #5f6368;
+    /* color: #5f6368; */
+    color: white;
 }
 .apps-menu i.fas,
 .apps-menu i.far{    
     display: block;
     float: none;
     color: rgb(95, 99, 104);
-}
-.apps-menu i.fas:hover,
-.apps-menu i.far:hover{ 
-    background-color: #e8f0fe;
 }
 .apps-menu .apps-menu-label{
     display: block;

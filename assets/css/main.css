@@ -36,7 +36,13 @@ body {
 
 
 /* Components */
-
+.welcome img{
+    padding-top: 5em;
+    max-width: 1000px;
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+}
 .side-bar ul,
 .side-bar-menu {
     list-style: none;
@@ -86,13 +92,12 @@ body {
 }
 
 .home-container {
-    background-color: lightsteelblue;
+    
 }
 
-.text-muted {
-    color: #5f6368;
+.view-filter-form{
+    margin-top: 1em;
 }
-
-.text-bold {
-    font-weight: 700;
+.view-filter-form select{
+    border-radius: 10px;
 }

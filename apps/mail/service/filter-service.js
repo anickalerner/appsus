@@ -54,7 +54,7 @@ function getCallbackByFilter(filter) {
 }
 
 function filterMails(mails, filter, filteredByRead) {
-//    var byRead = filteredByRead === 'read'
+    //    var byRead = filteredByRead === 'read'
     if (filter.name === 'id') {
         return [mails.find((mail) => {
             return mail.id === filter.value;
@@ -62,7 +62,9 @@ function filterMails(mails, filter, filteredByRead) {
     }
     else {
         mails = mails.filter(getCallbackByFilter(filter));
-        mails = mails.filter(getCallbackByFilter(filteredByRead));
+        if (filter.value !== 'drafts') {
+            mails = mails.filter(getCallbackByFilter(filteredByRead));
+        }
         return mails;
     }
 }

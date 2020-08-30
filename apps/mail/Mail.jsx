@@ -12,16 +12,19 @@ export default class Mail extends React.Component {
         composing: false,
         mailInDraft: null,
         mailOpened: null,
-        filteredByRead: {name: 'isRead', value: 'all'}
+        filteredByRead: { name: 'isRead', value: 'all' }
     };
-
+    unsubscribeSearch
     componentDidMount() {
         eventBus.emit('change-app', 'mail');
+        this.unsubscribeSearch = eventBus.on('search-mail', (searchValue) => {
+            this.setState({ searchValue }, this.searchMails)
+        })
         this.loadMails();
         const subject = new URLSearchParams(this.props.location.search).get('subject');
         const body = new URLSearchParams(this.props.location.search).get('body');
-        if (subject && body) mailService.noteToMail(body, subject).then((mail)=>{
-            this.setState({composing: true, mailInDraft: mail});
+        if (subject && body) mailService.noteToMail(body, subject).then((mail) => {
+            this.setState({ composing: true, mailInDraft: mail });
         });
 
     }
@@ -41,11 +44,17 @@ export default class Mail extends React.Component {
         return filter;
     }
 
+    searchMails = () => {
+        mailService.searchInMails(this.state.searchValue).then((mails) => {
+            this.setState({ mails });
+        });
+    }
+
     loadMails = () => {
         this.setState({ mailOpened: null });
         var filter = this.getFilter();
         mailService.query(filter, this.state.filteredByRead).then(mails => {
-            mails.sort((mail1, mail2) => { return mail2.sentAt - mail1.sentAt});
+            mails.sort((mail1, mail2) => { return mail2.sentAt - mail1.sentAt });
             var newState = { mails, unreadCount: this.unreadCount };
             if (filter.name === 'id') {
                 Object.assign(newState, { mailOpened: true })
@@ -55,7 +64,7 @@ export default class Mail extends React.Component {
     }
 
     filterView = (value) => {
-        this.setState({filteredByRead: {name: 'isRead', value: value}}, ()=>{
+        this.setState({ filteredByRead: { name: 'isRead', value: value } }, () => {
             this.loadMails();
         });
     }
@@ -88,8 +97,8 @@ export default class Mail extends React.Component {
             });
         }
         else {
-            mailService.updateMailProperty(formData.id, formData).then(()=>{
-                this.loadMails();                
+            mailService.updateMailProperty(formData.id, formData).then(() => {
+                this.loadMails();
             })
         }
     }
@@ -138,13 +147,47 @@ export default class Mail extends React.Component {
             });
     }
 
-    openDraft = () => {
-        this.setState({ composing: true })
+    openDraft = (mail) => {
+        this.setState({ composing: true, mailInDraft: mail })
+    }
+
+    reply = (mail) => {
+        var replyMail = { ...mail };
+        replyMail.subject = 'Re: ' + mail.subject;
+        replyMail.to = mail.from;
+        replyMail.id = null;
+        mailService.addMail(replyMail).then((mail) => {
+            this.setState({ composing: true, mailInDraft: mail });
+        })
+    }
+
+    sortMails = (sortBy) => {
+        var mails = this.state.mails;
+        function sortByDate(m1, m2) {
+            return m1.sentAt - m2.sentAt;
+        }
+        function sortBySubject(m1, m2) {
+            return m1.subject.toUpperCase() < m2.subject.toUpperCase();
+        }
+        var callback;
+        switch (sortBy) {
+            case 'date':
+                callback = sortByDate;
+                break;
+            case 'subject':
+                callback = sortBySubject;
+                break;
+            default:
+                callback = sortByDate;
+                break;
+        }
+        mails.sort(callback);
+        this.setState(mails);
     }
 
     MailMode = () => {
         return (this.state.mailOpened) ?
-            <MailDetails mail={this.state.mails[0]} />
+            <MailDetails mail={this.state.mails[0]} reply={this.reply} starClicked={this.mailStarToggle} />
             :
             <MailList mails={this.state.mails}
                 mailStarToggle={this.mailStarToggle}
@@ -153,6 +196,8 @@ export default class Mail extends React.Component {
                 markRead={this.markRead}
                 openDraft={this.openDraft}
                 filterView={this.filterView}
+                reply={this.reply}
+                sortMails={this.sortMails}
             />
     }
 

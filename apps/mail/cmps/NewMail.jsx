@@ -88,12 +88,10 @@ export class NewMail extends React.Component {
                     <input type="hidden" id="mail-id" ref={this.idRef} value={this.mailId} />
 
                     <div className="form-group">
-                        {/* <label htmlFor="mail-to">Email address</label> */}
                         <input type="mail" className="form-control" id="mail-to" ref={this.mailToRef} defaultValue={this.mailTo} placeholder="Recipients" />
 
                     </div>
                     <div className="form-group">
-                        {/* <label htmlFor="mail-subject">Subject</label> */}
                         <input type="text" className="form-control" id="mail-subject" ref={this.mailSubjectRef} defaultValue={this.mailSubject} placeholder="Subject" />
 
                     </div>

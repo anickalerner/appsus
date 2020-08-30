@@ -1,9 +1,11 @@
 .aps-search {
     display: flex;
     padding: 10px;
-    font-size: 1.2em;
+    font-size: 1.1em;
     width: 50%;
-    margin: 20px auto 0px;
+    margin: 0 auto;
+    position: relative;
+    background-color: white;
 }
 
 .aps-search input {
@@ -13,4 +15,12 @@
 
 .aps-search i {
     pointer-events: none;
+}
+.aps-search i.fa-times{
+position: absolute;
+    width: 30px;
+    color: #76787c;
+    font-size: 1.5em;
+    right: 12px;
+    top: 12px;
 }

@@ -1,10 +1,14 @@
 import { MailRow } from './MailPreview/MailRow.jsx';
 import { ViewFilter } from './ViewFilter.jsx';
+import { SortControl } from './SortControl.jsx';
 
-export function MailList({ mails, mailStarToggle, onDeleteMail, openMail, markRead, openDraft, filterView }) {
+export function MailList({ mails, mailStarToggle, onDeleteMail, openMail, markRead, openDraft, filterView, reply, sortMails }) {
     return (
         <div>
-            <ViewFilter onChange={filterView}/>
+            <form className="filter-sort-form">
+                <ViewFilter onChange={filterView} />
+                <SortControl sortMails={sortMails} />
+            </form>
             <table className="mail-table">
                 <tbody>
                     {mails.length > 0 && mails.map(mail => {
@@ -13,6 +17,7 @@ export function MailList({ mails, mailStarToggle, onDeleteMail, openMail, markRe
                             openMail={openMail}
                             markRead={markRead}
                             openDraft={openDraft}
+                            reply={reply}
                         />
                     })}
                     {

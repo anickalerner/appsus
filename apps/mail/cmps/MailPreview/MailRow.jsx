@@ -36,7 +36,7 @@ export class MailRow extends React.Component {
 
     onMailRowClicked = () => {
         if (this.props.mail.isDraft) {
-            this.props.openDraft();
+            this.props.openDraft(this.props.mail);
         }
         else {
             this.setState({ openMail: true }, () => {
@@ -62,7 +62,7 @@ export class MailRow extends React.Component {
                 onMouseLeave={this.handleMouseLeave}
                 onClick={this.onMailRowClicked}
                 className={this.trClassName}>
-                <MailControls mail={mail} starClicked={this.starClicked} />
+                <MailControls mail={mail} starClicked={this.starClicked} reply={this.props.reply} />
                 <MailFrom from={mail.from} isRead={mail.isRead} />
                 <MailSubject subject={mail.subject} body={mail.body} isRead={mail.isRead} />
                 {this.getHoverComponent(mail)}
@@ -82,7 +82,7 @@ function MailFrom({ from, isRead }) {
 function MailDate({ date }) {
     return (
         <td>
-            {new Date(date).toLocaleString()}
+            {new Date(date).toLocaleDateString()}
         </td>
     )
 }

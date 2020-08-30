@@ -10,7 +10,8 @@ export const mailService = {
     addMail,
     deleteMail,
     getUnreadMailsCount,
-    noteToMail
+    noteToMail,
+    searchInMails
 }
 var mails = [
     {
@@ -33,6 +34,43 @@ var mails = [
         , isRead: false
         , sentAt: 1598437663925
     }
+    , {
+        from: 'Strava',
+        subject: 'Anna, Virtually run the TCS New York City Marathon!'
+        , body: 'Join runners from around the globe to celebrate this year’s TCS New York City Marathon and be part of the largest virtual marathon in the world.'
+        , isRead: false
+        , sentAt: 1430514000000
+    }
+    , {
+        from: 'Pinterest',
+        subject: 'Look at this... 👀'
+        , body: 'Look at this... 👀 https://pin.it/1Qv4rCS'
+        , isRead: false
+        , sentAt: 1556744400000
+    }
+    , {
+        from: 'Booking.com',
+        subject: '🛄 Thanks! Your booking is confirmed at The Post Hostel Jerusalem'
+        , body: 'Thanks, Anna! Your booking in Jerusalem is confirmed.'
+        , isRead: false
+        , sentAt: 1592686800000
+    }
+    , {
+        from: 'Domino\'s Pizza Israel',
+        subject: 'שלום , לפני שתספיקו לשאול "מה אוכלים היום לארוחת ערב?" 🍕❤🍕'
+        , body: 'Thanks, Anna! Your booking in Jerusalem is confirmed.'
+        , isRead: false
+        , sentAt: 1595278800000
+    }
+    , {
+        from: 'YouTube',
+        subject: 'Simon\'s Cat: "Cats Can Be A Real Pain In The Grass - Simon\'s Cat | STORYTIME" and more videos'
+        , body: 'https://www.youtube.com/watch?v=tp9aQXDFHbY&feature=em-subs_digest'
+        , isRead: false
+        , sentAt: 1595970000000
+    }
+
+    
 ];
 const MAIL_PREF = '-MAIL';
 initMails();
@@ -61,6 +99,14 @@ function initMails() {
 
 function query(filter, filteredByRead) {
     return Promise.resolve(filterService.filterMails(mails, filter, filteredByRead));
+}
+
+function searchInMails(searchTerm){
+    return Promise.resolve(mails.filter(mail => {
+        console.log(searchTerm);
+        console.log();
+        return mail.subject.includes(searchTerm) || mail.body.includes(searchTerm)
+    }));
 }
 
 function getMailIndexById(mailId) {
@@ -117,7 +163,8 @@ function noteToMail(body, subject) {
         from: 'Keep',
         subject: subject,
         body: body,
-        isDraft: true
+        isDraft: true,
+        sentAt: Date.now()
     };
     mails.push(newMail);
     saveMails();
