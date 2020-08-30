@@ -5,6 +5,7 @@ import { utilService } from '../../../service/util-service.js'
 export const mailService = {
     query,
     getMailIndexById,
+    getMailById,
     updateMailProperty,
     updateMail,
     addMail,
@@ -111,6 +112,10 @@ function searchInMails(searchTerm){
 
 function getMailIndexById(mailId) {
     return Promise.resolve(mails.findIndex(mail => mail.id === mailId));
+}
+
+function getMailById(mailId) {
+    return Promise.resolve(mails.find(mail => mail.id === mailId));
 }
 
 function updateMailProperty(id, propObj) {

@@ -71,10 +71,11 @@ export default class Mail extends React.Component {
 
     mailStarToggle = (mailToUpdateId) => {
 
-        mailService.getMailIndexById(mailToUpdateId).then(mailInd => {
-            var mailToUpdate = this.state.mails[mailInd];
+        mailService.getMailById(mailToUpdateId).then(mailToUpdate => {
             mailToUpdate.isStarred = !mailToUpdate.isStarred;
-            mailService.updateMail(mailInd, mailToUpdate).then(() => this.loadMails());
+            mailService.getMailIndexById(mailToUpdate.id).then((mailInd)=>{
+                mailService.updateMail(mailInd, mailToUpdate).then(() => this.loadMails())
+            });
         });
     }
 
